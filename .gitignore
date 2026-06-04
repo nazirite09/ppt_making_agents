@@ -1,0 +1,12 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.log
+
+# Machine-specific Claude settings (keep agents/ tracked)
+.claude/settings.local.json
+
+# Node / build artifacts
+node_modules/
