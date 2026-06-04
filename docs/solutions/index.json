@@ -1,0 +1,41 @@
+[
+  {
+    "id": "sol-20260604-001",
+    "title": "공식 pptx 스킬은 pptxgenjs로 생성한다 (html2pptx 아님) + 환경 의존성",
+    "tags": ["pptx", "pptxgenjs", "dependencies", "windows"],
+    "category": "tool-usage",
+    "confidence": 0.5,
+    "created": "2026-06-04",
+    "last_reinforced": "2026-06-04",
+    "reinforcement_count": 0,
+    "supersedes": null,
+    "superseded_by": null,
+    "related": []
+  },
+  {
+    "id": "sol-20260604-002",
+    "title": "세컨드 브레인: 중요도와 성숙도(확신)를 분리하라",
+    "tags": ["second-brain", "preferences", "weighting", "agent-design"],
+    "category": "architecture",
+    "confidence": 0.5,
+    "created": "2026-06-04",
+    "last_reinforced": "2026-06-04",
+    "reinforcement_count": 0,
+    "supersedes": null,
+    "superseded_by": null,
+    "related": ["sol-20260604-003"]
+  },
+  {
+    "id": "sol-20260604-003",
+    "title": "세컨드 브레인은 컨펌된 출력만 가중치 신호로 쓴다",
+    "tags": ["second-brain", "feedback-loop", "data-quality", "workflow"],
+    "category": "workflow",
+    "confidence": 0.5,
+    "created": "2026-06-04",
+    "last_reinforced": "2026-06-04",
+    "reinforcement_count": 0,
+    "supersedes": null,
+    "superseded_by": null,
+    "related": ["sol-20260604-002"]
+  }
+]

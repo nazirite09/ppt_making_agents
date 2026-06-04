@@ -14,6 +14,10 @@
 | 5 | `design-reviewer` | 아트보드를 실제 렌더해 투사 가독성·일관성 감수 |
 | 6 | `pptx-builder` | 승인된 HTML을 PowerPoint(.pptx)로 변환 |
 
+## 세컨드 브레인 (`knowledge/user-brain.md`)
+
+파이프라인은 사용자 선호를 누적하는 **공유 세컨드 브레인** `knowledge/user-brain.md`를 둔다. 중요도(필수/중요/선호/실험 + 0–100 점수)와 성숙도(provisional/established)로 취향을 규칙화하며, **사용자가 컨펌한 피드백에서만** 제안형으로 학습한다(미검토 산출물은 시드에서 제외). 현재 `sermon-storyline-architect`에 연결되어 있고 `slide-visual-designer` 등으로 확장 예정이다.
+
 ## 산출물 예시
 
 | 파일 | 설명 |
