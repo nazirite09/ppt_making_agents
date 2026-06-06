@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- slide #07 · type: 인용/본문 (1강 ② 엡 4:14 봉독) -->
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 07 · 흔들리지 않게 하시는 말씀</title>
+<link href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { interpolate-size: allow-keywords; }
+  html.theme-light {
+    --bg: #F7F7F8; --surface: #FFFFFF; --surface-hover: #F4F4F5;
+    --border: rgba(112,115,124,0.22);
+    --text: #171719; --text-secondary: #5A5C63;
+    --accent: #0066FF; --accent-secondary: #70737C;
+    --accent-strong: #005EEB; --accent-soft: #EAF2FE;
+    --positive: #00BF40; --negative: #FF4242; --warning: #FF9200;
+    --shadow-sm: 0 2px 4px -2px rgba(23,23,23,0.06), 0 4px 6px -1px rgba(23,23,23,0.05);
+    --shadow-md: 0 4px 6px -2px rgba(23,23,23,0.07), 0 10px 15px -3px rgba(23,23,23,0.07);
+    --shadow-lg: 0 6px 10px -4px rgba(23,23,23,0.08), 0 16px 24px -6px rgba(23,23,23,0.08);
+  }
+  html.theme-dark {
+    --bg: #1B1C1E; --surface: #212225; --surface-hover: #2E2F33;
+    --border: rgba(112,115,124,0.30);
+    --text: #F7F7F8; --text-secondary: #AEB0B6;
+    --accent: #3385FF; --accent-secondary: #989BA2;
+    --accent-strong: #1A75FF; --accent-soft: rgba(51,133,255,0.16);
+    --positive: #1ED45A; --negative: #FF6363; --warning: #FFA938;
+    --shadow-sm: 0 2px 4px -2px rgba(0,0,0,0.40), 0 4px 6px -1px rgba(0,0,0,0.30);
+    --shadow-md: 0 4px 6px -2px rgba(0,0,0,0.45), 0 10px 15px -3px rgba(0,0,0,0.40);
+    --shadow-lg: 0 8px 14px -4px rgba(0,0,0,0.55), 0 18px 28px -8px rgba(0,0,0,0.45);
+  }
+  html, body { width: 1280px; height: 720px; }
+  body { font-family: 'Wanted Sans Variable', 'Wanted Sans', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; overflow: hidden; word-break: keep-all; }
+  h1, h2, h3, h4 { color: var(--text); line-height: 1.2; letter-spacing: -0.03em; }
+  .artboard { position: relative; width: 1280px; height: 720px; overflow: hidden; }
+  html.theme-light .artboard { background:
+      radial-gradient(820px 520px at 50% -10%, rgba(0,102,255,0.09), transparent 60%),
+      linear-gradient(180deg, #FFFFFF 0%, #F4F8FF 55%, #F7F7F8 100%); }
+  html.theme-dark .artboard { background:
+      radial-gradient(820px 520px at 50% -10%, rgba(51,133,255,0.18), transparent 60%),
+      linear-gradient(180deg, #23262B 0%, #1B1C1E 60%, #161719 100%); }
+
+  .stage { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 60px 130px; }
+  .sc-label { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 700; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 26px; }
+  .sc-label::before { content: ''; width: 26px; height: 2px; background: var(--accent); border-radius: 2px; opacity: 0.6; }
+  .sc-title { font-size: 34px; font-weight: 800; letter-spacing: -0.035em; margin-bottom: 26px; line-height: 1.18; }
+  .sc-title .hl { color: var(--accent); }
+  .sc-verse { font-size: 38px; font-weight: 600; line-height: 1.5; letter-spacing: -0.03em; color: var(--text); max-width: 1010px; }
+  .sc-verse .holy { color: var(--accent); font-weight: 700; }
+  .sc-source { margin-top: 24px; font-size: 17px; color: var(--text-secondary); font-weight: 600; letter-spacing: 0.02em; }
+
+  /* psalm 119:105 lamp side card */
+  .lamp-card { margin-top: 34px; display: flex; align-items: center; gap: 20px; background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 16px; padding: 22px 26px; max-width: 920px; box-shadow: var(--shadow-sm); }
+  .lamp-ico { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+  .lamp-body p { font-size: 21px; font-weight: 600; line-height: 1.45; color: var(--text); }
+  .lamp-body .lref { margin-top: 6px; font-size: 14px; font-weight: 700; color: var(--accent); }
+  .lamp-body .lref span { color: var(--text-secondary); font-weight: 500; margin-left: 8px; }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate { animation: fadeInUp 0.7s ease-out both; }
+  .delay-1 { animation-delay: 0.14s; } .delay-2 { animation-delay: 0.28s; } .delay-3 { animation-delay: 0.42s; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+  .viz-menu { position: fixed; top: 16px; right: 16px; z-index: 9999; }
+  .viz-menu-toggle { width: 42px; height: 42px; border-radius: 11px; background: var(--surface); border: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
+  .viz-menu-toggle:hover { background: var(--surface-hover); }
+  .viz-menu-dropdown { position: absolute; top: 50px; right: 0; min-width: 188px; background: var(--surface); border: 1px solid var(--border); border-radius: 13px; padding: 8px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.18s; box-shadow: var(--shadow-lg); }
+  .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .viz-menu-dropdown button { width: 100%; padding: 10px 13px; border: none; border-radius: 9px; background: transparent; color: var(--text); font-size: 14px; font-family: inherit; font-weight: 500; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; }
+  .viz-menu-dropdown button:hover { background: var(--surface-hover); }
+  .skip-to-content { position: absolute; top: -50px; left: 6px; background: var(--accent); color: #fff; padding: 8px 12px; text-decoration: none; border-radius: 8px; z-index: 10000; }
+  .skip-to-content:focus { top: 6px; }
+  @media print { @page { size: 1280px 720px; margin: 0; } .viz-menu { display: none; } }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<nav class="viz-menu" aria-label="유틸리티 메뉴">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기" aria-haspopup="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown" role="menu">
+    <button onclick="cycleTheme()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/></svg> 테마 전환</button>
+    <button onclick="downloadImage()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG 저장</button>
+    <button onclick="window.print()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> 인쇄 / PDF</button>
+  </div>
+</nav>
+
+<main id="main-content">
+<section class="artboard" aria-label="흔들리지 않게 하시는 말씀 — 엡 4:14 봉독">
+  <div class="stage">
+    <span class="sc-label animate">1강 · 본문 봉독</span>
+    <h2 class="sc-title animate">흔들리지 않게<br><span class="hl">하시는 말씀</span></h2>
+    <p class="sc-verse animate delay-1">
+      “어린아이가 되지 아니하여 사람의 속임수와 간사한 유혹에 빠져<br>
+      온갖 교훈의 풍조에 밀려 <span class="holy">요동하지 않게</span> 하려 함이라”
+    </p>
+    <p class="sc-source animate delay-1">에베소서 4:14 · 개역개정</p>
+
+    <div class="lamp-card animate delay-2">
+      <div class="lamp-ico" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 .9 1 1.8h6c0-.9.4-1.3 1-1.8A7 7 0 0 0 12 2Z"/></svg>
+      </div>
+      <div class="lamp-body">
+        <p>“주의 말씀은 내 발에 등이요 내 길에 빛이니이다”</p>
+        <div class="lref">시편 119:105 <span>변하는 세상 풍조 속에서 마음을 지키는 등불</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+  var THEME_KEY = 'viz-theme';
+  function applyTheme(t) { document.documentElement.className = 'theme-' + t; try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
+  function cycleTheme() { var cur = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light'; applyTheme(cur === 'dark' ? 'light' : 'dark'); }
+  function toggleMenu() { document.getElementById('vizMenuDropdown').classList.toggle('open'); }
+  function downloadImage() { var node = document.querySelector('.artboard'); if (typeof htmlToImage === 'undefined') return; htmlToImage.toPng(node, { pixelRatio: 2, width: 1280, height: 720 }).then(function (url) { var a = document.createElement('a'); a.download = 'slide-07.png'; a.href = url; a.click(); }); }
+  (function () { try { var s = localStorage.getItem(THEME_KEY); if (s) applyTheme(s); } catch (e) {} })();
+  document.addEventListener('click', function (e) { if (!e.target.closest('.viz-menu')) { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+</script>
+</body>
+</html>
