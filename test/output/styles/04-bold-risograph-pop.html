@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>④ Bold Risograph Pop — 하나님은 누구신가</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html.theme-light{
+  --bg:#F3EAD6; --surface:#FFFFFF; --surface-hover:#FBF4E6; --border:#161616;
+  --text:#161616; --text-secondary:#574F45; --accent:#FF512F; --accent-secondary:#2C54FF;
+  --positive:#16A86B; --negative:#FF3D57; --warning:#FFC400; --ink:#161616;
+}
+html.theme-dark{
+  --bg:#1B1813; --surface:#262119; --surface-hover:#2F291F; --border:#F3EAD6;
+  --text:#F3EAD6; --text-secondary:#C2B79F; --accent:#FF6B4D; --accent-secondary:#6E8BFF;
+  --positive:#3FD08C; --negative:#FF6B7E; --warning:#FFD23F; --ink:#F3EAD6;
+}
+html,body{height:100%;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);overflow:hidden;line-height:1.55;-webkit-font-smoothing:antialiased;transition:background .4s,color .4s;}
+.paper{position:absolute;inset:0;z-index:0;opacity:.5;background-image:radial-gradient(rgba(0,0,0,.05) 1px,transparent 1px);background-size:5px 5px;}
+.theme-dark .paper{background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);}
+.bhs{font-family:'Black Han Sans',sans-serif;}
+h1,h2{font-family:'Black Han Sans',sans-serif;color:var(--text);line-height:1.06;letter-spacing:0;font-weight:400;}
+h3{font-family:'Do Hyeon',sans-serif;color:var(--text);font-weight:400;}
+.hl{background:var(--warning);box-shadow:0 0 0 2px var(--warning);color:var(--ink);padding:0 .06em;}
+.deck{position:relative;width:100vw;height:100vh;height:100dvh;overflow:hidden;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,7vh,80px) clamp(36px,8vw,128px);opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(40px,0,0);transition:opacity .4s ease,transform .5s cubic-bezier(.16,1,.3,1);overflow-y:auto;}
+.slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:none;z-index:2;}
+.slide.exit-to-left{opacity:0;visibility:visible;transform:translate3d(-40px,0,0);z-index:1;}
+.slide.exit-to-right{opacity:0;visibility:visible;transform:translate3d(40px,0,0);z-index:1;}
+.slide.notrans{transition:none!important;}
+.fragment{opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .5s cubic-bezier(.34,1.56,.64,1);}
+.slide.active .fragment{opacity:1;transform:none;}
+.slide.active .fragment.d1{transition-delay:.05s;}.slide.active .fragment.d2{transition-delay:.14s;}.slide.active .fragment.d3{transition-delay:.24s;}.slide.active .fragment.d4{transition-delay:.34s;}
+.max{max-width:1080px;width:100%;margin:0 auto;position:relative;z-index:1;}
+.center{text-align:center;align-items:center;}
+.sticker{display:inline-block;font-family:'Do Hyeon';font-size:.92rem;color:#fff;background:var(--accent);border:3px solid var(--border);padding:7px 16px;box-shadow:4px 4px 0 var(--border);transform:rotate(-2deg);}
+.sticker.blue{background:var(--accent-secondary);}
+.s-title{font-size:clamp(2.4rem,5.2vw,3.7rem);margin:18px 0 8px;}
+/* cover */
+.cover-title{font-size:clamp(3.6rem,11vw,7rem);line-height:.96;}
+.cover-title .em{color:var(--accent);-webkit-text-stroke:2px var(--border);}
+.theme-dark .cover-title .em{-webkit-text-stroke:2px var(--border);}
+.cover-sub{margin-top:24px;font-family:'Do Hyeon';font-size:clamp(1.05rem,1.7vw,1.3rem);color:var(--text);}
+.cover-ref{display:inline-block;margin-top:18px;font-family:'Do Hyeon';color:#fff;background:var(--accent-secondary);border:3px solid var(--border);box-shadow:4px 4px 0 var(--border);padding:7px 18px;}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:42px;}
+.pcard{background:var(--surface);border:3px solid var(--border);box-shadow:6px 6px 0 var(--border);padding:clamp(22px,2.5vw,30px);transition:transform .18s,box-shadow .18s;}
+.pcard:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--border);}
+.pnum{width:48px;height:48px;border:3px solid var(--border);border-radius:50%;display:grid;place-items:center;font-family:'Black Han Sans';font-size:1.5rem;color:#fff;margin-bottom:16px;}
+.pcard:nth-child(1) .pnum{background:var(--accent);}
+.pcard:nth-child(2) .pnum{background:var(--accent-secondary);}
+.pcard:nth-child(3) .pnum{background:var(--positive);}
+.pcard h3{font-size:clamp(1.14rem,1.5vw,1.36rem);margin-bottom:10px;}
+.pcard p{color:var(--text-secondary);font-size:clamp(.93rem,1.08vw,1.02rem);line-height:1.62;}
+.pcard p b{color:var(--text);font-weight:700;}
+/* scripture */
+.sc-card{background:var(--surface);border:4px solid var(--border);box-shadow:9px 9px 0 var(--border);padding:clamp(34px,4.4vw,58px);max-width:1000px;margin:0 auto;}
+.sc-sticker{display:inline-block;font-family:'Do Hyeon';color:var(--ink);background:var(--warning);border:3px solid var(--border);padding:6px 16px;transform:rotate(-2deg);margin-bottom:26px;}
+.sc-verse{font-family:'Black Han Sans';font-size:clamp(1.9rem,4.2vw,3.2rem);line-height:1.32;}
+.sc-verse .holy{color:var(--accent);-webkit-text-stroke:1.5px var(--border);}
+.sc-foot{margin-top:24px;font-family:'Do Hyeon';font-size:clamp(.92rem,1.2vw,1.05rem);color:var(--text-secondary);}
+/* contrast */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px;}
+.block{border:3px solid var(--border);box-shadow:6px 6px 0 var(--border);padding:clamp(24px,3vw,36px);background:var(--surface);}
+.block.god{background:var(--accent-secondary);color:#fff;}
+.block .tag{display:inline-block;font-family:'Do Hyeon';font-size:.86rem;border:3px solid var(--border);padding:5px 13px;margin-bottom:16px;background:var(--surface-hover);color:var(--text);box-shadow:3px 3px 0 var(--border);}
+.block.god .tag{background:var(--warning);color:var(--ink);}
+.block h3{font-size:clamp(1.3rem,1.9vw,1.7rem);margin-bottom:12px;}
+.block.god h3{color:#fff;}
+.block p{color:var(--text-secondary);font-size:clamp(.96rem,1.15vw,1.08rem);line-height:1.62;}
+.block.god p{color:rgba(255,255,255,.92);}
+.note{margin-top:30px;text-align:center;font-family:'Do Hyeon';font-size:clamp(1.02rem,1.3vw,1.2rem);color:var(--text);}
+.note .hl{font-family:'Do Hyeon';}
+/* chrome */
+.deck-progress{position:fixed;top:0;left:0;height:6px;width:25%;z-index:9998;background:var(--accent);border-bottom:3px solid var(--border);transition:width .5s;}
+.slide-nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;z-index:9990;}
+.slide-nav button{width:44px;height:44px;background:var(--surface);border:3px solid var(--border);box-shadow:3px 3px 0 var(--border);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s;}
+.slide-nav button:hover{transform:translate(-1px,-1px);background:var(--accent);color:#fff;}
+.slide-counter{font-family:'Black Han Sans';font-size:1.05rem;color:var(--text);min-width:56px;text-align:center;}
+.viz-menu{position:fixed;top:16px;right:16px;z-index:9999;}
+.viz-menu-toggle{width:46px;height:46px;background:var(--surface);border:3px solid var(--border);box-shadow:3px 3px 0 var(--border);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.viz-menu-dropdown{position:absolute;top:56px;right:0;min-width:184px;background:var(--surface);border:3px solid var(--border);box-shadow:6px 6px 0 var(--border);padding:8px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .18s;}
+.viz-menu-dropdown.open{opacity:1;visibility:visible;transform:none;}
+.viz-menu-dropdown button{width:100%;padding:10px 14px;border:none;background:transparent;color:var(--text);font-size:14px;font-family:'Do Hyeon';cursor:pointer;text-align:left;display:flex;gap:10px;}
+.viz-menu-dropdown button:hover{background:var(--warning);color:var(--ink);}
+.skip-to-content{position:absolute;top:-50px;left:6px;background:var(--accent);color:#fff;padding:8px 12px;z-index:10000;transition:top .2s;border:3px solid var(--border);}
+.skip-to-content:focus{top:6px;}
+@media (max-width:900px){.cards,.duo{grid-template-columns:1fr;}}
+@media (max-width:375px){body{overflow-x:hidden;}.slide{padding:32px 20px;}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}.fragment{opacity:1!important;transform:none!important;}}
+@media print{body{overflow:visible;}.deck{height:auto;}.slide{position:relative;inset:auto;opacity:1!important;visibility:visible!important;transform:none!important;height:100vh;page-break-after:always;}.fragment{opacity:1!important;transform:none!important;}.viz-menu,.slide-nav,.deck-progress{display:none!important;}.paper{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<div class="deck-progress" id="deckProgress"></div>
+<div class="viz-menu">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg></button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown">
+    <button onclick="cycleTheme()"><span id="themeIcon">☀️</span><span id="themeLabel">라이트</span></button>
+    <button onclick="downloadImage()"><span>📥</span><span>PNG 저장</span></button>
+    <button onclick="window.print()"><span>🖨️</span><span>인쇄 / PDF</span></button>
+  </div>
+</div>
+<main id="main-content" role="main">
+<div class="deck" id="deck">
+
+  <section class="slide center" aria-label="표지">
+    <div class="paper" aria-hidden="true"></div>
+    <div class="max">
+      <span class="sticker fragment d1">교리설교 ②</span>
+      <h1 class="cover-title fragment d2" style="margin-top:26px;">하나님은<br><span class="em">누구신가?</span></h1>
+      <p class="cover-sub fragment d3">소요리문답으로 보는 하나님 · 송도청소년1부</p>
+      <p class="cover-ref fragment d4">에베소서 1장 11절</p>
+    </div>
+  </section>
+
+  <section class="slide" aria-label="복습">
+    <div class="paper" aria-hidden="true"></div>
+    <div class="max">
+      <span class="sticker blue fragment d1">지난 시간 복습</span>
+      <h2 class="s-title fragment d1">우리는 왜 <span class="hl">교리</span>를 배울까?</h2>
+      <div class="cards">
+        <div class="pcard fragment d2"><div class="pnum">1</div><h3>교리란</h3><p>성경에 기록된 <b>진리의 말씀</b>! 변하는 세상 속에서 마음을 지키고 온전한 그리스도인으로 서기 위함.</p></div>
+        <div class="pcard fragment d3"><div class="pnum">2</div><h3>소요리문답의 탄생</h3><p>17세기 영국 웨스트민스터에 <b>120명의 목사</b>가 모여 어려운 교리를 정리했다.</p></div>
+        <div class="pcard fragment d4"><div class="pnum">3</div><h3>오늘의 자리</h3><p>그 두 번째 시간! 생각을 <b>차곡차곡</b> 정리하면 오래 남는 기억이 된다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide center" aria-label="이사야 6장 3절">
+    <div class="paper" aria-hidden="true"></div>
+    <div class="max">
+      <div class="sc-card fragment d1">
+        <span class="sc-sticker">이사야 6 : 3</span>
+        <p class="sc-verse"><span class="holy">거룩 거룩 거룩!</span><br>만군의 주님,<br>온 땅에 그의 영광이 가득하다</p>
+        <p class="sc-foot">여섯 날개의 스랍이 얼굴과 발을 가린 채 드린 찬양</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" aria-label="진짜 통치자">
+    <div class="paper" aria-hidden="true"></div>
+    <div class="max">
+      <span class="sticker fragment d1">웃시야 왕이 죽던 해 · BC 730경</span>
+      <h2 class="s-title fragment d1">진짜 다스리는 분은 <span class="hl">누구?</span></h2>
+      <div class="duo">
+        <div class="block fragment d2"><span class="tag">보이는 힘</span><h3>앗수르, 그리고 오늘</h3><p>그때는 제국 앗수르, 오늘은 자본주의와 성과주의. “네 인생은 우연일 뿐”이라 외치는 세상.</p></div>
+        <div class="block god fragment d3"><span class="tag">진짜 통치자</span><h3>보좌에 앉으신 하나님</h3><p>높이 들린 보좌에서 지금도 온 우주를 다스리시는 분. 이사야가 본 참된 왕!</p></div>
+      </div>
+      <p class="note fragment d4">진짜 다스리시는 분은 <span class="hl">오직 하나님 한 분!</span></p>
+    </div>
+  </section>
+
+</div>
+</main>
+<nav class="slide-nav" aria-label="슬라이드 내비게이션">
+  <button onclick="prevSlide()" aria-label="이전"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span class="slide-counter" id="slideCounter">1 / 4</span>
+  <button onclick="nextSlide()" aria-label="다음"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+</nav>
+<script>
+function toggleMenu(){var d=document.getElementById('vizMenuDropdown');if(d)d.classList.toggle('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.viz-menu')){var d=document.getElementById('vizMenuDropdown');if(d)d.classList.remove('open');}});
+var STORE='viz-style-riso';
+var currentTheme=localStorage.getItem(STORE)||'light';
+function applyTheme(t){document.documentElement.className='theme-'+t;var i=document.getElementById('themeIcon'),l=document.getElementById('themeLabel');if(i)i.textContent=t==='dark'?'🌙':'☀️';if(l)l.textContent=t==='dark'?'다크':'라이트';localStorage.setItem(STORE,t);currentTheme=t;}
+function cycleTheme(){applyTheme(currentTheme==='dark'?'light':'dark');}
+applyTheme(currentTheme);
+var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));var current=0;var deckEl=document.getElementById('deck');
+function updateChrome(n){var p=document.getElementById('deckProgress');if(p)p.style.width=((n+1)/slides.length*100)+'%';var c=document.getElementById('slideCounter');if(c)c.textContent=(n+1)+' / '+slides.length;}
+function go(n,dir){n=Math.max(0,Math.min(slides.length-1,n));if(n===current)return;var inc=slides[n],out=slides[current];var s=dir>=0?'exit-to-right':'exit-to-left',o=dir>=0?'exit-to-left':'exit-to-right';inc.classList.remove('active','exit-to-left','exit-to-right');inc.classList.add('notrans',s);void inc.offsetWidth;inc.classList.remove('notrans',s);inc.classList.add('active');out.classList.remove('active');out.classList.add(o);(function(x){var d=function(){x.classList.remove('exit-to-left','exit-to-right');x.removeEventListener('transitionend',d);};x.addEventListener('transitionend',d);setTimeout(d,720);})(out);current=n;updateChrome(current);}
+function nextSlide(){go(current+1,1);}function prevSlide(){go(current-1,-1);}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();nextSlide();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide();}else if(e.key==='Escape'){var d=document.getElementById('vizMenuDropdown');if(d)d.classList.remove('open');}});
+if(deckEl){deckEl.addEventListener('click',function(e){if(e.target.closest('.viz-menu')||e.target.closest('.slide-nav')||e.target.closest('a')||e.target.closest('button'))return;if(e.clientX<window.innerWidth*0.33)prevSlide();else nextSlide();});var tsx=0;deckEl.addEventListener('touchstart',function(e){tsx=e.changedTouches[0].screenX;},{passive:true});deckEl.addEventListener('touchend',function(e){var dx=e.changedTouches[0].screenX-tsx;if(Math.abs(dx)>50){if(dx<0)nextSlide();else prevSlide();}},{passive:true});}
+requestAnimationFrame(function(){slides[0].classList.add('active');updateChrome(0);});
+async function downloadImage(){var m=document.querySelector('.viz-menu'),n=document.querySelector('.slide-nav');m.style.display='none';if(n)n.style.display='none';try{var url=await htmlToImage.toPng(document.body,{quality:1,pixelRatio:2,filter:function(x){return !x.classList||(!x.classList.contains('viz-menu')&&!x.classList.contains('slide-nav'));}});var a=document.createElement('a');a.href=url;a.download='riso-slide-'+(current+1)+'.png';a.click();}catch(e){console.error(e);}m.style.display='';if(n)n.style.display='';}
+</script>
+</body>
+</html>

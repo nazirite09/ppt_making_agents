@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- slide #03 · type: 대지 (교리란 무엇인가) · NewsKit -->
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 03 · 교리란 무엇인가 (NewsKit)</title>
+<link rel="stylesheet" href="newskit.css">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<nav class="viz-menu" aria-label="유틸리티 메뉴">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기" aria-haspopup="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown" role="menu">
+    <button onclick="cycleTheme()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg> 테마 전환</button>
+    <button onclick="downloadImage()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG 저장</button>
+    <button onclick="window.print()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> 인쇄 / PDF</button>
+  </div>
+</nav>
+
+<main id="main-content">
+<section class="artboard" aria-label="교리란 무엇인가">
+  <div class="stage">
+    <span class="eyebrow animate" style="margin-bottom:20px;">먼저 · 교리란?</span>
+    <h1 class="h-title animate" style="font-size:50px;">교리란 <span class="hl">무엇인가</span></h1>
+
+    <div class="def-block animate delay-1" style="margin-top:24px; max-width:1000px;">
+      <div class="dk">교리의 정의</div>
+      <p>성경 안에 담긴 진리를 <b>체계적·조직적으로 정리</b>한 것</p>
+    </div>
+
+    <div class="contrast" style="margin-top:30px;">
+      <article class="ccard hard animate delay-1">
+        <div class="cico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M3 11h18"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></div>
+        <div class="ctag">겉은 — 딱딱한 보물상자</div>
+        <h3>변치 않고 타협하지 않는</h3>
+        <p>절대 변하지 않고, 그 어떤 것과도 타협하지 않는 단단한 그릇</p>
+      </article>
+
+      <div class="cmid animate delay-2">
+        <div class="ring" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+        <div class="clabel">그 안에 담긴 것은</div>
+      </div>
+
+      <article class="ccard soft animate delay-3">
+        <div class="cico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+        <div class="ctag">속은 — 부드러운 인격</div>
+        <h3>하나님의 따뜻한 성품</h3>
+        <p>차갑고 어려운 게 아니라, 변치 않는 하나님의 성품을 담은 그릇</p>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+  var THEME_KEY = 'viz-theme';
+  function applyTheme(t){ document.documentElement.className = 'theme-' + t; try { localStorage.setItem(THEME_KEY, t); } catch(e){} }
+  function cycleTheme(){ var c = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light'; applyTheme(c === 'dark' ? 'light' : 'dark'); }
+  function toggleMenu(){ document.getElementById('vizMenuDropdown').classList.toggle('open'); }
+  function downloadImage(){ var n = document.querySelector('.artboard'); if (typeof htmlToImage === 'undefined') return; htmlToImage.toPng(n, { pixelRatio: 2, width: 1280, height: 720 }).then(function(u){ var a = document.createElement('a'); a.download = 'slide-03.png'; a.href = u; a.click(); }); }
+  (function(){ try { var s = localStorage.getItem(THEME_KEY); if (s) applyTheme(s); } catch(e){} })();
+  document.addEventListener('click', function(e){ if (!e.target.closest('.viz-menu')) { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+</script>
+</body>
+</html>

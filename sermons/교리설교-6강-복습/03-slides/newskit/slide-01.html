@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- slide #01 · type: title (cover) · NewsKit -->
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 01 · 교리, 한 흐름으로 다시 보기 (NewsKit)</title>
+<!-- Design tokens: NewsKit (BSD-3, © News UK). Fonts: OFL 1.1. -->
+<link rel="stylesheet" href="newskit.css">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+  .cover-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(740px 460px at 20% -12%, var(--accent-soft), transparent 60%); }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<nav class="viz-menu" aria-label="유틸리티 메뉴">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기" aria-haspopup="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown" role="menu">
+    <button onclick="cycleTheme()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg> 테마 전환</button>
+    <button onclick="downloadImage()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG 저장</button>
+    <button onclick="window.print()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> 인쇄 / PDF</button>
+  </div>
+</nav>
+
+<main id="main-content">
+<section class="artboard mast" aria-label="제목 슬라이드">
+  <div class="cover-bg"></div>
+  <div class="cover">
+    <span class="eyebrow animate">교리설교 6강 · 복습 세션</span>
+    <h1 class="animate delay-1" style="margin-top:28px;">교리, 한 흐름으로<br><span class="hl">다시 보기</span></h1>
+    <div class="cover-rule animate delay-2"></div>
+    <p class="cover-sub animate delay-2">6번의 교리설교 — 한 페이지씩 다시</p>
+    <div class="theme-tags animate delay-3">
+      <span>교리</span><span>하나님</span><span>목적</span><span>사랑</span>
+    </div>
+  </div>
+
+  <!-- 흩어진 6강이 하나로 모인다: 예고편 -->
+  <div class="six" aria-hidden="true">
+    <div class="conv"></div>
+    <span class="ln" style="width:150px; transform: rotate(-150deg);"></span>
+    <span class="ln" style="width:135px; transform: rotate(-95deg);"></span>
+    <span class="ln" style="width:160px; transform: rotate(-40deg);"></span>
+    <span class="ln" style="width:150px; transform: rotate(30deg);"></span>
+    <span class="ln" style="width:140px; transform: rotate(95deg);"></span>
+    <span class="ln" style="width:155px; transform: rotate(160deg);"></span>
+    <span class="num b" style="left:24px; top:6px; animation-delay:.2s;">1</span>
+    <span class="num" style="left:0; top:128px; animation-delay:.3s;">2</span>
+    <span class="num b" style="left:62px; top:236px; animation-delay:.4s;">3</span>
+    <span class="num" style="right:38px; top:222px; animation-delay:.5s;">4</span>
+    <span class="num b" style="right:0; top:96px; animation-delay:.6s;">5</span>
+    <span class="num" style="right:46px; top:0; animation-delay:.7s;">6</span>
+  </div>
+</section>
+</main>
+
+<script>
+  var THEME_KEY = 'viz-theme';
+  function applyTheme(t){ document.documentElement.className = 'theme-' + t; try { localStorage.setItem(THEME_KEY, t); } catch(e){} }
+  function cycleTheme(){ var c = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light'; applyTheme(c === 'dark' ? 'light' : 'dark'); }
+  function toggleMenu(){ document.getElementById('vizMenuDropdown').classList.toggle('open'); }
+  function downloadImage(){ var n = document.querySelector('.artboard'); if (typeof htmlToImage === 'undefined') return; htmlToImage.toPng(n, { pixelRatio: 2, width: 1280, height: 720 }).then(function(u){ var a = document.createElement('a'); a.download = 'slide-01.png'; a.href = u; a.click(); }); }
+  (function(){ try { var s = localStorage.getItem(THEME_KEY); if (s) applyTheme(s); } catch(e){} })();
+  document.addEventListener('click', function(e){ if (!e.target.closest('.viz-menu')) { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+</script>
+</body>
+</html>

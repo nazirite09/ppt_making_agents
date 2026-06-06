@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⑤ Doodle Journal — 하나님은 누구신가</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html.theme-light{
+  --bg:#FBFAF1; --surface:#FFFFFF; --surface-hover:#F6F4E8; --border:rgba(44,44,52,.30);
+  --text:#2C2C34; --text-secondary:#6B6B75; --accent:#2F6FE0; --accent-secondary:#E5604D;
+  --positive:#37A36B; --negative:#E5604D; --warning:#FFD23F; --grid:rgba(80,120,200,.10);
+}
+html.theme-dark{
+  --bg:#23262B; --surface:#2B2F35; --surface-hover:#333840; --border:rgba(240,235,225,.30);
+  --text:#F2EEE3; --text-secondary:#B7B4AA; --accent:#7FB0FF; --accent-secondary:#FF8C7A;
+  --positive:#5FD395; --negative:#FF8C7A; --warning:#FFDE6B; --grid:rgba(180,200,255,.08);
+}
+html,body{height:100%;}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--text);overflow:hidden;line-height:1.62;-webkit-font-smoothing:antialiased;transition:background .4s,color .4s;
+  background-color:var(--bg);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;}
+.gaegu{font-family:'Gaegu',sans-serif;}
+.pen{font-family:'Nanum Pen Script',sans-serif;}
+h1,h2,h3{font-family:'Gaegu',sans-serif;color:var(--text);line-height:1.2;font-weight:700;}
+.hl{background:linear-gradient(180deg,transparent 56%,var(--warning) 56%,var(--warning) 92%,transparent 92%);padding:0 .04em;}
+.deck{position:relative;width:100vw;height:100vh;height:100dvh;overflow:hidden;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,7vh,82px) clamp(36px,8vw,128px);opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(40px,0,0);transition:opacity .45s ease,transform .55s cubic-bezier(.16,1,.3,1);overflow-y:auto;}
+.slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:none;z-index:2;}
+.slide.exit-to-left{opacity:0;visibility:visible;transform:translate3d(-40px,0,0);z-index:1;}
+.slide.exit-to-right{opacity:0;visibility:visible;transform:translate3d(40px,0,0);z-index:1;}
+.slide.notrans{transition:none!important;}
+.fragment{opacity:0;transform:translateY(16px) rotate(-.4deg);transition:opacity .5s ease,transform .55s cubic-bezier(.16,1,.3,1);}
+.slide.active .fragment{opacity:1;transform:none;}
+.slide.active .fragment.d1{transition-delay:.06s;}.slide.active .fragment.d2{transition-delay:.16s;}.slide.active .fragment.d3{transition-delay:.26s;}.slide.active .fragment.d4{transition-delay:.36s;}
+.max{max-width:1080px;width:100%;margin:0 auto;}
+.center{text-align:center;align-items:center;}
+.tape{display:inline-block;font-family:'Nanum Pen Script';font-size:1.4rem;color:var(--text);background:color-mix(in srgb,var(--warning) 60%,transparent);padding:2px 18px;transform:rotate(-1.6deg);box-shadow:1px 1px 0 rgba(0,0,0,.05);}
+.tape.blue{background:color-mix(in srgb,var(--accent) 26%,transparent);}
+.s-title{font-size:clamp(2.3rem,5vw,3.5rem);margin:16px 0 6px;}
+/* cover */
+.cover-title{font-size:clamp(3.4rem,10vw,6.2rem);line-height:1.02;}
+.cover-title .em{color:var(--accent);position:relative;}
+.cover-title .em::after{content:'';position:absolute;left:-2%;right:-2%;bottom:.06em;height:.13em;background:var(--warning);z-index:-1;border-radius:40%;}
+.cover-sub{margin-top:22px;font-family:'Nanum Pen Script';font-size:clamp(1.4rem,2.4vw,1.9rem);color:var(--text-secondary);}
+.cover-ref{display:inline-block;margin-top:8px;font-family:'Gaegu';font-weight:700;font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--accent);}
+.doodle-star{display:inline-block;color:var(--accent-secondary);}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px;}
+.ncard{position:relative;background:var(--surface);border:2px dashed var(--border);border-radius:12px;padding:clamp(24px,2.6vw,32px) clamp(22px,2.4vw,28px);box-shadow:2px 3px 0 rgba(0,0,0,.04);}
+.ncard:nth-child(2){transform:rotate(.6deg);}
+.ncard:nth-child(3){transform:rotate(-.6deg);}
+.ncard .tp{position:absolute;top:-14px;left:24px;font-family:'Nanum Pen Script';font-size:1.2rem;background:color-mix(in srgb,var(--warning) 55%,transparent);padding:1px 14px;transform:rotate(-3deg);}
+.ncard:nth-child(2) .tp{background:color-mix(in srgb,var(--accent) 24%,transparent);}
+.ncard:nth-child(3) .tp{background:color-mix(in srgb,var(--accent-secondary) 24%,transparent);}
+.ncard h3{font-size:clamp(1.2rem,1.6vw,1.45rem);margin:8px 0 10px;}
+.ncard p{color:var(--text-secondary);font-size:clamp(.93rem,1.08vw,1.02rem);line-height:1.66;}
+.ncard p b{color:var(--text);font-weight:700;}
+/* scripture */
+.sc-note{position:relative;background:var(--surface);border:2px dashed var(--border);border-radius:16px;padding:clamp(34px,4.4vw,58px);max-width:1000px;margin:0 auto;}
+.sc-tape{position:absolute;top:-16px;left:50%;transform:translateX(-50%) rotate(-1.4deg);font-family:'Nanum Pen Script';font-size:1.5rem;background:color-mix(in srgb,var(--accent) 24%,transparent);padding:2px 22px;}
+.sc-verse{font-family:'Gaegu';font-weight:700;font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.4;}
+.sc-verse .holy{color:var(--accent);}
+.sc-foot{margin-top:22px;font-family:'Nanum Pen Script';font-size:clamp(1.2rem,1.7vw,1.5rem);color:var(--text-secondary);}
+/* contrast */
+.duo{display:flex;align-items:stretch;gap:8px;margin-top:38px;}
+.ncard.col{flex:1;}
+.arrow{flex:0 0 auto;align-self:center;color:var(--accent);}
+.duo .k{font-family:'Nanum Pen Script';font-size:1.4rem;color:var(--text-secondary);margin-bottom:8px;display:block;}
+.duo .col.god .k{color:var(--accent);}
+.duo h3{font-size:clamp(1.24rem,1.8vw,1.6rem);margin-bottom:10px;}
+.duo p{color:var(--text-secondary);font-size:clamp(.95rem,1.12vw,1.06rem);line-height:1.66;}
+.duo .col.god{border-color:var(--accent);border-style:solid;}
+.note{margin-top:30px;text-align:center;font-family:'Gaegu';font-weight:700;font-size:clamp(1.2rem,1.6vw,1.5rem);color:var(--text);}
+/* chrome */
+.deck-progress{position:fixed;top:0;left:0;height:4px;width:25%;z-index:9998;background:var(--accent);transition:width .5s;}
+.slide-nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;z-index:9990;}
+.slide-nav button{width:44px;height:44px;border-radius:50%;background:var(--surface);border:2px dashed var(--border);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.slide-nav button:hover{color:var(--accent);border-color:var(--accent);}
+.slide-counter{font-family:'Gaegu';font-weight:700;font-size:1.1rem;color:var(--text-secondary);min-width:58px;text-align:center;}
+.viz-menu{position:fixed;top:16px;right:16px;z-index:9999;}
+.viz-menu-toggle{width:46px;height:46px;border-radius:50%;background:var(--surface);border:2px dashed var(--border);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.viz-menu-dropdown{position:absolute;top:54px;right:0;min-width:184px;background:var(--surface);border:2px dashed var(--border);border-radius:14px;padding:8px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s;box-shadow:2px 4px 0 rgba(0,0,0,.06);}
+.viz-menu-dropdown.open{opacity:1;visibility:visible;transform:none;}
+.viz-menu-dropdown button{width:100%;padding:10px 14px;border:none;border-radius:9px;background:transparent;color:var(--text);font-size:14px;font-family:'Gaegu';font-weight:700;cursor:pointer;text-align:left;display:flex;gap:10px;}
+.viz-menu-dropdown button:hover{background:var(--surface-hover);}
+.skip-to-content{position:absolute;top:-50px;left:6px;background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;z-index:10000;transition:top .2s;}
+.skip-to-content:focus{top:6px;}
+@media (max-width:900px){.cards{grid-template-columns:1fr;}.duo{flex-direction:column;}.arrow{transform:rotate(90deg);align-self:center;}}
+@media (max-width:375px){body{overflow-x:hidden;}.slide{padding:32px 20px;}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}.fragment{opacity:1!important;transform:none!important;}}
+@media print{body{overflow:visible;}.deck{height:auto;}.slide{position:relative;inset:auto;opacity:1!important;visibility:visible!important;transform:none!important;height:100vh;page-break-after:always;}.fragment{opacity:1!important;transform:none!important;}.viz-menu,.slide-nav,.deck-progress{display:none!important;}}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<div class="deck-progress" id="deckProgress"></div>
+<div class="viz-menu">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg></button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown">
+    <button onclick="cycleTheme()"><span id="themeIcon">☀️</span><span id="themeLabel">라이트</span></button>
+    <button onclick="downloadImage()"><span>📥</span><span>PNG 저장</span></button>
+    <button onclick="window.print()"><span>🖨️</span><span>인쇄 / PDF</span></button>
+  </div>
+</div>
+<main id="main-content" role="main">
+<div class="deck" id="deck">
+
+  <section class="slide center" aria-label="표지">
+    <div class="max">
+      <span class="tape fragment d1">교리설교 ② · 소요리문답</span>
+      <h1 class="cover-title gaegu fragment d2" style="margin-top:28px;">하나님은<br><span class="em">누구신가?</span></h1>
+      <p class="cover-sub fragment d3">송도청소년1부 <span class="doodle-star">✦</span></p>
+      <p class="cover-ref fragment d4">에베소서 1장 11절</p>
+    </div>
+  </section>
+
+  <section class="slide" aria-label="복습">
+    <div class="max">
+      <span class="tape blue fragment d1">지난 시간 복습</span>
+      <h2 class="s-title fragment d1">우리는 왜 <span class="hl">교리</span>를 배울까?</h2>
+      <div class="cards">
+        <div class="ncard fragment d2"><span class="tp">하나</span><h3>교리란?</h3><p>성경에 기록된 <b>진리의 말씀</b>! 변하는 세상 속 마음을 지키고 온전한 그리스도인으로 서기 위함.</p></div>
+        <div class="ncard fragment d3"><span class="tp">둘</span><h3>소요리문답</h3><p>17세기 영국 웨스트민스터에 <b>120명의 목사</b>가 모여 어려운 교리를 정리한 교과서.</p></div>
+        <div class="ncard fragment d4"><span class="tp">셋</span><h3>오늘의 자리</h3><p>그 두 번째 시간! 생각을 <b>차곡차곡</b> 정리하면 오래오래 기억에 남아요.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide center" aria-label="이사야 6장 3절">
+    <div class="max">
+      <div class="sc-note fragment d1">
+        <span class="sc-tape">이사야 6 : 3</span>
+        <p class="sc-verse"><span class="holy">거룩 거룩 거룩!</span><br>만군의 주님,<br>온 땅에 그의 영광이 가득하다</p>
+        <p class="sc-foot">여섯 날개의 스랍이 얼굴과 발을 가린 채 드린 찬양 ♪</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" aria-label="진짜 통치자">
+    <div class="max">
+      <span class="tape fragment d1">웃시야 왕이 죽던 해 · BC 730경</span>
+      <h2 class="s-title fragment d1">진짜 다스리는 분은?</h2>
+      <div class="duo">
+        <div class="ncard col world fragment d2"><span class="k">보이는 힘</span><h3>앗수르, 그리고 오늘</h3><p>그때는 제국 앗수르, 오늘은 자본주의·성과주의. “네 인생은 우연일 뿐”이라는 세상의 목소리.</p></div>
+        <div class="arrow fragment d3" aria-hidden="true"><svg width="62" height="34" viewBox="0 0 62 34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18 C 18 8, 36 26, 52 16"/><path d="M44 12 L 54 16 L 46 23"/></svg></div>
+        <div class="ncard col god fragment d3"><span class="k">진짜 통치자!</span><h3>보좌에 앉으신 하나님</h3><p>높이 들린 보좌에서 지금도 온 우주를 다스리시는 분. 이사야가 본 참된 왕.</p></div>
+      </div>
+      <p class="note fragment d4">진짜 다스리시는 분은 <span class="hl">오직 하나님 한 분!</span></p>
+    </div>
+  </section>
+
+</div>
+</main>
+<nav class="slide-nav" aria-label="슬라이드 내비게이션">
+  <button onclick="prevSlide()" aria-label="이전"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span class="slide-counter" id="slideCounter">1 / 4</span>
+  <button onclick="nextSlide()" aria-label="다음"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+</nav>
+<script>
+function toggleMenu(){var d=document.getElementById('vizMenuDropdown');if(d)d.classList.toggle('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.viz-menu')){var d=document.getElementById('vizMenuDropdown');if(d)d.classList.remove('open');}});
+var STORE='viz-style-doodle';
+var currentTheme=localStorage.getItem(STORE)||'light';
+function applyTheme(t){document.documentElement.className='theme-'+t;var i=document.getElementById('themeIcon'),l=document.getElementById('themeLabel');if(i)i.textContent=t==='dark'?'🌙':'☀️';if(l)l.textContent=t==='dark'?'다크':'라이트';localStorage.setItem(STORE,t);currentTheme=t;}
+function cycleTheme(){applyTheme(currentTheme==='dark'?'light':'dark');}
+applyTheme(currentTheme);
+var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));var current=0;var deckEl=document.getElementById('deck');
+function updateChrome(n){var p=document.getElementById('deckProgress');if(p)p.style.width=((n+1)/slides.length*100)+'%';var c=document.getElementById('slideCounter');if(c)c.textContent=(n+1)+' / '+slides.length;}
+function go(n,dir){n=Math.max(0,Math.min(slides.length-1,n));if(n===current)return;var inc=slides[n],out=slides[current];var s=dir>=0?'exit-to-right':'exit-to-left',o=dir>=0?'exit-to-left':'exit-to-right';inc.classList.remove('active','exit-to-left','exit-to-right');inc.classList.add('notrans',s);void inc.offsetWidth;inc.classList.remove('notrans',s);inc.classList.add('active');out.classList.remove('active');out.classList.add(o);(function(x){var d=function(){x.classList.remove('exit-to-left','exit-to-right');x.removeEventListener('transitionend',d);};x.addEventListener('transitionend',d);setTimeout(d,720);})(out);current=n;updateChrome(current);}
+function nextSlide(){go(current+1,1);}function prevSlide(){go(current-1,-1);}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();nextSlide();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide();}else if(e.key==='Escape'){var d=document.getElementById('vizMenuDropdown');if(d)d.classList.remove('open');}});
+if(deckEl){deckEl.addEventListener('click',function(e){if(e.target.closest('.viz-menu')||e.target.closest('.slide-nav')||e.target.closest('a')||e.target.closest('button'))return;if(e.clientX<window.innerWidth*0.33)prevSlide();else nextSlide();});var tsx=0;deckEl.addEventListener('touchstart',function(e){tsx=e.changedTouches[0].screenX;},{passive:true});deckEl.addEventListener('touchend',function(e){var dx=e.changedTouches[0].screenX-tsx;if(Math.abs(dx)>50){if(dx<0)nextSlide();else prevSlide();}},{passive:true});}
+requestAnimationFrame(function(){slides[0].classList.add('active');updateChrome(0);});
+async function downloadImage(){var m=document.querySelector('.viz-menu'),n=document.querySelector('.slide-nav');m.style.display='none';if(n)n.style.display='none';try{var url=await htmlToImage.toPng(document.body,{quality:1,pixelRatio:2,filter:function(x){return !x.classList||(!x.classList.contains('viz-menu')&&!x.classList.contains('slide-nav'));}});var a=document.createElement('a');a.href=url;a.download='doodle-slide-'+(current+1)+'.png';a.click();}catch(e){console.error(e);}m.style.display='';if(n)n.style.display='';}
+</script>
+</body>
+</html>

@@ -1,5 +1,31 @@
 [
   {
+    "id": "sol-20260606-001",
+    "title": "외부 디자인 시스템을 재현하기 전에 라이선스를 먼저 확인하라",
+    "tags": ["design-system", "license", "tokens", "due-diligence"],
+    "category": "workflow",
+    "confidence": 0.5,
+    "created": "2026-06-06",
+    "last_reinforced": "2026-06-06",
+    "reinforcement_count": 0,
+    "supersedes": null,
+    "superseded_by": null,
+    "related": ["sol-20260606-002"]
+  },
+  {
+    "id": "sol-20260606-002",
+    "title": "차단된 웹 UI를 우회해 디자인 토큰 원본 값 추출 (레지스트리 API + 부분 클론 + cat-file)",
+    "tags": ["tokens", "npm-registry", "git-partial-clone", "jsdelivr", "extraction"],
+    "category": "tool-usage",
+    "confidence": 0.5,
+    "created": "2026-06-06",
+    "last_reinforced": "2026-06-06",
+    "reinforcement_count": 0,
+    "supersedes": null,
+    "superseded_by": null,
+    "related": ["sol-20260606-001"]
+  },
+  {
     "id": "sol-20260604-001",
     "title": "공식 pptx 스킬은 pptxgenjs로 생성한다 (html2pptx 아님) + 환경 의존성",
     "tags": ["pptx", "pptxgenjs", "dependencies", "windows"],

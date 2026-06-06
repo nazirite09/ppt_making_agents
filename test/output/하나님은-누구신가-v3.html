@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>하나님은 누구신가? — 교리설교 ② (Montage)</title>
+  <link href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { interpolate-size: allow-keywords; }
+
+    /* ===== MONTAGE THEMES (wds-theme tokens) ===== */
+    html.theme-light {
+      --bg: #F7F7F8; --surface: #FFFFFF; --surface-hover: #F4F4F5;
+      --border: rgba(112,115,124,0.22);
+      --text: #171719; --text-secondary: #5A5C63;
+      --accent: #0066FF; --accent-secondary: #70737C;
+      --accent-strong: #005EEB; --accent-soft: #EAF2FE;
+      --positive: #00BF40; --negative: #FF4242; --warning: #FF9200;
+      --shadow-sm: 0 2px 4px -2px rgba(23,23,23,0.06), 0 4px 6px -1px rgba(23,23,23,0.05);
+      --shadow-md: 0 4px 6px -2px rgba(23,23,23,0.07), 0 10px 15px -3px rgba(23,23,23,0.07);
+      --shadow-lg: 0 6px 10px -4px rgba(23,23,23,0.08), 0 16px 24px -6px rgba(23,23,23,0.08);
+    }
+    html.theme-dark {
+      --bg: #1B1C1E; --surface: #212225; --surface-hover: #2E2F33;
+      --border: rgba(112,115,124,0.30);
+      --text: #F7F7F8; --text-secondary: #AEB0B6;
+      --accent: #3385FF; --accent-secondary: #989BA2;
+      --accent-strong: #1A75FF; --accent-soft: rgba(51,133,255,0.16);
+      --positive: #1ED45A; --negative: #FF6363; --warning: #FFA938;
+      --shadow-sm: 0 2px 4px -2px rgba(0,0,0,0.40), 0 4px 6px -1px rgba(0,0,0,0.30);
+      --shadow-md: 0 4px 6px -2px rgba(0,0,0,0.45), 0 10px 15px -3px rgba(0,0,0,0.40);
+      --shadow-lg: 0 8px 14px -4px rgba(0,0,0,0.55), 0 18px 28px -8px rgba(0,0,0,0.45);
+    }
+
+    html, body { height: 100%; }
+    body {
+      font-family: 'Wanted Sans Variable', 'Wanted Sans', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.01em; transition: background 0.4s, color 0.4s;
+      overflow: hidden;
+    }
+    h1,h2,h3,h4 { color: var(--text); line-height: 1.2; text-wrap: balance; letter-spacing: -0.03em; }
+    h1 { font-weight: 800; } h2 { font-weight: 800; } h3 { font-weight: 700; }
+    p, li, span { color: var(--text); font-weight: 400; }
+    .text-secondary { color: var(--text-secondary); }
+    em { font-style: normal; color: var(--accent); font-weight: 600; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .animate { animation: fadeInUp 0.7s ease-out both; }
+    .animate.delay-1 { animation-delay: 0.12s; }
+    .animate.delay-2 { animation-delay: 0.24s; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal, .fragment { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ===== DECK / SLIDE ENGINE ===== */
+    .deck { position: relative; width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; }
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(40px, 7vh, 84px) clamp(34px, 8vw, 130px);
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transform: translate3d(40px, 0, 0);
+      transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto; will-change: transform, opacity; backface-visibility: hidden;
+    }
+    .slide.active { opacity: 1; visibility: visible; pointer-events: auto; transform: translate3d(0, 0, 0); z-index: 2; }
+    .slide.exit-to-left  { opacity: 0; visibility: visible; transform: translate3d(-40px, 0, 0); z-index: 1; }
+    .slide.exit-to-right { opacity: 0; visibility: visible; transform: translate3d(40px, 0, 0); z-index: 1; }
+    .slide.notrans { transition: none !important; }
+    .fragment { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .slide.active .fragment { opacity: 1; transform: translateY(0); }
+    .slide.active .fragment.d1 { transition-delay: 0.06s; }
+    .slide.active .fragment.d2 { transition-delay: 0.14s; }
+    .slide.active .fragment.d3 { transition-delay: 0.22s; }
+    .slide.active .fragment.d4 { transition-delay: 0.30s; }
+    .slide.active .fragment.d5 { transition-delay: 0.38s; }
+
+    .max { max-width: 1080px; width: 100%; }
+    .max-narrow { max-width: 920px; width: 100%; }
+
+    /* ===== SHARED LABELS / TITLES ===== */
+    .label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.03em;
+      color: var(--accent); margin-bottom: 24px;
+      background: var(--accent-soft); padding: 7px 15px; border-radius: 999px;
+    }
+    .label.slate { color: var(--accent-secondary); background: var(--surface-hover); }
+    .slide h2.title { font-size: clamp(2rem, 4.3vw, 3rem); margin-bottom: 16px; font-weight: 800; letter-spacing: -0.035em; line-height: 1.22; }
+    .lead { font-size: clamp(1.04rem, 1.5vw, 1.3rem); color: var(--text-secondary); max-width: 860px; line-height: 1.7; }
+    .note { margin-top: 30px; font-size: clamp(0.98rem, 1.2vw, 1.12rem); color: var(--text-secondary); line-height: 1.72; }
+    .note strong { color: var(--text); font-weight: 700; }
+
+    /* ===== SECTION BADGE (Q-track) ===== */
+    .sec-badge { display: flex; align-items: center; gap: 16px; margin-bottom: 26px; flex-wrap: wrap; }
+    .sec-badge .qnum { display: inline-flex; align-items: center; gap: 9px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.02em; color: var(--accent); background: var(--accent-soft); padding: 8px 16px; border-radius: 999px; }
+    .q-track { display: flex; gap: 8px; }
+    .q-track i { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--accent); opacity: 0.38; }
+    .q-track i.on { background: var(--accent); opacity: 1; }
+
+    /* ===== COVER ===== */
+    .slide-cover, .slide-scripture, .slide-question, .slide-declare, .slide-closing { align-items: center; text-align: center; }
+    .cover-bg { position: absolute; inset: 0; z-index: 0; }
+    .theme-light .cover-bg {
+      background:
+        radial-gradient(900px 520px at 50% -12%, rgba(0,102,255,0.12), transparent 60%),
+        linear-gradient(180deg, #FFFFFF 0%, #F1F6FF 58%, #F7F7F8 100%);
+    }
+    .theme-dark .cover-bg {
+      background:
+        radial-gradient(900px 520px at 50% -12%, rgba(51,133,255,0.22), transparent 60%),
+        linear-gradient(180deg, #23262B 0%, #1B1C1E 58%, #161719 100%);
+    }
+    .cover-inner { position: relative; z-index: 1; max-width: 1000px; }
+    .cover-eyebrow { display: inline-block; font-size: clamp(0.85rem, 1.3vw, 1rem); color: var(--accent); font-weight: 600; margin-bottom: 30px; background: var(--accent-soft); padding: 9px 18px; border-radius: 999px; }
+    .cover-title { font-size: clamp(3rem, 8.5vw, 6rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.045em; }
+    .cover-rule { width: 52px; height: 3px; background: var(--accent); border-radius: 3px; margin: 36px auto 26px; }
+    .cover-sub { font-size: clamp(1rem, 1.7vw, 1.28rem); color: var(--text-secondary); font-weight: 600; }
+    .cover-ref { margin-top: 14px; font-size: clamp(0.9rem, 1.3vw, 1.05rem); color: var(--accent); font-weight: 600; }
+
+    /* ===== SCRIPTURE (blue, centered) ===== */
+    .slide-scripture .sc-inner { position: relative; z-index: 1; max-width: 1040px; }
+    .sc-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.18em; color: var(--accent); display: inline-flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+    .sc-label::before, .sc-label::after { content: ''; width: 24px; height: 2px; background: var(--accent); border-radius: 2px; opacity: 0.55; }
+    .sc-verse { font-size: clamp(1.55rem, 3.3vw, 2.8rem); font-weight: 600; line-height: 1.6; color: var(--text); letter-spacing: -0.03em; }
+    .sc-verse .holy { color: var(--accent); font-weight: 700; }
+    .sc-source { margin-top: 42px; font-size: clamp(0.92rem, 1.3vw, 1.1rem); color: var(--text-secondary); font-weight: 600; letter-spacing: 0.02em; }
+    .sc-foot { margin-top: 18px; font-size: clamp(0.88rem, 1.15vw, 1rem); color: var(--text-secondary); font-weight: 400; }
+
+    /* ===== DECLARE (출 3:14) ===== */
+    .declare-inner { position: relative; z-index: 1; max-width: 1000px; }
+    .declare-label { display: inline-block; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 36px; }
+    .declare-big { font-size: clamp(2.6rem, 6.6vw, 4.6rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.045em; }
+    .declare-sub { margin-top: 34px; font-size: clamp(1.1rem, 1.9vw, 1.5rem); color: var(--text-secondary); font-weight: 600; line-height: 1.55; }
+    .declare-foot { margin-top: 30px; font-size: clamp(0.92rem, 1.25vw, 1.08rem); color: var(--text-secondary); }
+    .declare-foot strong { color: var(--accent); font-weight: 700; }
+
+    /* ===== QUESTION ===== */
+    .slide-question .q-inner { position: relative; z-index: 1; max-width: 1040px; }
+    .q-tag { display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.03em; color: var(--accent); margin-bottom: 30px; background: var(--accent-soft); padding: 8px 16px; border-radius: 999px; }
+    .q-text { font-size: clamp(2.2rem, 5.4vw, 3.9rem); font-weight: 800; line-height: 1.18; color: var(--text); letter-spacing: -0.04em; }
+    .q-sub { margin-top: 30px; font-size: clamp(1rem, 1.5vw, 1.26rem); color: var(--text-secondary); line-height: 1.72; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .q-sub strong { color: var(--text); font-weight: 700; }
+    .dual-chip { display: flex; gap: 12px; justify-content: center; margin-top: 38px; flex-wrap: wrap; }
+    .dual-chip span { font-size: clamp(0.9rem, 1.2vw, 1.04rem); font-weight: 600; padding: 9px 18px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); }
+
+    /* ===== CARDS (grid-3) ===== */
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: clamp(24px, 2.6vw, 32px); box-shadow: var(--shadow-sm); transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s; }
+    .card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+    .card .num { font-size: 1.75rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 16px; letter-spacing: -0.03em; }
+    .card h3 { font-size: clamp(1.05rem, 1.4vw, 1.24rem); margin-bottom: 11px; }
+    .card p { color: var(--text-secondary); font-size: clamp(0.92rem, 1.08vw, 1.02rem); line-height: 1.66; }
+    .card p strong { color: var(--text); font-weight: 700; }
+
+    /* ===== STEPPER (3 questions) ===== */
+    .stepper { display: flex; flex-direction: column; gap: 16px; margin-top: 38px; }
+    .step { display: flex; align-items: center; gap: 22px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: clamp(20px, 2.2vw, 28px) clamp(24px, 2.6vw, 34px); box-shadow: var(--shadow-sm); transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; }
+    .step:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); box-shadow: var(--shadow-md); transform: translateX(4px); }
+    .step .si { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 1.25rem; }
+    .step h3 { font-size: clamp(1.15rem, 1.7vw, 1.5rem); font-weight: 700; letter-spacing: -0.03em; }
+
+    /* ===== CATECHISM (slate, left bar) ===== */
+    .cat-inner { position: relative; z-index: 1; max-width: 1060px; border-left: 4px solid var(--accent-secondary); padding-left: clamp(24px, 3.2vw, 50px); }
+    .cat-label { display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent-secondary); margin-bottom: 26px; background: var(--surface-hover); padding: 7px 14px; border-radius: 999px; }
+    .cat-verse { font-size: clamp(1.4rem, 2.9vw, 2.4rem); font-weight: 600; line-height: 1.58; color: var(--text); letter-spacing: -0.03em; }
+    .cat-verse b { color: var(--accent); font-weight: 700; }
+    .cat-source { margin-top: 30px; font-size: clamp(0.9rem, 1.2vw, 1.05rem); color: var(--text-secondary); font-weight: 600; }
+
+    /* ===== ATTRIBUTE CHIPS (flex-wrap) ===== */
+    .attr-wrap { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .attr { display: flex; align-items: center; gap: 13px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 15px 22px 15px 16px; box-shadow: var(--shadow-sm); transition: border-color .25s, box-shadow .25s, transform .25s; }
+    .attr:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .attr-ico { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); flex: 0 0 auto; }
+    .attr h4 { font-size: clamp(1rem, 1.25vw, 1.16rem); font-weight: 700; }
+    .attr-banner { display: inline-flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+    .attr-banner span { font-weight: 700; font-size: clamp(0.9rem,1.15vw,1.04rem); color: var(--accent); background: var(--accent-soft); padding: 8px 18px; border-radius: 999px; letter-spacing: 0.02em; }
+
+    /* ===== VS CONTRAST (2 panes) ===== */
+    .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 34px; align-items: stretch; }
+    .pane { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: clamp(24px, 2.8vw, 36px); box-shadow: var(--shadow-sm); }
+    .pane.good { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+    .pane .pk { display: inline-flex; align-items: center; gap: 8px; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent-secondary); background: var(--surface-hover); padding: 6px 13px; border-radius: 999px; margin-bottom: 18px; }
+    .pane.good .pk { color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); }
+    .pane h3 { font-size: clamp(1.18rem, 1.8vw, 1.55rem); margin-bottom: 12px; letter-spacing: -0.03em; }
+    .pane p { color: var(--text-secondary); font-size: clamp(0.95rem, 1.15vw, 1.08rem); line-height: 1.68; }
+    .theme-light .pane.good h3 { color: var(--accent-strong); }
+    .theme-light .pane.good p { color: #2B4D80; }
+    .theme-dark .pane.good p { color: #D6E6FF; }
+
+    /* ===== ROLES (icon grid) ===== */
+    .roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+    .role { text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: clamp(24px,2.8vw,34px) 20px; box-shadow: var(--shadow-sm); transition: border-color .25s, box-shadow .25s, transform .25s; }
+    .role:hover { border-color: color-mix(in srgb, var(--accent) 40%, transparent); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .role-ico { width: 56px; height: 56px; border-radius: 15px; margin: 0 auto 18px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+    .role h3 { font-size: clamp(1.08rem,1.45vw,1.3rem); margin-bottom: 8px; }
+    .role p { color: var(--text-secondary); font-size: clamp(0.9rem,1.08vw,1rem); line-height: 1.6; }
+    .cf-line { margin-top: 30px; font-size: clamp(0.95rem,1.2vw,1.08rem); color: var(--accent); font-weight: 700; letter-spacing: 0.01em; }
+
+    /* ===== LAYERS (truman) ===== */
+    .layers { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 32px; }
+    .layer { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: clamp(26px, 3vw, 38px); box-shadow: var(--shadow-sm); }
+    .layer.good { border-color: color-mix(in srgb, var(--accent) 55%, transparent); background: var(--accent-soft); }
+    .layer .lv { font-size: 1.5rem; font-weight: 800; color: var(--accent-secondary); line-height: 1; }
+    .layer.good .lv { color: var(--accent); }
+    .layer h3 { font-size: clamp(1.15rem, 1.7vw, 1.5rem); margin: 14px 0 12px; letter-spacing: -0.03em; }
+    .layer p { color: var(--text-secondary); font-size: clamp(0.95rem,1.15vw,1.08rem); line-height: 1.66; }
+    .theme-light .layer.good h3 { color: var(--accent-strong); }
+    .theme-light .layer.good p { color: #2B4D80; }
+    .theme-dark .layer.good p { color: #D6E6FF; }
+
+    /* ===== QUOTE CARD ===== */
+    .quote-card { position: relative; z-index: 1; max-width: 1000px; margin-top: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: clamp(34px, 4vw, 54px) clamp(30px, 4vw, 56px); box-shadow: var(--shadow-md); }
+    .quote-card::before { content: '\201C'; position: absolute; top: clamp(6px, 1vw, 16px); left: clamp(20px, 3vw, 36px); font-size: clamp(4rem, 9vw, 7rem); line-height: 1; color: var(--accent); opacity: 0.18; font-family: Georgia, serif; }
+    .quote-text { position: relative; font-size: clamp(1.2rem, 2.1vw, 1.7rem); font-weight: 600; line-height: 1.62; color: var(--text); letter-spacing: -0.02em; }
+    .quote-cite { margin-top: 28px; font-size: clamp(0.95rem, 1.25vw, 1.1rem); color: var(--accent); font-weight: 700; }
+    .quote-cite span { color: var(--text-secondary); font-weight: 500; }
+
+    /* ===== FLOW (종→양자) ===== */
+    .flow { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
+    .flow .node { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 22px; font-weight: 700; font-size: clamp(0.95rem,1.2vw,1.1rem); box-shadow: var(--shadow-sm); }
+    .flow .node.neg { color: var(--text-secondary); }
+    .flow .node.pos { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 50%, transparent); color: var(--accent-strong); }
+    .flow .farrow { color: var(--accent); display: grid; place-items: center; }
+    .flow .fmid { font-size: 0.82rem; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); padding: 6px 13px; border-radius: 999px; }
+
+    /* ===== VERSE PAIR ===== */
+    .verse-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 26px; }
+    .vcard { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: clamp(24px, 2.8vw, 34px); box-shadow: var(--shadow-sm); border-left: 4px solid var(--accent); }
+    .vcard p { font-size: clamp(1.02rem, 1.45vw, 1.26rem); font-weight: 600; line-height: 1.6; color: var(--text); letter-spacing: -0.02em; }
+    .vcard .ref { margin-top: 18px; font-size: clamp(0.88rem, 1.15vw, 1rem); color: var(--accent); font-weight: 700; }
+
+    /* ===== CHAIN (섭리) ===== */
+    .chain { display: flex; align-items: stretch; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+    .chain .clink { flex: 1 1 220px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: clamp(20px, 2.2vw, 28px); box-shadow: var(--shadow-sm); }
+    .chain .clink:last-child { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+    .chain .clink .ck { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent-secondary); margin-bottom: 10px; }
+    .chain .clink:last-child .ck { color: var(--accent); }
+    .chain .clink h4 { font-size: clamp(1.05rem, 1.5vw, 1.3rem); font-weight: 700; letter-spacing: -0.03em; }
+    .theme-light .chain .clink:last-child h4 { color: var(--accent-strong); }
+
+    /* ===== MENU / NAV / PROGRESS ===== */
+    .deck-progress { position: fixed; top: 0; left: 0; height: 3px; width: 5.2%; z-index: 9998; background: var(--accent); transition: width 0.5s ease; }
+    .slide-nav { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; z-index: 9990; }
+    .slide-nav button { width: 40px; height: 40px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; box-shadow: var(--shadow-sm); }
+    .slide-nav button:hover { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+    .slide-counter { font-size: 0.85rem; color: var(--text-secondary); font-weight: 700; min-width: 58px; text-align: center; font-variant-numeric: tabular-nums; }
+
+    .viz-menu { position: fixed; top: 16px; right: 16px; z-index: 9999; }
+    .viz-menu-toggle { width: 44px; height: 44px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); transition: all 0.2s; }
+    .viz-menu-toggle:hover { background: var(--surface-hover); }
+    .viz-menu-dropdown { position: absolute; top: 52px; right: 0; min-width: 190px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 8px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.2s; box-shadow: var(--shadow-lg); }
+    .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .viz-menu-dropdown button { width: 100%; padding: 10px 14px; border: none; border-radius: 9px; background: transparent; color: var(--text); font-size: 14px; font-family: inherit; font-weight: 500; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; transition: background 0.15s; }
+    .viz-menu-dropdown button:hover { background: var(--surface-hover); }
+
+    .skip-to-content { position: absolute; top: -50px; left: 6px; background: var(--accent); color: #fff; padding: 8px 12px; text-decoration: none; border-radius: 8px; z-index: 10000; transition: top 0.2s; }
+    .skip-to-content:focus { top: 6px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .grid3, .vs, .layers, .roles, .verse-pair { grid-template-columns: 1fr; }
+      .attr-wrap { gap: 10px; }
+      .flow { flex-direction: column; }
+      .flow .farrow { transform: rotate(90deg); }
+    }
+    @media (max-width: 375px) {
+      body { overflow-x: hidden; }
+      .slide { padding: 34px 22px; }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      body { overflow: visible; background: #fff !important; color: #000 !important; }
+      .deck { height: auto; }
+      .slide { position: relative; inset: auto; opacity: 1 !important; visibility: visible !important; transform: none !important; height: 100vh; page-break-after: always; break-after: page; }
+      .slide .fragment { opacity: 1 !important; transform: none !important; }
+      .viz-menu, .slide-nav, .deck-progress { display: none !important; }
+      .cover-bg { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+  <div class="deck-progress" id="deckProgress"></div>
+
+  <div class="viz-menu">
+    <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="17" y2="15"/></svg>
+    </button>
+    <div class="viz-menu-dropdown" id="vizMenuDropdown">
+      <button onclick="cycleTheme()"><span id="themeIcon">☀️</span><span id="themeLabel">라이트</span></button>
+      <button onclick="downloadImage()"><span>📥</span><span>PNG 저장</span></button>
+      <button onclick="window.print()"><span>🖨️</span><span>인쇄 / PDF</span></button>
+    </div>
+  </div>
+
+  <main id="main-content" role="main">
+    <div class="deck" id="deck">
+
+      <!-- 1. 표지 -->
+      <section class="slide slide-cover active" aria-label="표지">
+        <div class="cover-bg" aria-hidden="true"></div>
+        <div class="cover-inner">
+          <p class="cover-eyebrow fragment d1">교리설교 ② · 소요리문답으로 보는 하나님</p>
+          <h1 class="cover-title fragment d2">하나님은<br>누구신가?</h1>
+          <div class="cover-rule fragment d3"></div>
+          <p class="cover-sub fragment d3">송도청소년1부</p>
+          <p class="cover-ref fragment d4">에베소서 1장 11절</p>
+        </div>
+      </section>
+
+      <!-- 2. 본문 — 에베소서 1:11 -->
+      <section class="slide slide-scripture" aria-label="본문 에베소서 1장 11절">
+        <div class="sc-inner">
+          <div class="sc-label fragment d1">본문 말씀</div>
+          <p class="sc-verse fragment d2">모든 일을 그의 뜻의 결정대로 일하시는 이의 계획을 따라<br>우리가 예정을 입어 그 안에서 기업이 되었으니</p>
+          <p class="sc-source fragment d3">에베소서 1장 11절 · 개역개정</p>
+        </div>
+      </section>
+
+      <!-- 3. 복습 — 왜 교리를 배우는가 -->
+      <section class="slide" aria-label="복습: 왜 교리를 배우는가">
+        <div class="max">
+          <div class="label fragment d1">지난 시간 복습</div>
+          <h2 class="title fragment d1">우리는 왜 교리를 배우는가</h2>
+          <div class="grid3">
+            <article class="card fragment d2">
+              <div class="num">01</div>
+              <h3>교리란</h3>
+              <p>성경에 기록된 <strong>진리의 말씀</strong>. 세상의 유혹과 변하는 풍조 속에서 마음을 지키고 온전한 그리스도인으로 서기 위함입니다.</p>
+            </article>
+            <article class="card fragment d3">
+              <div class="num">02</div>
+              <h3>소요리문답의 탄생</h3>
+              <p>어려운 교리를 쉽게 — 17세기 영국 웨스트민스터에 <strong>120명의 목사</strong>가 모여 체계적으로 정리한 교과서입니다.</p>
+            </article>
+            <article class="card fragment d4">
+              <div class="num">03</div>
+              <h3>오늘의 자리</h3>
+              <p>그 두 번째 시간. 흩어진 생각을 <strong>차곡차곡 구조화</strong>할 때, 그 앎은 오래 남는 기억이 됩니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 질문 제기 — 알쏭달쏭하신 하나님 -->
+      <section class="slide slide-question" aria-label="질문: 알쏭달쏭하신 하나님">
+        <div class="q-inner">
+          <div class="q-tag fragment d1">이 질문의 무게</div>
+          <h2 class="q-text fragment d2">하나님은 누구신가?</h2>
+          <p class="q-sub fragment d3">내 머리털까지 세시듯 깊이 관여하시는 듯하다가도,<br>때로는 나를 외면하고 고통에 두시는 것 같은 —<br><strong>참 알다가도 모를, 알쏭달쏭하신 분.</strong></p>
+          <div class="dual-chip fragment d4" aria-hidden="true">
+            <span>깊이 관여하시는 듯</span>
+            <span>외면하시는 듯</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. 출 3:14 — 선언 -->
+      <section class="slide slide-declare" aria-label="출애굽기 3장 14절 선언">
+        <div class="declare-inner">
+          <div class="declare-label fragment d1">하나님의 자기소개 · 출애굽기 3:14</div>
+          <h2 class="declare-big fragment d2">나는 스스로<br>있는 자이니라</h2>
+          <p class="declare-sub fragment d3">나는 존재 그 자체다.<br>누구에 의해 존재하지도, 규정되지도 않는다.</p>
+          <p class="declare-foot fragment d4">호렙산 불꽃 가운데, 떨던 모세에게 — <strong>창조주 되심의 선언</strong></p>
+        </div>
+      </section>
+
+      <!-- 6. 모세에게 주신 위로 (대조) -->
+      <section class="slide" aria-label="하나님이 모세를 위로하신 방법">
+        <div class="max">
+          <div class="label fragment d1">그러나 모세는 믿지 못했다</div>
+          <h2 class="title fragment d1">하나님이 모세를 위로하신 방법</h2>
+          <div class="vs">
+            <div class="pane fragment d2">
+              <span class="pk">모세의 자괴감</span>
+              <h3>“나는 입이 뻣뻣하고<br>혀가 둔한 자입니다”</h3>
+              <p>임재를 눈으로 보고 음성을 귀로 듣고도, 패배감에 사로잡혀 떨던 사람.</p>
+            </div>
+            <div class="pane good fragment d3">
+              <span class="pk">실제적인 위로</span>
+              <h3>막연한 말이 아니라,<br>구체적인 해결책으로</h3>
+              <p>지팡이를 뱀으로, 손의 나병을 낫게, 말 못하는 그에게 동역자를 붙여 주셨습니다.</p>
+            </div>
+          </div>
+          <p class="note fragment d4">우리도 모세 같은 존재. 하나님은 책망 대신, 우리 상황에 꼭 맞는 위로를 주십니다 — 이것이 하나님의 <strong>섭리</strong>입니다.</p>
+        </div>
+      </section>
+
+      <!-- 7. 질문의 재정의 (스텝퍼) -->
+      <section class="slide" aria-label="질문을 다시 정의하다">
+        <div class="max">
+          <div class="label fragment d1">올바른 답은 올바른 질문에서</div>
+          <h2 class="title fragment d1">질문을 다시 정의하다</h2>
+          <div class="stepper">
+            <div class="step fragment d2"><div class="si">1</div><h3>하나님의 성품은 무엇인가?</h3></div>
+            <div class="step fragment d3"><div class="si">2</div><h3>하나님은 나와 어떤 관계인가?</h3></div>
+            <div class="step fragment d4"><div class="si">3</div><h3>그것이 내 인생과 무슨 상관이 있는가?</h3></div>
+          </div>
+          <p class="note fragment d5">누군가를 안다는 것은 — 그 존재가 내 인생에 주는 의미, 그리고 내 생각과 행동의 변화까지 이르는 <strong>실제적이고 실존적인</strong> 앎입니다.</p>
+        </div>
+      </section>
+
+      <!-- 8. 질문① 소요리문답 4문 -->
+      <section class="slide slide-catechism" aria-label="질문 1: 하나님의 성품, 소요리문답 4문">
+        <div class="max">
+          <div class="sec-badge fragment d1">
+            <span class="qnum">질문 ① · 하나님의 성품은 무엇인가</span>
+            <span class="q-track" aria-hidden="true"><i class="on"></i><i></i><i></i></span>
+          </div>
+          <div class="cat-inner fragment d2">
+            <span class="cat-label">웨스트민스터 소요리문답 제4문</span>
+            <p class="cat-verse">하나님은 <b>영</b>이시며, 그의 존재하심과 지혜와 권능과 거룩하심과 공의와 선하심과 진실하심이 <b>무한하시고 영원하시며 변함이 없으신</b> 분입니다.</p>
+            <p class="cat-source">— 하나님은 어떤 분이십니까?</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. 질문① 속성 — 존재 자체로 찬양 -->
+      <section class="slide" aria-label="하나님의 속성">
+        <div class="max">
+          <div class="label fragment d1">본질적 정의</div>
+          <h2 class="title fragment d1">존재 자체로 찬양받기<br>합당하신 분</h2>
+          <div class="attr-wrap fragment d2">
+            <div class="attr"><span class="attr-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8.5" cy="12" r="3.4"/><circle cx="15.5" cy="12" r="3.4"/></svg></span><h4>존재하심</h4></div>
+            <div class="attr"><span class="attr-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-4 12.7V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 2z"/><line x1="9" y1="22" x2="15" y2="22"/></svg></span><h4>지혜</h4></div>
+            <div class="attr"><span class="attr-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h4>권능</h4></div>
+            <div class="attr"><span class="attr-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s5 3 5 9a5 5 0 0 1-10 0c0-6 5-9 5-9z"/></svg></span><h4>거룩하심</h4></div>
+            <div class="attr"><span class="attr-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M5 7l-2.5 6a3 3 0 0 0 5 0z"/><path d="M19 7l-2.5 6a3 3 0 0 0 5 0z"/></svg></span><h4>공의</h4></div>
+            <div class="attr"><span class="attr-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><h4>선하심</h4></div>
+            <div class="attr"><span class="attr-ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 11 13 15 9"/></svg></span><h4>진실하심</h4></div>
+          </div>
+          <div class="attr-banner fragment d3"><span>무한</span><span>영원</span><span>불변</span></div>
+          <p class="note fragment d4">“주의 인자하심이 어찌 그리 보배로우신지요” — 다윗의 노래처럼, 하나님의 성품은 그 자체로 <strong>예배와 찬양의 본질적 이유</strong>입니다. <span style="color:var(--accent);font-weight:700;">시편 36:7</span></p>
+        </div>
+      </section>
+
+      <!-- 10. 이사야 6:3 -->
+      <section class="slide slide-scripture" aria-label="이사야 6장 3절">
+        <div class="sc-inner">
+          <div class="sc-label fragment d1">이사야가 본 환상 · 이사야 6:3</div>
+          <p class="sc-verse fragment d2"><span class="holy">거룩하시다 거룩하시다 거룩하시다</span><br>만군의 주님,<br>온 땅에 그의 영광이 가득하다</p>
+          <p class="sc-foot fragment d3">여섯 날개의 스랍(세라핌)이 얼굴과 발을 가린 채 드린 화답</p>
+        </div>
+      </section>
+
+      <!-- 11. 진짜 통치자 (대조) -->
+      <section class="slide" aria-label="그 시대를 진정 다스린 분">
+        <div class="max">
+          <div class="label fragment d1">웃시야 왕이 죽던 해에 · BC 730경</div>
+          <h2 class="title fragment d1">그 시대를 진정 다스린 분</h2>
+          <div class="vs">
+            <div class="pane fragment d2">
+              <span class="pk">보이는 패권</span>
+              <h3>앗수르, 그리고 오늘</h3>
+              <p>당시엔 제국 앗수르, 오늘은 자본주의와 성과주의. “네 인생은 목적 없는 우연의 산물”이라 외치는 세상의 목소리.</p>
+            </div>
+            <div class="pane good fragment d3">
+              <span class="pk">진짜 통치자</span>
+              <h3>보좌에 앉으신 하나님</h3>
+              <p>높이 들린 보좌에 앉으셔서 지금도 온 우주를 다스리시는 분. 이사야가 본 그 시대의 참된 통치자.</p>
+            </div>
+          </div>
+          <p class="note fragment d4">이 시대를 진정 다스리시는 분은 <strong>오직 하나님 한 분</strong>이심을 기억하길 바랍니다.</p>
+        </div>
+      </section>
+
+      <!-- 12. 질문② 내 인생의 연출자 (역할) -->
+      <section class="slide" aria-label="질문 2: 내 인생이라는 영화의 연출자">
+        <div class="max">
+          <div class="sec-badge fragment d1">
+            <span class="qnum">질문 ② · 하나님은 나와 어떤 관계인가</span>
+            <span class="q-track" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></span>
+          </div>
+          <h2 class="title fragment d1">내 인생이라는 영화의 연출자</h2>
+          <p class="lead fragment d2">영화가 끝나면 엔딩 크레딧이 오릅니다.<br>내 인생이라는 영화의 크레딧엔 — 하나님 한 분의 이름.</p>
+          <div class="roles">
+            <div class="role fragment d3">
+              <div class="role-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+              <h3>기획 · 각본</h3><p>처음을 두고<br>내 삶의 대사를 쓰신 분</p>
+            </div>
+            <div class="role fragment d3">
+              <div class="role-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="7" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="17" y2="20"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
+              <h3>연출</h3><p>장면 하나하나를<br>이끄시는 분</p>
+            </div>
+            <div class="role fragment d4">
+              <div class="role-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+              <h3>총판 · 배급</h3><p>이야기의 끝까지<br>책임지시는 분</p>
+            </div>
+          </div>
+          <p class="cf-line fragment d4">cf. 에베소서 1:11 — “그의 뜻의 결정대로 일하시는 이의 계획을 따라”</p>
+        </div>
+      </section>
+
+      <!-- 13. 트루먼쇼 (레이어 대조) -->
+      <section class="slide" aria-label="사람의 연출과 하나님의 경영">
+        <div class="max">
+          <div class="label fragment d1">비유 · 트루먼쇼 (1998)</div>
+          <h2 class="title fragment d1">사람의 연출 vs 하나님의 경영</h2>
+          <div class="layers">
+            <div class="layer fragment d2">
+              <div class="lv">사람의 연출</div>
+              <h3>옥의 티로 가득한<br>조작된 인생</h3>
+              <p>크리스토프 PD가 정교하게 짠 쇼 — 그러나 떨어지는 조명, 어색한 해와 달. 결국 허점이 드러납니다.</p>
+            </div>
+            <div class="layer good fragment d3">
+              <div class="lv">하나님의 경영</div>
+              <h3>한 치 오차 없는<br>완전한 경영</h3>
+              <p>해와 달을 한 치 오차 없이 운행하시는 무한한 지혜. 사람의 계획과는 질적으로 다른 인생이 펼쳐집니다.</p>
+            </div>
+          </div>
+          <p class="note fragment d4">하나님이 내 삶을 경영하신다는 사실을 <strong>마음으로 받아들일 때</strong>, 우리는 그 계획에 맞는 인생을 살아갈 수 있습니다.</p>
+        </div>
+      </section>
+
+      <!-- 14. 미세조정우주 (인용) -->
+      <section class="slide" aria-label="미세조정우주와 프랜시스 콜린스 인용">
+        <div class="max">
+          <div class="label fragment d1">미세조정우주 · Fine-Tuning Universe</div>
+          <h2 class="title fragment d1">우주는 우연이 아니다</h2>
+          <div class="quote-card fragment d2">
+            <p class="quote-text">물리 법칙들이 마치 생명을 가능하게 하려고 설계된 것처럼 정교한 속성을 가지고 있다. … 그 값 가운데 어느 하나가 아주 약간만 달랐다면, 우주는 지금처럼 생명을 품지 못했을 것이다.</p>
+            <p class="quote-cite">프랜시스 콜린스 <span>· 게놈 프로젝트 책임자, 『과학과 하나님의 존재』</span></p>
+          </div>
+          <p class="note fragment d3">무신론 과학자들은 ‘다중우주론’으로 반박합니다 — 무수한 우주 중 우연히 상수가 맞은 곳이 여기라고. 그러나 <strong>기타가 우연히 튜닝되지는 않습니다.</strong></p>
+        </div>
+      </section>
+
+      <!-- 15. 질문③ 두 가지 위로 -->
+      <section class="slide" aria-label="질문 3: 절망과 혼란 속 유일한 소망">
+        <div class="max">
+          <div class="sec-badge fragment d1">
+            <span class="qnum">질문 ③ · 그것이 내 인생과 무슨 상관인가</span>
+            <span class="q-track" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></span>
+          </div>
+          <h2 class="title fragment d1">절망과 혼란 속, 유일한 소망</h2>
+          <p class="lead fragment d2">사소한 일부터 가장 중요한 일까지 하나님이 직접 통치하신다는 사실은 실제적인 위로가 됩니다. 본문은 그 위로를 두 가지로 설명합니다.</p>
+          <div class="vs" style="margin-top:30px;">
+            <div class="pane good fragment d3">
+              <span class="pk">위로 ①</span>
+              <h3>상속자 삼으심</h3>
+              <p>우리를 상속자 삼으시려는 <strong style="color:inherit">구체적인 뜻과 계획</strong>을 가지고 계십니다.</p>
+            </div>
+            <div class="pane good fragment d4">
+              <span class="pk">위로 ②</span>
+              <h3>변치 않는 성품</h3>
+              <p>그 뜻과 계획은 다름 아닌 <strong style="color:inherit">하나님의 성품</strong>에서 나온 것입니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 16. 위로① 상속자·양자 (성경 2구절 + 흐름) -->
+      <section class="slide" aria-label="위로 1: 상속자와 양자 삼으심">
+        <div class="max">
+          <div class="label fragment d1">위로 ① · 상속자 삼으심</div>
+          <h2 class="title fragment d1">우리를 양자 삼으시고<br>상속자로</h2>
+          <div class="flow fragment d2">
+            <span class="node neg">무서워하는 종의 영</span>
+            <span class="farrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span class="fmid">십자가 대속의 은혜</span>
+            <span class="farrow"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            <span class="node pos">양자의 영 · 아빠 아버지</span>
+          </div>
+          <div class="verse-pair">
+            <div class="vcard fragment d3">
+              <p>“영접하는 자 곧 그 이름을 믿는 자들에게는<br>하나님의 자녀가 되는 권세를 주셨으니”</p>
+              <p class="ref">요한복음 1:12</p>
+            </div>
+            <div class="vcard fragment d4">
+              <p>“너희는 다시 무서워하는 종의 영을 받지 아니하고<br>양자의 영을 받았으므로 우리가 아빠 아버지라고 부르짖느니라”</p>
+              <p class="ref">로마서 8:15</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 17. 조건 없는 선택 (대조) -->
+      <section class="slide" aria-label="조건 없는 선택">
+        <div class="max">
+          <div class="label fragment d1">예정 · 창세 전에 (에베소서 1:4-5)</div>
+          <h2 class="title fragment d1">그 선택엔 조건이 없었다</h2>
+          <div class="vs">
+            <div class="pane fragment d2">
+              <span class="pk">세상의 선택</span>
+              <h3>자격과 테스트</h3>
+              <p>이창호는 천재성으로 조훈현의 제자가, 임윤찬은 재능으로 손민수의 제자가 되었습니다. 선택엔 이유가 있었습니다.</p>
+            </div>
+            <div class="pane good fragment d3">
+              <span class="pk">하나님의 선택</span>
+              <h3>오직 무조건적 은혜</h3>
+              <p>우리는 세상이 만들어지기도 전에 택함받았습니다. 그 이유에 내 지분은 눈곱만큼도 없습니다 — 오직 그분의 기뻐하시는 뜻.</p>
+            </div>
+          </div>
+          <p class="note fragment d4">선택의 이유가 <strong>내게 있지 않다</strong>는 사실 — 그것이 얼마나 큰 위로인지 모릅니다.</p>
+        </div>
+      </section>
+
+      <!-- 18. 위로② 섭리 (문답 + 체인) -->
+      <section class="slide slide-catechism" aria-label="위로 2: 성품에서 나온 섭리">
+        <div class="max">
+          <div class="label slate fragment d1">위로 ② · 성품에서 나온 계획</div>
+          <div class="cat-inner fragment d2">
+            <span class="cat-label">웨스트민스터 소요리문답 제11문</span>
+            <p class="cat-verse">하나님의 섭리의 사역은 지극히 <b>거룩함과 지혜와 권능</b>으로써 모든 피조물과 모든 행동을 보존하시며 통치하시는 일입니다.</p>
+          </div>
+          <div class="chain fragment d3">
+            <div class="clink"><div class="ck">변치 않는 성품</div><h4>거룩 · 지혜 · 권능</h4></div>
+            <div class="clink"><div class="ck">그 성품에서 나온</div><h4>나를 향한 뜻과 계획</h4></div>
+            <div class="clink"><div class="ck">그러므로</div><h4>절대 변하지 않는다</h4></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 19. 결론 — 존재의 바다 -->
+      <section class="slide slide-closing" aria-label="결론: 존재의 바다">
+        <div class="cover-bg" aria-hidden="true"></div>
+        <div class="q-inner" style="text-align:center;">
+          <div class="q-tag fragment d1">말씀을 정리하며</div>
+          <h2 class="q-text fragment d2" style="font-size:clamp(2.2rem,5.2vw,3.6rem);">존재의 바다</h2>
+          <div class="quote-card fragment d3" style="margin:34px auto 0; text-align:left;">
+            <p class="quote-text">시작도 끝도 없는 무한한 바다가 있습니다. … 그 안의 모든 물방울은 잠시 존재할 동안에조차, 오직 그 바다의 뜻과 의지에 이끌려 갈 수밖에 없습니다.</p>
+            <p class="quote-cite">김용규 <span>· 『신』</span></p>
+          </div>
+          <p class="q-sub fragment d4">존재의 바다이신 하나님 안에서 우리는 물방울입니다.<br>그 출렁임에 우리의 모든 지성과 이성과 감각을 맡기고 살아가길.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <nav class="slide-nav" aria-label="슬라이드 내비게이션">
+    <button onclick="prevSlide()" aria-label="이전 슬라이드"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <span class="slide-counter" id="slideCounter">1 / 19</span>
+    <button onclick="nextSlide()" aria-label="다음 슬라이드"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+  </nav>
+
+  <script>
+    // === Menu ===
+    function toggleMenu() { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.toggle('open'); }
+    document.addEventListener('click', function(e) { if (!e.target.closest('.viz-menu')) { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+
+    // === Theme (Montage: light-first) ===
+    var savedTheme = localStorage.getItem('viz-theme-montage');
+    var currentTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    function applyTheme(t) {
+      document.documentElement.className = 'theme-' + t;
+      document.getElementById('themeIcon').textContent = t === 'dark' ? '🌙' : '☀️';
+      document.getElementById('themeLabel').textContent = t === 'dark' ? '다크' : '라이트';
+      localStorage.setItem('viz-theme-montage', t); currentTheme = t;
+      if (typeof onThemeChange === 'function') onThemeChange();
+    }
+    function cycleTheme() { applyTheme(currentTheme === 'dark' ? 'light' : 'dark'); }
+    function onThemeChange() {}
+    applyTheme(currentTheme);
+
+    // === Deck navigation (direction-aware push) ===
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var current = 0;
+    var deckEl = document.getElementById('deck');
+
+    function updateChrome(n) {
+      var prog = document.getElementById('deckProgress');
+      if (prog) prog.style.width = ((n + 1) / slides.length * 100) + '%';
+      var cnt = document.getElementById('slideCounter');
+      if (cnt) cnt.textContent = (n + 1) + ' / ' + slides.length;
+      if (history && history.replaceState) history.replaceState(null, '', '#slide-' + (n + 1));
+    }
+
+    function go(n, dir) {
+      n = Math.max(0, Math.min(slides.length - 1, n));
+      if (n === current) return;
+      var inc = slides[n], out = slides[current];
+      var startCls = dir >= 0 ? 'exit-to-right' : 'exit-to-left';
+      var outCls   = dir >= 0 ? 'exit-to-left'  : 'exit-to-right';
+      inc.classList.remove('active', 'exit-to-left', 'exit-to-right');
+      inc.classList.add('notrans', startCls);
+      void inc.offsetWidth;
+      inc.classList.remove('notrans', startCls);
+      inc.classList.add('active');
+      out.classList.remove('active');
+      out.classList.add(outCls);
+      (function (o) {
+        var done = function () { o.classList.remove('exit-to-left', 'exit-to-right'); o.removeEventListener('transitionend', done); };
+        o.addEventListener('transitionend', done);
+        setTimeout(done, 720);
+      })(out);
+      current = n;
+      updateChrome(current);
+    }
+    function goToSlide(n) { go(n, n >= current ? 1 : -1); }
+    function nextSlide() { go(current + 1, 1); }
+    function prevSlide() { go(current - 1, -1); }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); nextSlide(); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prevSlide(); }
+      else if (e.key === 'Home') { e.preventDefault(); goToSlide(0); }
+      else if (e.key === 'End') { e.preventDefault(); goToSlide(slides.length - 1); }
+      else if (e.key === ' ' || e.key === 'Enter') { if (!e.target.closest('button') && !e.target.closest('a')) { e.preventDefault(); nextSlide(); } }
+    });
+
+    if (deckEl) {
+      deckEl.addEventListener('click', function(e) {
+        if (e.target.closest('.viz-menu') || e.target.closest('.slide-nav') || e.target.closest('a') || e.target.closest('button')) return;
+        if (e.clientX < window.innerWidth * 0.33) prevSlide(); else nextSlide();
+      });
+      var tsx = 0;
+      deckEl.addEventListener('touchstart', function(e) { tsx = e.changedTouches[0].screenX; }, { passive: true });
+      deckEl.addEventListener('touchend', function(e) { var dx = e.changedTouches[0].screenX - tsx; if (Math.abs(dx) > 50) { if (dx < 0) nextSlide(); else prevSlide(); } }, { passive: true });
+    }
+
+    var hashMatch = location.hash.match(/slide-(\d+)/);
+    var startIndex = hashMatch ? Math.max(0, Math.min(slides.length - 1, parseInt(hashMatch[1], 10) - 1)) : 0;
+    current = startIndex;
+    requestAnimationFrame(function () {
+      slides[startIndex].classList.add('active');
+      updateChrome(startIndex);
+    });
+
+    // === Download PNG (current slide) ===
+    async function downloadImage() {
+      var menu = document.querySelector('.viz-menu'); var nav = document.querySelector('.slide-nav');
+      menu.style.display = 'none'; if (nav) nav.style.display = 'none';
+      try {
+        var url = await htmlToImage.toPng(document.body, { quality: 1, pixelRatio: 2, filter: function(n) { return !n.classList || (!n.classList.contains('viz-menu') && !n.classList.contains('slide-nav')); } });
+        var a = document.createElement('a'); a.href = url; a.download = 'sermon-god-slide-' + (current + 1) + '.png'; a.click();
+      } catch (e) { console.error('Download failed:', e); }
+      menu.style.display = ''; if (nav) nav.style.display = '';
+    }
+  </script>
+</body>
+</html>

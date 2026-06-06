@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>③ Cosmic Night — 하나님은 누구신가</title>
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html.theme-dark{
+  --bg:#080B1E; --surface:rgba(255,255,255,.045); --surface-hover:rgba(255,255,255,.08); --border:rgba(140,170,255,.20);
+  --text:#EAF0FF; --text-secondary:#9DA8CF; --accent:#54E1FF; --accent-secondary:#B388FF;
+  --positive:#5BE6A8; --negative:#FF7A93; --warning:#FFC36B;
+  --glow:0 0 24px rgba(84,225,255,.55);
+}
+html.theme-light{
+  --bg:#EDF1FF; --surface:#FFFFFF; --surface-hover:#F1F4FF; --border:rgba(60,90,180,.18);
+  --text:#161A33; --text-secondary:#5A6488; --accent:#3A6DFF; --accent-secondary:#7C5CFF;
+  --positive:#0FA968; --negative:#E5476A; --warning:#E08600;
+  --glow:0 8px 26px -10px rgba(58,109,255,.45);
+}
+html,body{height:100%;}
+body{font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,'Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);overflow:hidden;line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;transition:background .4s,color .4s;}
+h1,h2,h3{color:var(--text);line-height:1.18;letter-spacing:-.035em;font-weight:800;}
+.sky{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.theme-dark .sky{background:
+  radial-gradient(1100px 640px at 78% -10%,rgba(84,225,255,.16),transparent 60%),
+  radial-gradient(900px 620px at 12% 108%,rgba(179,136,255,.20),transparent 60%),
+  radial-gradient(700px 500px at 50% 50%,rgba(40,60,140,.18),transparent 70%),
+  linear-gradient(180deg,#0A0F2A 0%,#080B1E 60%,#06081A 100%);}
+.theme-light .sky{background:radial-gradient(1000px 600px at 80% -10%,rgba(58,109,255,.12),transparent 60%),radial-gradient(800px 560px at 10% 110%,rgba(124,92,255,.12),transparent 60%),linear-gradient(180deg,#F4F7FF,#E9EEFF);}
+.theme-dark .stars{position:absolute;inset:0;background-image:radial-gradient(1.4px 1.4px at 12% 22%,#fff,transparent),radial-gradient(1.2px 1.2px at 34% 64%,#cfe,transparent),radial-gradient(1.6px 1.6px at 58% 18%,#fff,transparent),radial-gradient(1.1px 1.1px at 72% 72%,#def,transparent),radial-gradient(1.3px 1.3px at 86% 36%,#fff,transparent),radial-gradient(1px 1px at 24% 84%,#fff,transparent),radial-gradient(1.2px 1.2px at 47% 90%,#cdf,transparent),radial-gradient(1.5px 1.5px at 92% 80%,#fff,transparent);opacity:.7;}
+.theme-light .stars{display:none;}
+.deck{position:relative;width:100vw;height:100vh;height:100dvh;overflow:hidden;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,7vh,84px) clamp(36px,8vw,132px);opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(40px,0,0);transition:opacity .45s ease,transform .55s cubic-bezier(.16,1,.3,1);overflow-y:auto;}
+.slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:none;z-index:2;}
+.slide.exit-to-left{opacity:0;visibility:visible;transform:translate3d(-40px,0,0);z-index:1;}
+.slide.exit-to-right{opacity:0;visibility:visible;transform:translate3d(40px,0,0);z-index:1;}
+.slide.notrans{transition:none!important;}
+.fragment{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .6s cubic-bezier(.16,1,.3,1);}
+.slide.active .fragment{opacity:1;transform:none;}
+.slide.active .fragment.d1{transition-delay:.06s;}.slide.active .fragment.d2{transition-delay:.16s;}.slide.active .fragment.d3{transition-delay:.26s;}.slide.active .fragment.d4{transition-delay:.36s;}
+.max{max-width:1080px;width:100%;margin:0 auto;position:relative;z-index:1;}
+.center{text-align:center;align-items:center;}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700;letter-spacing:.04em;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);padding:8px 16px;border-radius:999px;}
+.s-title{font-size:clamp(2rem,4.4vw,3.1rem);margin:16px 0 8px;}
+/* cover */
+.cover-title{font-size:clamp(3.2rem,9vw,6rem);line-height:1.04;letter-spacing:-.045em;}
+.theme-dark .cover-title .em{color:var(--accent);text-shadow:var(--glow);}
+.theme-light .cover-title .em{color:var(--accent);}
+.cover-sub{margin-top:22px;font-size:clamp(1rem,1.6vw,1.26rem);color:var(--text-secondary);font-weight:500;}
+.cover-ref{margin-top:8px;font-size:clamp(.95rem,1.4vw,1.1rem);color:var(--accent);font-weight:700;}
+.cover-rule{width:54px;height:2px;margin:30px auto 0;background:linear-gradient(90deg,var(--accent),var(--accent-secondary));border-radius:2px;}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px;}
+.gcard{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(24px,2.6vw,32px);backdrop-filter:blur(8px);transition:border-color .25s,transform .25s,box-shadow .25s;}
+.gcard:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 55%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 30%,transparent),0 18px 40px -20px rgba(84,225,255,.5);}
+.gnum{font-size:1.7rem;font-weight:800;color:var(--accent);letter-spacing:-.03em;margin-bottom:14px;}
+.theme-dark .gnum{text-shadow:var(--glow);}
+.gcard h3{font-size:clamp(1.05rem,1.45vw,1.26rem);margin-bottom:10px;}
+.gcard p{color:var(--text-secondary);font-size:clamp(.92rem,1.08vw,1.02rem);line-height:1.66;}
+.gcard p b{color:var(--text);font-weight:700;}
+/* scripture */
+.sc-label{font-size:.78rem;font-weight:700;letter-spacing:.22em;color:var(--accent);display:inline-flex;align-items:center;gap:14px;margin-bottom:38px;}
+.sc-label::before,.sc-label::after{content:'';width:28px;height:1px;background:var(--accent);box-shadow:var(--glow);}
+.sc-verse{font-size:clamp(1.7rem,3.7vw,3rem);line-height:1.55;font-weight:600;}
+.theme-dark .sc-verse .holy{color:var(--accent);text-shadow:0 0 30px rgba(84,225,255,.7);}
+.theme-light .sc-verse .holy{color:var(--accent);}
+.sc-foot{margin-top:38px;font-size:clamp(.9rem,1.2vw,1.04rem);color:var(--text-secondary);}
+/* contrast */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:clamp(26px,3vw,38px);backdrop-filter:blur(8px);}
+.panel.god{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent) 9%,var(--surface));}
+.theme-dark .panel.god{box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 28%,transparent),0 20px 50px -24px rgba(84,225,255,.55);}
+.tag{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.05em;color:var(--text-secondary);border:1px solid var(--border);padding:6px 13px;border-radius:999px;margin-bottom:16px;}
+.panel.god .tag{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent);}
+.panel h3{font-size:clamp(1.24rem,1.8vw,1.6rem);margin-bottom:12px;}
+.panel.god h3{color:var(--accent);}
+.panel p{color:var(--text-secondary);font-size:clamp(.96rem,1.15vw,1.08rem);line-height:1.7;}
+.note{margin-top:30px;text-align:center;font-size:clamp(.98rem,1.2vw,1.12rem);color:var(--text-secondary);}
+.note b{color:var(--accent);font-weight:700;}
+/* chrome */
+.deck-progress{position:fixed;top:0;left:0;height:3px;width:25%;z-index:9998;background:linear-gradient(90deg,var(--accent),var(--accent-secondary));box-shadow:var(--glow);transition:width .5s;}
+.slide-nav{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;z-index:9990;}
+.slide-nav button{width:40px;height:40px;border-radius:12px;background:var(--surface);border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:all .2s;}
+.slide-nav button:hover{color:var(--accent);border-color:var(--accent);}
+.slide-counter{font-size:.88rem;color:var(--text-secondary);font-weight:700;min-width:58px;text-align:center;font-variant-numeric:tabular-nums;}
+.viz-menu{position:fixed;top:16px;right:16px;z-index:9999;}
+.viz-menu-toggle{width:44px;height:44px;border-radius:12px;background:var(--surface);border:1px solid var(--border);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
+.viz-menu-dropdown{position:absolute;top:52px;right:0;min-width:184px;background:#10142E;border:1px solid var(--border);border-radius:14px;padding:8px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .2s;box-shadow:0 20px 50px -18px rgba(0,0,0,.7);}
+.theme-light .viz-menu-dropdown{background:var(--surface);}
+.viz-menu-dropdown.open{opacity:1;visibility:visible;transform:none;}
+.viz-menu-dropdown button{width:100%;padding:10px 14px;border:none;border-radius:9px;background:transparent;color:var(--text);font-size:14px;font-family:inherit;font-weight:500;cursor:pointer;text-align:left;display:flex;gap:10px;}
+.viz-menu-dropdown button:hover{background:var(--surface-hover);}
+.skip-to-content{position:absolute;top:-50px;left:6px;background:var(--accent);color:#03142a;padding:8px 12px;border-radius:8px;z-index:10000;transition:top .2s;font-weight:700;}
+.skip-to-content:focus{top:6px;}
+@media (max-width:900px){.cards,.duo{grid-template-columns:1fr;}}
+@media (max-width:375px){body{overflow-x:hidden;}.slide{padding:34px 22px;}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}.fragment{opacity:1!important;transform:none!important;}}
+@media print{body{overflow:visible;}.deck{height:auto;}.slide{position:relative;inset:auto;opacity:1!important;visibility:visible!important;transform:none!important;height:100vh;page-break-after:always;}.fragment{opacity:1!important;transform:none!important;}.viz-menu,.slide-nav,.deck-progress{display:none!important;}.sky,.stars{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<div class="deck-progress" id="deckProgress"></div>
+<div class="viz-menu">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="17" y2="6"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="14" x2="17" y2="14"/></svg></button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown">
+    <button onclick="cycleTheme()"><span id="themeIcon">🌙</span><span id="themeLabel">다크</span></button>
+    <button onclick="downloadImage()"><span>📥</span><span>PNG 저장</span></button>
+    <button onclick="window.print()"><span>🖨️</span><span>인쇄 / PDF</span></button>
+  </div>
+</div>
+<main id="main-content" role="main">
+<div class="deck" id="deck">
+
+  <section class="slide center" aria-label="표지">
+    <div class="sky" aria-hidden="true"><div class="stars"></div></div>
+    <div class="max">
+      <span class="chip fragment d1">교리설교 ② · 소요리문답으로 보는 하나님</span>
+      <h1 class="cover-title fragment d2" style="margin-top:26px;">하나님은<br><span class="em">누구신가?</span></h1>
+      <div class="cover-rule fragment d3"></div>
+      <p class="cover-sub fragment d3">송도청소년1부</p>
+      <p class="cover-ref fragment d4">에베소서 1장 11절</p>
+    </div>
+  </section>
+
+  <section class="slide" aria-label="복습">
+    <div class="sky" aria-hidden="true"><div class="stars"></div></div>
+    <div class="max">
+      <span class="chip fragment d1">지난 시간 복습</span>
+      <h2 class="s-title fragment d1">우리는 왜 교리를 배우는가</h2>
+      <div class="cards">
+        <div class="gcard fragment d2"><div class="gnum">01</div><h3>교리란</h3><p>성경에 기록된 <b>진리의 말씀</b>. 변하는 풍조 속에서 마음을 지키고 온전한 그리스도인으로 서기 위함.</p></div>
+        <div class="gcard fragment d3"><div class="gnum">02</div><h3>소요리문답의 탄생</h3><p>17세기 영국 웨스트민스터에 <b>120명의 목사</b>가 모여 교리를 체계적으로 정리했습니다.</p></div>
+        <div class="gcard fragment d4"><div class="gnum">03</div><h3>오늘의 자리</h3><p>그 두 번째 시간. 흩어진 생각을 <b>차곡차곡</b> 정리할 때 오래 남는 기억이 됩니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide center" aria-label="이사야 6장 3절">
+    <div class="sky" aria-hidden="true"><div class="stars"></div></div>
+    <div class="max">
+      <div class="sc-label fragment d1">ISAIAH · 이사야 6 : 3</div>
+      <p class="sc-verse fragment d2"><span class="holy">거룩하시다 거룩하시다 거룩하시다</span><br>만군의 주님,<br>온 땅에 그의 영광이 가득하다</p>
+      <p class="sc-foot fragment d3">여섯 날개의 스랍이 얼굴과 발을 가린 채 드린 화답</p>
+    </div>
+  </section>
+
+  <section class="slide" aria-label="진짜 통치자">
+    <div class="sky" aria-hidden="true"><div class="stars"></div></div>
+    <div class="max">
+      <span class="chip fragment d1">웃시야 왕이 죽던 해에 · BC 730경</span>
+      <h2 class="s-title fragment d1">그 시대를 진정 다스린 분</h2>
+      <div class="duo">
+        <div class="panel fragment d2"><span class="tag">보이는 패권</span><h3>앗수르, 그리고 오늘</h3><p>당시엔 제국 앗수르, 오늘은 자본주의와 성과주의. “네 인생은 우연의 산물”이라 외치는 세상의 목소리.</p></div>
+        <div class="panel god fragment d3"><span class="tag">진짜 통치자</span><h3>보좌에 앉으신 하나님</h3><p>높이 들린 보좌에 앉으셔서 지금도 온 우주를 다스리시는 분. 이사야가 본 참된 통치자.</p></div>
+      </div>
+      <p class="note fragment d4">이 시대를 진정 다스리시는 분은 <b>오직 하나님 한 분</b>이심을 기억하길 바랍니다.</p>
+    </div>
+  </section>
+
+</div>
+</main>
+<nav class="slide-nav" aria-label="슬라이드 내비게이션">
+  <button onclick="prevSlide()" aria-label="이전"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span class="slide-counter" id="slideCounter">1 / 4</span>
+  <button onclick="nextSlide()" aria-label="다음"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+</nav>
+<script>
+function toggleMenu(){var d=document.getElementById('vizMenuDropdown');if(d)d.classList.toggle('open');}
+document.addEventListener('click',function(e){if(!e.target.closest('.viz-menu')){var d=document.getElementById('vizMenuDropdown');if(d)d.classList.remove('open');}});
+var STORE='viz-style-cosmic';
+var currentTheme=localStorage.getItem(STORE)||'dark';
+function applyTheme(t){document.documentElement.className='theme-'+t;var i=document.getElementById('themeIcon'),l=document.getElementById('themeLabel');if(i)i.textContent=t==='dark'?'🌙':'☀️';if(l)l.textContent=t==='dark'?'다크':'라이트';localStorage.setItem(STORE,t);currentTheme=t;}
+function cycleTheme(){applyTheme(currentTheme==='dark'?'light':'dark');}
+applyTheme(currentTheme);
+var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));var current=0;var deckEl=document.getElementById('deck');
+function updateChrome(n){var p=document.getElementById('deckProgress');if(p)p.style.width=((n+1)/slides.length*100)+'%';var c=document.getElementById('slideCounter');if(c)c.textContent=(n+1)+' / '+slides.length;}
+function go(n,dir){n=Math.max(0,Math.min(slides.length-1,n));if(n===current)return;var inc=slides[n],out=slides[current];var s=dir>=0?'exit-to-right':'exit-to-left',o=dir>=0?'exit-to-left':'exit-to-right';inc.classList.remove('active','exit-to-left','exit-to-right');inc.classList.add('notrans',s);void inc.offsetWidth;inc.classList.remove('notrans',s);inc.classList.add('active');out.classList.remove('active');out.classList.add(o);(function(x){var d=function(){x.classList.remove('exit-to-left','exit-to-right');x.removeEventListener('transitionend',d);};x.addEventListener('transitionend',d);setTimeout(d,720);})(out);current=n;updateChrome(current);}
+function nextSlide(){go(current+1,1);}function prevSlide(){go(current-1,-1);}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();nextSlide();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide();}else if(e.key==='Escape'){var d=document.getElementById('vizMenuDropdown');if(d)d.classList.remove('open');}});
+if(deckEl){deckEl.addEventListener('click',function(e){if(e.target.closest('.viz-menu')||e.target.closest('.slide-nav')||e.target.closest('a')||e.target.closest('button'))return;if(e.clientX<window.innerWidth*0.33)prevSlide();else nextSlide();});var tsx=0;deckEl.addEventListener('touchstart',function(e){tsx=e.changedTouches[0].screenX;},{passive:true});deckEl.addEventListener('touchend',function(e){var dx=e.changedTouches[0].screenX-tsx;if(Math.abs(dx)>50){if(dx<0)nextSlide();else prevSlide();}},{passive:true});}
+requestAnimationFrame(function(){slides[0].classList.add('active');updateChrome(0);});
+async function downloadImage(){var m=document.querySelector('.viz-menu'),n=document.querySelector('.slide-nav');m.style.display='none';if(n)n.style.display='none';try{var url=await htmlToImage.toPng(document.body,{quality:1,pixelRatio:2,filter:function(x){return !x.classList||(!x.classList.contains('viz-menu')&&!x.classList.contains('slide-nav'));}});var a=document.createElement('a');a.href=url;a.download='cosmic-slide-'+(current+1)+'.png';a.click();}catch(e){console.error(e);}m.style.display='';if(n)n.style.display='';}
+</script>
+</body>
+</html>
