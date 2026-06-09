@@ -1,0 +1,96 @@
+<!doctype html>
+<!-- slide #05 · 오버뷰 구조/관계 다이어그램 · GEIST 시험본 -->
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<title>Slide 05 · 여섯 걸음이 이루는 하나의 그림 (Geist)</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html.theme-light{--bg:#fff;--surface:#fff;--surface-hover:#fafafa;--border:#eaeaea;--text:#000;--text-secondary:#666;--accent:#000;--accent-secondary:#8f8f8f;--accent-soft:#f4f4f4;--shadow-sm:0 1px 2px rgba(0,0,0,.04)}
+  html.theme-dark{--bg:#000;--surface:#0a0a0a;--surface-hover:#1a1a1a;--border:#1f1f1f;--text:#ededed;--text-secondary:#8f8f8f;--accent:#fff;--accent-secondary:#8f8f8f;--accent-soft:#1a1a1a;--shadow-sm:0 1px 2px rgba(0,0,0,.4)}
+  html,body{width:1280px;height:720px}
+  body{font-family:'Geist','Pretendard Variable',Pretendard,system-ui,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;word-break:keep-all;overflow:hidden}
+  h1{color:var(--text);line-height:1.12;letter-spacing:-0.04em}
+  .artboard{position:relative;width:1280px;height:720px;overflow:hidden;background:var(--bg)}
+  .head{position:absolute;top:40px;left:64px;right:64px;z-index:5;display:flex;justify-content:space-between;align-items:flex-end}
+  .head .lt .label{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:500;color:var(--text-secondary);margin-bottom:12px}
+  .head .lt .label .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .head h1{font-size:38px;font-weight:600}
+  .head .rt{text-align:right;font-size:14px;color:var(--text-secondary);font-weight:400;line-height:1.5;max-width:280px;padding-bottom:4px}
+  .diagram{position:absolute;inset:0;z-index:2}
+  .diagram svg{position:absolute;inset:0;width:1280px;height:720px}
+  .frame-label{position:absolute;z-index:4;left:210px;top:196px;display:inline-flex;align-items:center;gap:9px;background:var(--surface);border:1px dashed var(--accent-secondary);border-radius:8px;padding:7px 14px 7px 7px}
+  .frame-label .chip{font-size:12px;font-weight:600;color:var(--bg);background:var(--accent);border-radius:5px;padding:4px 10px}
+  .frame-label .ft{font-size:15px;font-weight:600;letter-spacing:-0.02em;color:var(--text)}
+  .frame-label .ft .pre{color:var(--text-secondary);font-weight:500;font-size:13px;margin-right:3px}
+  .frame-label .ref{font-size:12px;font-weight:500;color:var(--text-secondary);border:1px solid var(--border);border-radius:5px;padding:3px 9px}
+  .node{position:absolute;z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .node .bubble{display:grid;place-items:center;border-radius:12px;font-weight:600;letter-spacing:-0.02em;background:var(--surface);box-shadow:var(--shadow-sm)}
+  .node.god .bubble{width:172px;height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1.5px solid var(--accent);font-size:32px;color:var(--text)}
+  .node.god .bubble .sub{display:block;font-size:13px;font-weight:500;color:var(--text-secondary);margin-top:2px}
+  .node.me .bubble{width:152px;height:84px;border:1px solid var(--border);font-size:30px;color:var(--text)}
+  .node .nref{display:inline-flex;align-items:center;gap:6px}
+  .node .nref .nchip{font-size:12px;font-weight:600;color:var(--bg);background:var(--accent);border-radius:5px;padding:3px 9px}
+  .node .nref .nv{font-size:12px;font-weight:500;color:var(--text-secondary);border:1px solid var(--border);border-radius:5px;padding:3px 9px}
+  .node-cap{position:absolute;z-index:4;font-size:12.5px;font-weight:500;color:var(--text-secondary)}
+  .bridge{position:absolute;z-index:4;left:50%;top:360px;transform:translateX(-50%);width:320px}
+  .bridge .bcore{background:var(--accent);color:var(--bg);border-radius:10px;padding:14px 22px;display:flex;align-items:center;justify-content:center;gap:12px}
+  .bridge .bcore .bx{font-size:24px;font-weight:600;letter-spacing:-0.02em}
+  .bridge .bcore .eq{font-size:18px;opacity:.55;font-weight:500}
+  .bridge .bmeta{display:flex;justify-content:center;gap:8px;margin-top:9px;flex-wrap:wrap}
+  .bridge .bmeta .nchip{font-size:12px;font-weight:600;color:var(--bg);background:var(--accent);border-radius:5px;padding:3px 9px}
+  .bridge .bmeta .nv{font-size:12px;font-weight:500;color:var(--text-secondary);border:1px solid var(--border);border-radius:5px;padding:3px 9px}
+  .bridge .bsplit{display:flex;justify-content:center;gap:7px;margin-top:7px}
+  .bridge .bsplit span{font-size:11.5px;font-weight:500;color:var(--text-secondary);background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:3px 10px}
+  .flow34{position:absolute;z-index:4;right:232px;top:470px;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .flow34 .fcard{width:198px;border-radius:10px;padding:12px 16px;background:var(--surface)}
+  .flow34 .fcard .ftag{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+  .flow34 .fcard .ftag .nchip{font-size:11px;font-weight:600;border-radius:4px;padding:2px 8px}
+  .flow34 .fcard .ftag .nv{font-size:11px;font-weight:500;border-radius:4px;padding:2px 7px;color:var(--text-secondary);border:1px solid var(--border)}
+  .flow34 .fcard h4{font-size:17px;font-weight:600;letter-spacing:-0.02em}
+  .flow34 .up{border:1.5px solid var(--accent)}
+  .flow34 .up .nchip{color:var(--bg);background:var(--accent)}
+  .flow34 .up h4{color:var(--text)}
+  .flow34 .down{border:1px solid var(--border)}
+  .flow34 .down .nchip{color:var(--bg);background:var(--accent-secondary)}
+  .flow34 .down h4{color:var(--text-secondary)}
+  .flow34 .farrow{color:var(--accent-secondary);display:grid;place-items:center}
+  .legend{position:absolute;z-index:5;bottom:26px;left:64px;display:flex;gap:16px;flex-wrap:wrap}
+  .legend .li{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:400;color:var(--text-secondary)}
+  .legend .li .sw{width:12px;height:12px;border-radius:3px}
+</style></head>
+<body>
+<section class="artboard" aria-label="여섯 걸음이 이루는 하나의 그림 — 구조 다이어그램">
+  <div class="head">
+    <div class="lt">
+      <span class="label"><span class="dot"></span>한눈에 · 6강의 지도</span>
+      <h1>여섯 걸음이 이루는 하나의 그림</h1>
+    </div>
+    <div class="rt">따로따로가 아니라, 하나의 구조입니다.<br>위·하나님 ↕ 아래·나, 그 사이를 잇는 언약, 이 모두를 감싸는 교리.</div>
+  </div>
+  <div class="diagram" aria-hidden="true">
+    <svg viewBox="0 0 1280 720" preserveAspectRatio="none">
+      <defs>
+        <marker id="ar" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M1,1 L7,4.5 L1,8" fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+      </defs>
+      <rect x="186" y="146" width="908" height="528" rx="20" fill="none" stroke="#8f8f8f" stroke-width="1.4" stroke-dasharray="3 7" opacity="0.7"/>
+      <line x1="640" y1="262" x2="640" y2="556" stroke="#000" stroke-width="4" stroke-linecap="round"/>
+      <path d="M712,560 C 800,560 880,545 916,512" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" marker-end="url(#ar)"/>
+    </svg>
+  </div>
+  <div class="frame-label"><span class="chip">1강</span><span class="ft"><span class="pre">감싸는 틀 ·</span>교리를 왜 배우나</span><span class="ref">엡 4:14</span></div>
+  <div class="node god" style="left:556px;top:172px"><div class="bubble">하나님<span class="sub">위에서 다스리시는 분</span></div><div class="nref"><span class="nchip">2강</span><span class="nv">엡 1:11</span></div></div>
+  <div class="node-cap" style="left:742px;top:196px">↕ 수직 관계</div>
+  <div class="bridge"><div class="bcore"><span class="bx">십계명</span><span class="eq">=</span><span class="bx">언약</span></div><div class="bmeta"><span class="nchip">5·6강</span><span class="nv">신 4:9 / 신 5:7</span></div><div class="bsplit"><span>5강 · 울타리의 취지</span><span>6강 · 담긴 사랑</span></div></div>
+  <div class="node me" style="left:565px;top:552px"><div class="bubble">나</div><div class="nref"><span class="nchip">2강</span><span class="nv">아래 · 부르심 받은 자</span></div></div>
+  <div class="flow34"><div class="fcard up"><div class="ftag"><span class="nchip">3강</span><span class="nv">빌 1:21</span></div><h4>인생의 목적</h4></div><div class="farrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg></div><div class="fcard down"><div class="ftag"><span class="nchip">4강</span><span class="nv">왕상 11:3</span></div><h4>목적의 분열·상실</h4></div></div>
+  <div class="legend">
+    <span class="li"><span class="sw" style="background:#000"></span>수직 관계 · 잇는 사랑(5·6강)</span>
+    <span class="li"><span class="sw" style="background:#666"></span>받은 목적(3강)</span>
+    <span class="li"><span class="sw" style="background:#d4d4d4"></span>분열·상실(4강)</span>
+    <span class="li"><span class="sw" style="background:transparent;border:1px dashed #8f8f8f"></span>감싸는 틀 · 교리(1강)</span>
+  </div>
+</section>
+</body></html>

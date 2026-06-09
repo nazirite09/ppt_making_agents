@@ -1,170 +1,994 @@
 <!DOCTYPE html>
-<!-- index · 교리설교 6강 복습 — 22 슬라이드 미리보기 그리드 -->
-<html lang="ko" class="theme-light">
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>교리설교 6강 복습 · 슬라이드 미리보기 (22)</title>
-<link href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>교리설교 6강 복습 — 한 흐름으로 다시 보기 · Olive Roadmap</title>
+
+<!-- Fonts: Archivo Black(numbers/Latin display) · Black Han Sans(KR headline) · Oswald(tags) · Work Sans(Latin body) · Pretendard(KR body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Black+Han+Sans&family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html.theme-light {
-    --bg: #F4F4F5; --surface: #FFFFFF; --surface-hover: #F4F4F5;
-    --border: rgba(112,115,124,0.22);
-    --text: #171719; --text-secondary: #5A5C63;
-    --accent: #0066FF; --accent-secondary: #70737C;
-    --accent-strong: #005EEB; --accent-soft: #EAF2FE;
-    --positive: #00BF40; --negative: #FF4242; --warning: #FF9200;
-    --shadow-sm: 0 2px 4px -2px rgba(23,23,23,0.06), 0 4px 6px -1px rgba(23,23,23,0.05);
-    --shadow-md: 0 4px 6px -2px rgba(23,23,23,0.07), 0 10px 15px -3px rgba(23,23,23,0.07);
-    --shadow-lg: 0 6px 10px -4px rgba(23,23,23,0.08), 0 16px 24px -6px rgba(23,23,23,0.08);
-  }
-  html.theme-dark {
-    --bg: #141415; --surface: #1B1C1E; --surface-hover: #2E2F33;
-    --border: rgba(112,115,124,0.30);
-    --text: #F7F7F8; --text-secondary: #AEB0B6;
-    --accent: #3385FF; --accent-secondary: #989BA2;
-    --accent-strong: #1A75FF; --accent-soft: rgba(51,133,255,0.16);
-    --positive: #1ED45A; --negative: #FF6363; --warning: #FFA938;
-    --shadow-sm: 0 2px 4px -2px rgba(0,0,0,0.40), 0 4px 6px -1px rgba(0,0,0,0.30);
-    --shadow-md: 0 4px 6px -2px rgba(0,0,0,0.45), 0 10px 15px -3px rgba(0,0,0,0.40);
-    --shadow-lg: 0 8px 14px -4px rgba(0,0,0,0.55), 0 18px 28px -8px rgba(0,0,0,0.45);
-  }
-  body { font-family: 'Wanted Sans Variable', 'Wanted Sans', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; min-height: 100vh; }
-  h1, h2, h3 { letter-spacing: -0.03em; line-height: 1.2; }
+/* ============================================================
+   OLIVE ROADMAP — tokens (dark/default), per design system
+   ============================================================ */
+:root{
+  --or-olive-950:#161913; --or-olive-925:#1e3b22; --or-olive-900:#235533;
+  --or-olive-700:#2e6340; --or-olive-500:#3f8954; --or-olive-300:#81a070;
+  --or-khaki-300:#b1ba7d; --or-ink-900:#0d0e0b;
+  --or-cream-50:#fdf9e3; --or-cream-100:#feefae;
+  --or-gold-500:#ffdd6f; --or-gold-600:#f5c84b; --or-orange-500:#dd8a3a; --or-rust-500:#b23a2e;
 
-  header { padding: 40px 56px 26px; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 50; box-shadow: var(--shadow-sm); }
-  .hd-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
-  header .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 7px 15px; border-radius: 999px; margin-bottom: 14px; }
-  header h1 { font-size: 30px; font-weight: 800; }
-  header h1 .hl { color: var(--accent); }
-  header .sub { margin-top: 7px; font-size: 15px; color: var(--text-secondary); font-weight: 500; }
-  header .meta-tags { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
-  header .meta-tags span { font-size: 13px; font-weight: 600; color: var(--text-secondary); background: var(--surface-hover); border: 1px solid var(--border); padding: 6px 13px; border-radius: 999px; }
+  --or-bg:var(--or-olive-900); --or-bg-deep:var(--or-olive-950);
+  --or-surface:var(--or-olive-700); --or-surface-deep:var(--or-olive-925); --or-road:var(--or-olive-500);
+  --or-line:var(--or-olive-300); --or-text:var(--or-cream-50); --or-text-dim:var(--or-khaki-300);
+  --or-outline:var(--or-ink-900); --or-warm:var(--or-gold-500); --or-warm-deep:var(--or-gold-600);
+  --or-accent:var(--or-orange-500); --or-accent-2:var(--or-rust-500);
+  --or-on-warm:var(--or-ink-900); --or-on-accent:var(--or-cream-50);
 
-  .toolbar { display: flex; gap: 10px; align-items: center; }
-  .toolbar button { font-family: inherit; font-size: 14px; font-weight: 600; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 11px; padding: 10px 16px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--shadow-sm); transition: all 0.18s; }
-  .toolbar button:hover { background: var(--surface-hover); border-color: color-mix(in srgb, var(--accent) 45%, transparent); color: var(--accent); }
+  --or-font-title:'Archivo Black','Black Han Sans','Pretendard Variable',sans-serif;
+  --or-font-tag:'Oswald','Pretendard Variable',sans-serif;
+  --or-font-body:'Pretendard Variable',Pretendard,'Work Sans',system-ui,sans-serif;
+  --or-font-num:'Archivo Black',sans-serif;
+  --or-font-kr:'Black Han Sans','Pretendard Variable',sans-serif;
 
-  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; padding: 36px 56px 72px; }
-  @media (max-width: 1500px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 1080px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  --or-elev-offset:1px 2px 0 rgba(13,14,11,.45);
+  --or-elev-panel:0 26px 60px -34px rgba(13,14,11,.85);
+}
 
-  .thumb { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
-  .thumb:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
-  .thumb:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-  .frame-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-hover); }
-  .frame-wrap iframe { position: absolute; top: 0; left: 0; width: 1280px; height: 720px; border: 0; transform-origin: top left; pointer-events: none; }
-  .frame-cover { position: absolute; inset: 0; z-index: 2; }
-  .tinfo { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-top: 1px solid var(--border); }
-  .tinfo .tn { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 14px; font-variant-numeric: tabular-nums; }
-  .tinfo .tt { min-width: 0; }
-  .tinfo .tt .ti-title { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .tinfo .tt .ti-type { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
-  .badge-star { margin-left: auto; flex: 0 0 auto; font-size: 11px; font-weight: 800; color: #fff; background: var(--accent); padding: 3px 9px; border-radius: 999px; }
+*{box-sizing:border-box}
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0; background:#11140f; color:var(--or-text);
+  font-family:var(--or-font-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(120% 90% at 50% -10%, #1b2417 0%, #11140f 70%);
+}
 
-  .skip-to-content { position: absolute; top: -50px; left: 6px; background: var(--accent); color: #fff; padding: 8px 12px; text-decoration: none; border-radius: 8px; z-index: 10000; }
-  .skip-to-content:focus { top: 6px; }
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-  .thumb { animation: fadeInUp 0.5s ease-out both; }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-  @media print { .toolbar { display: none; } .thumb { break-inside: avoid; } }
+/* deck shell */
+.deck{display:flex;flex-direction:column;align-items:center;gap:34px;padding:46px 16px 90px}
+.deck__head{width:min(1280px,96vw);color:var(--or-text-dim);font-family:var(--or-font-tag);
+  text-transform:uppercase;letter-spacing:.16em;font-size:13px;display:flex;justify-content:space-between;
+  align-items:center;border-bottom:1px dashed rgba(177,186,125,.35);padding-bottom:12px;margin-bottom:2px}
+.deck__head b{color:var(--or-warm);font-weight:700}
+
+/* ============================================================
+   SLIDE ARTBOARD — fixed 16:9, container-query scaled type
+   (all inner sizes in cqw → scale perfectly with slide width)
+   ============================================================ */
+.slide{
+  position:relative; width:min(1280px,96vw); aspect-ratio:16/9;
+  background:var(--or-bg); border:1px solid rgba(129,160,112,.5);
+  border-radius:16px; overflow:hidden; box-shadow:var(--or-elev-panel);
+  container-type:size; container-name:slide;
+}
+.slide__grain{position:absolute;inset:0;pointer-events:none;opacity:.16;mix-blend-mode:soft-light;z-index:6}
+.slide__vig{position:absolute;inset:0;pointer-events:none;z-index:5;
+  background:radial-gradient(125% 120% at 50% 26%,transparent 56%,rgba(13,14,11,.5) 100%)}
+.pad{position:absolute;inset:0;padding:4.6% 7% 8.4% 7%;display:flex;flex-direction:column;justify-content:center;gap:1.55cqw;z-index:3}
+
+/* type helpers (cqw baseline: 1cqw = 12.8px @ 1280) */
+.k{font-family:var(--or-font-tag);text-transform:uppercase;letter-spacing:.2em;color:var(--or-warm);
+  font-weight:700;font-size:1.45cqw;display:inline-flex;align-items:center;gap:.7cqw}
+.k::before{content:"";width:2.6cqw;height:.32cqw;background:var(--or-warm);border-radius:2px;box-shadow:var(--or-elev-offset)}
+.h{font-family:var(--or-font-kr);font-weight:400;font-size:5cqw;line-height:1.08;letter-spacing:-.01em;
+  word-break:keep-all;margin:.1cqw 0}
+.h--sm{font-size:4.1cqw}
+.h--lg{font-size:5.8cqw}
+.sub{font-family:var(--or-font-body);font-weight:600;font-size:2.5cqw;line-height:1.35;color:var(--or-text);word-break:keep-all;max-width:42ch}
+.lead{font-family:var(--or-font-body);font-weight:500;color:var(--or-text-dim);font-size:2.25cqw;line-height:1.45;word-break:keep-all;max-width:40ch}
+.g{color:var(--or-warm)} .go{color:var(--or-accent)}
+.dim{color:var(--or-text-dim)}
+
+/* bullet list */
+.bd{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.25cqw}
+.bd li{position:relative;padding-left:3.1cqw;font-size:2.3cqw;line-height:1.4;color:var(--or-text);word-break:keep-all;max-width:44ch}
+.bd li::before{content:"";position:absolute;left:.2cqw;top:.62em;width:1.25cqw;height:1.25cqw;
+  background:var(--or-warm);transform:rotate(45deg);box-shadow:var(--or-elev-offset)}
+.bd li small{display:block;font-size:1.7cqw;color:var(--or-text-dim);margin-top:.3cqw;line-height:1.35}
+
+/* scripture quote */
+.qt{font-family:var(--or-font-body);font-weight:500;font-size:2.85cqw;line-height:1.5;color:var(--or-text);
+  background:var(--or-surface-deep);border-left:.62cqw solid var(--or-warm);border-radius:0 1cqw 1cqw 0;
+  padding:2.1cqw 2.5cqw;box-shadow:var(--or-elev-offset);word-break:keep-all;max-width:46ch;position:relative}
+.qt--lg{font-size:3.35cqw}
+.qt .ref{display:block;margin-top:1cqw;font-family:var(--or-font-tag);text-transform:uppercase;letter-spacing:.06em;
+  font-weight:700;font-size:1.5cqw;color:var(--or-warm)}
+.qt .em{color:var(--or-warm)}
+
+/* tags */
+.tag{display:inline-flex;align-items:center;gap:.5cqw;font-family:var(--or-font-tag);text-transform:uppercase;
+  letter-spacing:.05em;font-weight:700;font-size:1.5cqw;padding:.55cqw 1.1cqw;border-radius:5px;
+  border:.18cqw solid var(--or-outline);background:var(--or-warm);color:var(--or-on-warm);box-shadow:var(--or-elev-offset)}
+.tag--orange{background:var(--or-accent);color:var(--or-on-accent)}
+.tag--rust{background:var(--or-accent-2);color:var(--or-on-accent)}
+.tag--deep{background:var(--or-surface-deep);color:var(--or-warm);border-color:var(--or-warm)}
+.tag--ghost{background:transparent;color:var(--or-text-dim);border-color:var(--or-line);box-shadow:none}
+.tagrow{display:flex;gap:1cqw;flex-wrap:wrap;align-items:center}
+
+/* giant milestone number (gold, ink stroke) */
+.mnum{font-family:var(--or-font-num);font-size:21cqw;line-height:.78;color:var(--or-warm);
+  -webkit-text-stroke:.62cqw var(--or-outline);paint-order:stroke fill;letter-spacing:-.02em}
+.mnum small{font-size:.26em;-webkit-text-stroke:.3cqw var(--or-outline)}
+
+/* generic node chip */
+.node{display:grid;place-items:center;border-radius:50%;background:var(--or-warm);border:.28cqw solid var(--or-outline);
+  box-shadow:var(--or-elev-offset);font-family:var(--or-font-num);color:var(--or-on-warm)}
+.node--deep{background:var(--or-surface-deep);color:var(--or-warm)}
+.node--orange{background:var(--or-accent);color:var(--or-on-accent)}
+
+/* small panel / card */
+.card{background:var(--or-surface-deep);border:.16cqw solid var(--or-line);border-radius:1cqw;
+  padding:1.5cqw 1.7cqw;box-shadow:var(--or-elev-offset)}
+.card .ct{font-family:var(--or-font-tag);text-transform:uppercase;letter-spacing:.05em;font-weight:700;
+  font-size:1.5cqw;color:var(--or-warm)}
+.card .cb{font-size:1.85cqw;line-height:1.4;color:var(--or-text);margin-top:.5cqw;word-break:keep-all}
+
+/* row layout: text + art */
+.row{display:grid;grid-template-columns:1.6fr .95fr;gap:3cqw;align-items:center;height:100%}
+.row--art-sm{grid-template-columns:1.75fr .75fr}
+.row > .col{display:flex;flex-direction:column;gap:1.6cqw;min-width:0}
+.artbox{display:flex;align-items:center;justify-content:center;height:100%}
+.art{display:block;width:auto;filter:drop-shadow(.12cqw .28cqw 0 rgba(13,14,11,.4))}
+
+/* foot wayfinding */
+.foot{position:absolute;left:7%;right:7%;bottom:3%;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--or-font-tag);text-transform:uppercase;letter-spacing:.12em;font-size:1.25cqw;
+  color:var(--or-text-dim);z-index:4}
+.spine{display:flex;gap:.75cqw;align-items:center}
+.spine .d{width:1.05cqw;height:1.05cqw;border-radius:50%;background:transparent;border:.16cqw solid rgba(177,186,125,.55)}
+.spine .d.on{background:var(--or-warm);border-color:var(--or-outline);box-shadow:var(--or-elev-offset)}
+.foot .r{font-family:var(--or-font-num);letter-spacing:.04em;color:var(--or-text-dim)}
+
+/* ============================================================
+   STRUCTURE DIAGRAM (slides 05 + 21) — own container so labels
+   scale with the diagram box, not the slide.
+   ============================================================ */
+.diagram{position:absolute;inset:0;container-type:size;container-name:dg}
+.diagram svg.lines{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.dg-el{position:absolute;z-index:2;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.6cqw}
+.dg-el .nlabel{font-family:var(--or-font-kr);font-size:3.1cqw;color:var(--or-text);line-height:1}
+.dg-el .ntag{font-family:var(--or-font-tag);text-transform:uppercase;letter-spacing:.05em;font-weight:700;
+  font-size:1.45cqw;color:var(--or-warm)}
+.dg-chip{position:absolute;z-index:3;transform:translate(-50%,-50%);width:3.1cqw;height:3.1cqw;border-radius:50%;
+  background:var(--or-warm);border:.22cqw solid var(--or-outline);box-shadow:var(--or-elev-offset);
+  display:grid;place-items:center;font-family:var(--or-font-num);font-size:1.55cqw;color:var(--or-on-warm)}
+.dg-frametag{position:absolute;z-index:3;transform:translateY(-50%);left:5%;display:inline-flex;align-items:center;gap:.7cqw}
+.dg-card{position:absolute;z-index:2;transform:translate(-50%,-50%);background:var(--or-surface-deep);
+  border:.16cqw solid var(--or-line);border-radius:.8cqw;padding:.9cqw 1.2cqw;box-shadow:var(--or-elev-offset);
+  text-align:center;min-width:13cqw}
+.dg-card .t{font-family:var(--or-font-kr);font-size:2cqw;color:var(--or-text);line-height:1.05}
+.dg-card .s{font-family:var(--or-font-tag);text-transform:uppercase;letter-spacing:.04em;font-weight:700;font-size:1.25cqw;color:var(--or-text-dim);margin-top:.35cqw}
+.dg-card.up{border-color:var(--or-warm)} .dg-card.up .t{color:var(--or-warm)}
+.dg-card.down{border-color:var(--or-accent)} .dg-card.down .t{color:var(--or-accent)}
+.dg-bridgelab{position:absolute;z-index:3;transform:translate(-50%,-50%);text-align:center;font-family:var(--or-font-tag);
+  text-transform:uppercase;letter-spacing:.05em;font-weight:700;font-size:1.55cqw;color:var(--or-on-warm)}
+.dg-node-sun{width:11.5cqw;height:11.5cqw}
+.dg-node-me{width:9.5cqw;height:9.5cqw;border-radius:50%;background:var(--or-surface-deep);border:.45cqw solid var(--or-warm);
+  display:grid;place-items:center;box-shadow:var(--or-elev-offset)}
+.dg-node-me .me{font-family:var(--or-font-kr);font-size:3.4cqw;color:var(--or-warm)}
+
+/* compact modifier for scripture-dense slides (fit the footer-safe area) */
+.slide.tight .pad{gap:.85cqw}
+.slide.tight .k{font-size:1.35cqw}
+.slide.tight .h--sm{font-size:3.55cqw}
+.slide.tight .qt{font-size:2.32cqw;padding:1.35cqw 1.85cqw;line-height:1.4}
+.slide.tight .qt .ref{margin-top:.55cqw;font-size:1.4cqw}
+.slide.tight .bd{gap:.7cqw}
+.slide.tight .bd li{font-size:2.0cqw;padding-left:2.8cqw}
+.slide.tight .bd li::before{top:.52em}
+.slide.tight .card{padding:1.0cqw 1.35cqw}
+.slide.tight .card .ct{font-size:1.4cqw}
+.slide.tight .card .cb{font-size:1.66cqw;line-height:1.36}
+
+@media (max-width:560px){ .h{font-size:6.4cqw} .row{grid-template-columns:1fr;gap:1.5cqw} .artbox{display:none} }
 </style>
 </head>
+
 <body>
-<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
-<header>
-  <div class="hd-top">
-    <div>
-      <span class="eyebrow">Montage · 16:9 아트보드</span>
-      <h1>교리설교 6강 복습 — <span class="hl">한 흐름으로 다시 보기</span></h1>
-      <p class="sub">슬라이드 22장 · 청소년 1부 · 클릭하면 해당 슬라이드를 새 탭으로 엽니다</p>
-      <div class="meta-tags">
-        <span>표지 1</span><span>오프닝 1</span><span>교리 2</span><span>오버뷰 1 ★</span><span>강별 복습 15</span><span>결론 2 (★ 21)</span>
+
+<!-- ============================================================
+     GLOBAL DEFS — 4 filters + inline symbol art library
+     (olive-roadmap grammar: ds shadow + rough line wobble, flat fills)
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <filter id="or-rough" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.013" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.4"/>
+  </filter>
+  <filter id="or-ds" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="1" dy="2" stdDeviation="0" flood-color="#0d0e0b" flood-opacity="0.42"/>
+  </filter>
+  <filter id="or-grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+
+  <!-- SUN / radiance (하나님·빛·창조주) — abstract, no face -->
+  <symbol id="ic-sun" viewBox="0 0 120 120">
+    <g filter="url(#or-ds)">
+      <circle cx="60" cy="60" r="26" fill="#ffdd6f"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.4" stroke-linecap="round">
+        <circle cx="60" cy="60" r="26"/>
+        <path d="M92 60 L108 60 M82.6 82.6 L94 94 M60 92 L60 108 M37.4 82.6 L26 94 M28 60 L12 60 M37.4 37.4 L26 26 M60 28 L60 12 M82.6 37.4 L94 26"/>
+      </g>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="1.6" stroke-linecap="round" opacity=".8">
+        <path d="M50 58 q10 8 20 0"/>
+      </g>
+    </g>
+  </symbol>
+
+  <!-- OPEN BOOK (말씀·교리·문답) -->
+  <symbol id="ic-book" viewBox="0 4 100 64">
+    <g filter="url(#or-ds)">
+      <path d="M6 16 L48 8 L48 56 L6 64 Z" fill="#fdf9e3"/>
+      <path d="M48 8 L90 16 L90 64 L48 56 Z" fill="#feefae"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.2" stroke-linecap="round">
+        <path d="M48 8 L48 56"/>
+        <path d="M14 24 L40 19 M14 33 L40 28 M14 42 L40 37 M56 21 L82 26 M56 30 L82 35 M56 39 L82 44"/>
+      </g>
+    </g>
+  </symbol>
+
+  <!-- TREASURE CHEST (딱딱한 보물상자 ↔ 부드러운 인격) -->
+  <symbol id="ic-chest" viewBox="0 0 130 100">
+    <g filter="url(#or-ds)">
+      <path d="M16 50 L114 50 L108 92 L22 92 Z" fill="#1e3b22"/>
+      <path d="M16 50 Q65 18 114 50 L114 56 L16 56 Z" fill="#1e3b22"/>
+      <rect x="40" y="44" width="50" height="16" fill="#ffdd6f"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#ffdd6f" stroke-width="2.2" stroke-linecap="round">
+        <path d="M65 30 L65 12 M50 34 L40 20 M80 34 L90 20"/>
+      </g>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 50 L114 50 L108 92 L22 92 Z"/>
+        <path d="M16 50 Q65 18 114 50"/>
+        <path d="M65 56 L65 92"/>
+      </g>
+      <rect x="60" y="64" width="10" height="14" rx="2" fill="#ffdd6f" stroke="#0d0e0b" stroke-width="1.6"/>
+    </g>
+  </symbol>
+
+  <!-- LAMP / 등불 (시 119:105) -->
+  <symbol id="ic-lamp" viewBox="0 0 100 120">
+    <g filter="url(#or-ds)">
+      <path d="M22 78 Q50 64 78 78 L70 100 L30 100 Z" fill="#fdf9e3"/>
+      <ellipse cx="50" cy="78" rx="28" ry="7" fill="#feefae"/>
+      <rect x="44" y="100" width="12" height="9" fill="#fdf9e3"/>
+      <rect x="34" y="109" width="32" height="7" rx="2" fill="#feefae"/>
+      <path d="M50 30 Q40 46 50 58 Q60 46 50 30 Z" fill="#ffdd6f"/>
+      <path d="M50 38 Q44 48 50 56 Q56 48 50 38 Z" fill="#dd8a3a"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 78 Q50 64 78 78 L70 100 L30 100 Z"/>
+        <ellipse cx="50" cy="78" rx="28" ry="7"/>
+        <path d="M34 109 h32"/>
+      </g>
+    </g>
+  </symbol>
+
+  <!-- SIGNPOST (목적·방향) -->
+  <symbol id="ic-signpost" viewBox="0 0 120 120">
+    <g filter="url(#or-ds)">
+      <rect x="54" y="26" width="9" height="86" fill="#fdf9e3"/>
+      <path d="M58 44 L100 44 L110 54 L100 64 L58 64 Z" fill="#ffdd6f"/>
+      <path d="M60 72 L20 72 L10 82 L20 92 L60 92 Z" fill="#feefae"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="54" y="26" width="9" height="86"/>
+        <path d="M58 44 L100 44 L110 54 L100 64 L58 64 Z"/>
+        <path d="M60 72 L20 72 L10 82 L20 92 L60 92 Z"/>
+      </g>
+    </g>
+  </symbol>
+
+  <!-- FENCE / 울타리 (10 기둥 + 사랑의 장막) -->
+  <symbol id="ic-fence" viewBox="0 0 230 120">
+    <g filter="url(#or-ds)">
+      <path d="M14 44 Q115 8 216 44" fill="none" stroke="#ffdd6f" stroke-width="7" stroke-linecap="round"/>
+      <g fill="#fdf9e3" stroke="#0d0e0b" stroke-width="2" stroke-linejoin="round">
+        <path d="M18 56 l6 -8 l6 8 v52 h-12 z"/>
+        <path d="M40 56 l6 -8 l6 8 v52 h-12 z"/>
+        <path d="M62 56 l6 -8 l6 8 v52 h-12 z"/>
+        <path d="M84 56 l6 -8 l6 8 v52 h-12 z"/>
+        <path d="M106 56 l6 -8 l6 8 v52 h-12 z"/>
+        <path d="M128 56 l6 -8 l6 8 v52 h-12 z"/>
+        <path d="M150 56 l6 -8 l6 8 v52 h-12 z"/>
+        <path d="M172 56 l6 -8 l6 8 v52 h-12 z"/>
+        <path d="M194 56 l6 -8 l6 8 v52 h-12 z"/>
+        <path d="M210 56 l6 -8 l6 8 v52 h-12 z"/>
+      </g>
+      <g fill="none" stroke="#0d0e0b" stroke-width="2.4" stroke-linecap="round">
+        <path d="M16 74 H224"/><path d="M16 92 H224"/>
+      </g>
+      <path d="M14 44 Q115 8 216 44" fill="none" stroke="#0d0e0b" stroke-width="2" stroke-linecap="round" opacity=".55" stroke-dasharray="2 10"/>
+    </g>
+  </symbol>
+
+  <!-- HEART / 사랑 -->
+  <symbol id="ic-heart" viewBox="0 0 110 100">
+    <g filter="url(#or-ds)">
+      <path d="M55 90 C18 62 8 38 23 22 C36 8 51 14 55 28 C59 14 74 8 87 22 C102 38 92 62 55 90 Z" fill="#ffdd6f"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M55 90 C18 62 8 38 23 22 C36 8 51 14 55 28 C59 14 74 8 87 22 C102 38 92 62 55 90 Z"/>
+      </g>
+      <path d="M34 34 q6 -7 14 -4" fill="none" stroke="#fdf9e3" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+    </g>
+  </symbol>
+
+  <!-- CROWN / 왕 (솔로몬·다윗) -->
+  <symbol id="ic-crown" viewBox="0 0 130 92">
+    <g filter="url(#or-ds)">
+      <path d="M16 70 L24 26 L48 54 L65 18 L82 54 L106 26 L114 70 Z" fill="#ffdd6f"/>
+      <rect x="16" y="68" width="98" height="16" fill="#f5c84b"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 70 L24 26 L48 54 L65 18 L82 54 L106 26 L114 70 Z"/>
+        <rect x="16" y="68" width="98" height="16"/>
+      </g>
+      <g fill="#dd8a3a" stroke="#0d0e0b" stroke-width="1.4"><circle cx="24" cy="26" r="5"/><circle cx="65" cy="16" r="5.5"/><circle cx="106" cy="26" r="5"/></g>
+    </g>
+  </symbol>
+
+  <!-- TABLETS / 두 돌판 (십계명) -->
+  <symbol id="ic-tablets" viewBox="0 0 130 104">
+    <g filter="url(#or-ds)">
+      <path d="M14 40 Q14 14 38 14 Q62 14 62 40 L62 96 L14 96 Z" fill="#fdf9e3"/>
+      <path d="M68 40 Q68 14 92 14 Q116 14 116 40 L116 96 L68 96 Z" fill="#feefae"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 40 Q14 14 38 14 Q62 14 62 40 L62 96 L14 96 Z"/>
+        <path d="M68 40 Q68 14 92 14 Q116 14 116 40 L116 96 L68 96 Z"/>
+        <path d="M24 46 H52 M24 58 H52 M24 70 H52 M24 82 H46 M78 46 H106 M78 58 H106 M78 70 H106 M78 82 H100" stroke-width="1.5" opacity=".75"/>
+      </g>
+    </g>
+  </symbol>
+
+  <!-- CLAPPERBOARD / 영화·연출 (트루먼쇼) -->
+  <symbol id="ic-clapper" viewBox="0 0 130 100">
+    <g filter="url(#or-ds)">
+      <rect x="16" y="42" width="98" height="50" rx="4" fill="#1e3b22"/>
+      <path d="M14 22 L112 32 L110 50 L12 40 Z" fill="#fdf9e3"/>
+      <g fill="#1e3b22">
+        <path d="M24 24 L34 25 L28 41 L18 40 Z"/><path d="M44 26 L54 27 L48 43 L38 42 Z"/>
+        <path d="M64 28 L74 29 L68 45 L58 44 Z"/><path d="M84 30 L94 31 L88 47 L78 46 Z"/>
+      </g>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="16" y="42" width="98" height="50" rx="4"/>
+        <path d="M14 22 L112 32 L110 50 L12 40 Z"/>
+      </g>
+      <g fill="#ffdd6f"><circle cx="64" cy="67" r="11"/></g>
+      <path d="M59 61 L72 67 L59 73 Z" fill="#1e3b22"/>
+    </g>
+  </symbol>
+
+  <!-- GIFT / 조건 없이·은혜 -->
+  <symbol id="ic-gift" viewBox="0 0 100 102">
+    <g filter="url(#or-ds)">
+      <rect x="18" y="42" width="64" height="50" fill="#feefae"/>
+      <rect x="12" y="30" width="76" height="16" fill="#ffdd6f"/>
+      <rect x="44" y="30" width="12" height="62" fill="#dd8a3a"/>
+      <path d="M50 30 C40 14 22 18 30 30 M50 30 C60 14 78 18 70 30" fill="none" stroke="#dd8a3a" stroke-width="6" stroke-linecap="round"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="18" y="42" width="64" height="50"/><rect x="12" y="30" width="76" height="16"/>
+        <path d="M50 30 C40 14 22 18 30 30 M50 30 C60 14 78 18 70 30"/>
+      </g>
+    </g>
+  </symbol>
+
+  <!-- SPLIT HEART / 나뉜 마음·분열 -->
+  <symbol id="ic-split" viewBox="0 0 130 104">
+    <g filter="url(#or-ds)">
+      <path d="M60 92 C26 64 16 40 30 25 C42 12 56 17 60 30 L60 92 Z" fill="#b1ba7d"/>
+      <path d="M70 92 C104 64 114 40 100 25 C88 12 74 17 70 30 L70 92 Z" fill="#b1ba7d"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M60 92 C26 64 16 40 30 25 C42 12 56 17 60 30"/>
+        <path d="M70 92 C104 64 114 40 100 25 C88 12 74 17 70 30"/>
+      </g>
+      <path d="M60 26 L52 44 L62 58 L54 78 M70 26 L78 44 L68 58 L76 78" fill="none" stroke="#b23a2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </symbol>
+
+  <!-- ALIGN / 온전하게 하다 (어긋난 뼈 → 맞춤) -->
+  <symbol id="ic-align" viewBox="0 0 140 72">
+    <g filter="url(#or-ds)">
+      <g fill="#fdf9e3" stroke="#0d0e0b" stroke-width="2.2" stroke-linejoin="round">
+        <rect x="12" y="22" width="54" height="16" rx="8"/>
+        <rect x="74" y="34" width="54" height="16" rx="8"/>
+      </g>
+      <rect x="58" y="20" width="24" height="32" rx="6" fill="#ffdd6f" stroke="#0d0e0b" stroke-width="2.2"/>
+      <g fill="none" stroke="#dd8a3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M70 8 l0 8 M64 12 l6 4 l6 -4"/>
+        <path d="M70 64 l0 -8 M64 60 l6 -4 l6 4"/>
+      </g>
+    </g>
+  </symbol>
+
+  <!-- VESSEL / 밑 빠진 독 + 채움 (예수 웅덩이) -->
+  <symbol id="ic-vessel" viewBox="0 0 110 124">
+    <g filter="url(#or-ds)">
+      <path d="M30 110 Q4 64 36 30 Q40 16 55 16 Q70 16 74 30 Q106 64 80 110 Z" fill="#1e3b22"/>
+      <path d="M16 112 Q55 128 94 112 Q92 102 55 102 Q18 102 16 112 Z" fill="#ffdd6f"/>
+      <g filter="url(#or-rough)" fill="none" stroke="#0d0e0b" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 110 Q4 64 36 30 Q40 16 55 16 Q70 16 74 30 Q106 64 80 110"/>
+        <path d="M40 22 Q55 28 70 22"/>
+      </g>
+      <path d="M52 40 L46 60 L56 74 L48 96" fill="none" stroke="#b1ba7d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <g fill="#ffdd6f" stroke="#0d0e0b" stroke-width="1.2"><circle cx="46" cy="104" r="3.4"/><circle cx="62" cy="106" r="3"/></g>
+    </g>
+  </symbol>
+
+  <!-- AUDIENCE / 청소년 회중 (blank-face busts, dark robe — no headscarf) -->
+  <symbol id="ic-audience" viewBox="0 0 220 88">
+    <g filter="url(#or-ds)">
+      <g fill="#1e3b22"><path d="M4 84 Q26 60 48 84 Z" transform="translate(0,0)"/></g>
+      <g>
+        <path d="M2 86 Q26 58 50 86 Z" fill="#1e3b22"/><circle cx="26" cy="34" r="15" fill="#fdf9e3"/>
+        <path d="M48 86 Q72 58 96 86 Z" fill="#1e3b22"/><circle cx="72" cy="30" r="15" fill="#fdf9e3"/>
+        <path d="M96 86 Q120 56 144 86 Z" fill="#1e3b22"/><circle cx="120" cy="34" r="16" fill="#fdf9e3"/>
+        <path d="M146 86 Q170 58 194 86 Z" fill="#1e3b22"/><circle cx="170" cy="30" r="15" fill="#fdf9e3"/>
+        <path d="M180 86 Q204 60 226 86 Z" fill="#1e3b22"/><circle cx="200" cy="36" r="14" fill="#fdf9e3"/>
+      </g>
+      <g fill="#0d0e0b">
+        <circle cx="22" cy="34" r="1.9"/><circle cx="30" cy="34" r="1.9"/>
+        <circle cx="68" cy="30" r="1.9"/><circle cx="76" cy="30" r="1.9"/>
+        <circle cx="116" cy="34" r="2"/><circle cx="124" cy="34" r="2"/>
+        <circle cx="166" cy="30" r="1.9"/><circle cx="174" cy="30" r="1.9"/>
+        <circle cx="196" cy="36" r="1.8"/><circle cx="204" cy="36" r="1.8"/>
+      </g>
+      <g fill="none" stroke="#0d0e0b" stroke-width="1.3" stroke-linecap="round">
+        <path d="M21 39 q5 3 10 0"/><path d="M67 35 q5 3 10 0"/><path d="M115 39 q5 3 10 0"/><path d="M165 35 q5 3 10 0"/><path d="M195 41 q5 3 10 0"/>
+      </g>
+    </g>
+  </symbol>
+</defs></svg>
+
+
+<div class="deck">
+<div class="deck__head"><span><b>OLIVE ROADMAP</b> · 교리설교 6강 복습</span><span>16:9 · 22 SLIDES · 한 흐름으로 다시 보기</span></div>
+
+<!-- ===================== 01 · TITLE ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad" style="justify-content:flex-start;padding-top:8.5%">
+    <div class="k">교리설교 6강 복습 · RECAP</div>
+    <h1 class="h h--lg">교리, 한 흐름으로<br><span class="g">다시 보기</span></h1>
+    <div class="sub" style="margin-top:.4cqw">6번의 교리설교 — 한 페이지씩 다시</div>
+    <div class="tagrow" style="margin-top:.8cqw">
+      <span class="tag tag--deep">교리</span><span class="tag tag--deep">하나님</span>
+      <span class="tag tag--deep">목적</span><span class="tag">사랑</span>
+    </div>
+    <!-- 흩어진 6강이 곧 하나로 모인다 — 미니 serpentine 예고편 -->
+    <svg viewBox="0 0 1000 130" style="position:absolute;left:0;right:0;bottom:4.5cqw;width:84%;margin:0 auto;height:12cqw" aria-hidden="true">
+      <path d="M40 95 C150 95 150 45 260 45 C370 45 370 95 480 90 C590 85 590 40 700 40 C810 40 820 86 900 70 C940 62 960 60 980 58"
+            fill="none" stroke="#0d0e0b" stroke-width="14" stroke-linecap="round" opacity=".5"/>
+      <path d="M40 95 C150 95 150 45 260 45 C370 45 370 95 480 90 C590 85 590 40 700 40 C810 40 820 86 900 70 C940 62 960 60 980 58"
+            fill="none" stroke="#ffdd6f" stroke-width="9" stroke-linecap="round"/>
+      <g font-family="'Archivo Black',sans-serif" font-size="22" fill="#0d0e0b" text-anchor="middle">
+        <g><circle cx="40" cy="95" r="20" fill="#ffdd6f" stroke="#0d0e0b" stroke-width="3"/><text x="40" y="103">1</text></g>
+        <g><circle cx="260" cy="45" r="20" fill="#ffdd6f" stroke="#0d0e0b" stroke-width="3"/><text x="260" y="53">2</text></g>
+        <g><circle cx="480" cy="90" r="20" fill="#ffdd6f" stroke="#0d0e0b" stroke-width="3"/><text x="480" y="98">3</text></g>
+        <g><circle cx="700" cy="40" r="20" fill="#ffdd6f" stroke="#0d0e0b" stroke-width="3"/><text x="700" y="48">4</text></g>
+        <g><circle cx="860" cy="78" r="20" fill="#dd8a3a" stroke="#0d0e0b" stroke-width="3"/><text x="860" y="86" fill="#fdf9e3">5</text></g>
+        <g><circle cx="970" cy="58" r="22" fill="#ffdd6f" stroke="#0d0e0b" stroke-width="3"/><text x="970" y="67">6</text></g>
+      </g>
+    </svg>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">01 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 02 · OPENING ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row row--art-sm">
+      <div class="col">
+        <div class="k">오프닝 · WHY REVIEW</div>
+        <h2 class="h">우리는 <span class="g">망각하는 존재</span>,<br>그래서</h2>
+        <ul class="bd">
+          <li>“시간이 많이 흘렀잖아요” — 잘 기억 안 나는 게 당연</li>
+          <li>그래서 <span class="g">반복 학습 + 기억의 구조화</span> — 찰나의 기억을 장기 기억으로</li>
+          <li>장기 기억의 열쇠는 뇌의 <span class="g">해마</span> · “사물함에 체육복 쑤셔 넣듯” 말고 차곡차곡</li>
+        </ul>
+      </div>
+      <div class="artbox">
+        <!-- 흩어진 조각 → 정렬된 그리드 (흐릿함 → 또렷함) -->
+        <svg viewBox="0 0 150 150" style="height:30cqw" aria-hidden="true">
+          <g fill="#3f8954" opacity=".5"><circle cx="20" cy="18" r="7"/><circle cx="120" cy="30" r="6"/><circle cx="40" cy="120" r="6"/><circle cx="132" cy="118" r="7"/><circle cx="84" cy="14" r="5"/></g>
+          <g filter="url(#or-ds)">
+            <g fill="#ffdd6f" stroke="#0d0e0b" stroke-width="2.4">
+              <rect x="56" y="56" width="16" height="16" rx="3"/><rect x="78" y="56" width="16" height="16" rx="3"/><rect x="100" y="56" width="16" height="16" rx="3"/>
+              <rect x="56" y="78" width="16" height="16" rx="3"/><rect x="78" y="78" width="16" height="16" rx="3"/><rect x="100" y="78" width="16" height="16" rx="3"/>
+              <rect x="56" y="100" width="16" height="16" rx="3"/><rect x="78" y="100" width="16" height="16" rx="3"/><rect x="100" y="100" width="16" height="16" rx="3"/>
+            </g>
+          </g>
+          <path d="M30 40 q60 -22 96 6" fill="none" stroke="#dd8a3a" stroke-width="3" stroke-linecap="round" marker-end="" opacity=".9"/>
+        </svg>
       </div>
     </div>
-    <div class="toolbar">
-      <button onclick="openAll()" aria-label="모두 새 탭으로 열기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> 전체 열기</button>
-      <button onclick="cycleTheme()" aria-label="테마 전환"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/></svg> 테마</button>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">02 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 03 · 교리란? ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">교리란? · WHAT IS DOCTRINE</div>
+        <h2 class="h"><span class="g">교리</span>란<br>무엇인가</h2>
+        <div class="qt qt--lg" style="font-size:2.7cqw">교리 = 성경 안에 담긴 진리를<br><span class="em">체계적·조직적으로 정리한 것</span></div>
+        <ul class="bd" style="margin-top:.4cqw">
+          <li><span class="g">딱딱한 보물상자</span> ↔ 그 안에 담긴 <span class="g">부드러운 하나님의 인격</span></li>
+          <li>차갑고 어려운 게 아니라, 변치 않는 하나님의 성품을 담은 그릇</li>
+        </ul>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 0 130 100" style="height:33cqw"><use href="#ic-chest"/></svg></div>
     </div>
   </div>
-</header>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">03 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
 
-<main id="main-content">
-  <div class="grid" id="grid"></div>
-</main>
+<!-- ===================== 04 · 웨스트민스터 ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">표준 문서 · WESTMINSTER</div>
+        <h2 class="h h--sm">웨스트민스터<br><span class="g">문답이라는 그릇</span></h2>
+        <ul class="bd">
+          <li>17세기 영국 — <span class="g">100명 넘는</span> 목회자·신학자가 <span class="g">5년·1000번</span> 회의 끝에 성경 교리를 문답으로 집대성</li>
+          <li>우리 교단 헌법이 공식 교리로 채택한 표준 문서</li>
+        </ul>
+        <div class="tagrow" style="margin-top:.4cqw">
+          <span class="tag tag--ghost">대요리문답 · LARGER</span>
+          <span class="tag">소요리문답 · SHORTER</span>
+          <span class="dim" style="font-size:1.7cqw">107문답 · 그중 40문답이 십계명</span>
+        </div>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 4 100 64" style="height:24cqw"><use href="#ic-book"/></svg></div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">04 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
 
-<script>
-  var THEME_KEY = 'viz-theme';
-  function applyTheme(t) { document.documentElement.className = 'theme-' + t; try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
-  function cycleTheme() { var cur = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light'; applyTheme(cur === 'dark' ? 'light' : 'dark'); }
-  (function () { try { var s = localStorage.getItem(THEME_KEY); if (s) applyTheme(s); } catch (e) {} })();
+<!-- ===================== 05 · OVERVIEW (structure diagram) ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="diagram">
+    <svg class="lines" viewBox="0 0 1280 720" preserveAspectRatio="none" aria-hidden="true">
+      <!-- 교리(1강) 감싸는 프레임 -->
+      <rect x="60" y="122" width="1160" height="536" rx="22" fill="none" stroke="#b1ba7d" stroke-width="2.5" stroke-dasharray="3 12"/>
+      <!-- 하나님 ↔ 나 수직축 (2강) -->
+      <path d="M640 268 L640 484" fill="none" stroke="#0d0e0b" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 16" opacity=".75"/>
+      <path d="M640 268 L640 484" fill="none" stroke="#fdf9e3" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+      <!-- 다리: 십계명 = 언약 (5·6강) -->
+      <rect x="452" y="350" width="376" height="46" rx="23" fill="#ffdd6f" stroke="#0d0e0b" stroke-width="3"/>
+      <rect x="452" y="350" width="376" height="46" rx="23" fill="none" stroke="#0d0e0b" stroke-width="1.6" stroke-dasharray="2 12" opacity=".5"/>
+      <!-- 나 → 목적/분열 연결 -->
+      <path d="M585 556 C470 556 360 540 300 512" fill="none" stroke="#b1ba7d" stroke-width="2.4" stroke-dasharray="3 9" opacity=".7"/>
+      <!-- 목적(3강) → 분열(4강) 하강 흐름 -->
+      <path d="M300 506 L300 560" fill="none" stroke="#dd8a3a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M300 566 l-7 -12 h14 z" fill="#dd8a3a"/>
+    </svg>
 
-  var slides = [
-    { n: 1,  title: '교리, 한 흐름으로 다시 보기', type: '제목 (Title)' },
-    { n: 2,  title: '우리는 망각하는 존재, 그래서', type: '오프닝 (Opening)' },
-    { n: 3,  title: '교리란 무엇인가', type: '대지 · 교리란?' },
-    { n: 4,  title: '웨스트민스터 문답이라는 그릇', type: '인용 · 웨스트민스터' },
-    { n: 5,  title: '여섯 걸음이 이루는 하나의 그림', type: '오버뷰 · 구조 다이어그램', star: true },
-    { n: 6,  title: '1강 · 성경 말씀은 우리를 온전하게', type: '대지 · 1강 ①' },
-    { n: 7,  title: '흔들리지 않게 하시는 말씀', type: '본문 봉독 · 1강 ②' },
-    { n: 8,  title: '2강 · 하나님은 누구신가', type: '대지 · 2강 ①' },
-    { n: 9,  title: '내 인생이라는 영화의 연출자', type: '예화 · 2강 ②' },
-    { n: 10, title: '창세 전부터, 조건 없이', type: '대지 · 2강 ③' },
-    { n: 11, title: '3강 · 목적이 변하면 삶이 변합니다', type: '대지 · 3강 ①' },
-    { n: 12, title: '바울의 각성, 새로운 눈', type: '예화·본문 · 3강 ②' },
-    { n: 13, title: '4강 · 목적의 상실은 분열을 낳습니다', type: '대지 · 4강 ①' },
-    { n: 14, title: '솔로몬, 마음을 빼앗기다', type: '예화·본문 · 4강 ②' },
-    { n: 15, title: '목적을 잃으면 노예가 됩니다', type: '대지 · 4강 ③' },
-    { n: 16, title: '5강 · 다시 선포된 십계명, 그 울타리', type: '대지 · 5강 ①' },
-    { n: 17, title: '네 마음을 힘써 지키라', type: '본문 봉독 · 5강 ②' },
-    { n: 18, title: '6강 · 율법은 사랑이다', type: '대지 · 6강 ①' },
-    { n: 19, title: '영원한 언약, Love never fails', type: '인용·본문 · 6강 ②' },
-    { n: 20, title: '독점적 관계, 그리고 다윗', type: '대지 · 6강 ③' },
-    { n: 21, title: '따로가 아니라 하나의 구조', type: '결론 · 구조 다이어그램', star: true },
-    { n: 22, title: '울타리 안에서 마음을 지키는', type: '마무리 · 결단·축복' }
-  ];
+    <!-- 제목 -->
+    <div style="position:absolute;z-index:3;left:50%;top:3.6%;transform:translateX(-50%);text-align:center;width:80%">
+      <div class="k" style="justify-content:center">오버뷰 · THE WHOLE PICTURE</div>
+      <div style="font-family:var(--or-font-kr);font-size:2.95cqw;line-height:1.05;margin-top:.4cqw">여섯 걸음이 이루는 <span class="g">하나의 그림</span></div>
+    </div>
 
-  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    <!-- 프레임 라벨 (1강 = 감싸는 틀) -->
+    <div class="dg-frametag" style="top:17%"><span class="dg-chip" style="position:static;transform:none">1</span><span class="tag tag--deep">교리를 왜 배우나 · 1강 · 엡 4:14</span></div>
 
-  function buildGrid() {
-    var grid = document.getElementById('grid');
-    var html = '';
-    for (var i = 0; i < slides.length; i++) {
-      var s = slides[i];
-      var file = 'slide-' + pad(s.n) + '.html';
-      var delay = (i * 0.03).toFixed(2);
-      html += '<a class="thumb" href="' + file + '" target="_blank" rel="noopener" style="animation-delay:' + delay + 's" aria-label="슬라이드 ' + s.n + ' ' + s.title + ' 열기">'
-        + '<div class="frame-wrap"><iframe src="' + file + '" loading="lazy" tabindex="-1" title="슬라이드 ' + s.n + ' 미리보기" scrolling="no"></iframe><span class="frame-cover"></span></div>'
-        + '<div class="tinfo"><span class="tn">' + pad(s.n) + '</span><span class="tt"><span class="ti-title">' + s.title + '</span><span class="ti-type">' + s.type + '</span></span>'
-        + (s.star ? '<span class="badge-star">★ 핵심</span>' : '') + '</div>'
-        + '</a>';
-    }
-    grid.innerHTML = html;
-    scaleFrames();
-  }
+    <!-- 하나님 노드 (2강) — 추상 빛(sun), 얼굴 없음 -->
+    <div class="dg-el" style="left:50%;top:25.5%">
+      <svg class="art dg-node-sun" viewBox="0 0 120 120"><use href="#ic-sun"/></svg>
+      <div class="nlabel">하나님</div><div class="ntag">2강 · 엡 1:11</div>
+    </div>
+    <div class="dg-chip" style="left:58.5%;top:24%">2</div>
 
-  function scaleFrames() {
-    var wraps = document.querySelectorAll('.frame-wrap');
-    wraps.forEach(function (w) {
-      var iframe = w.querySelector('iframe');
-      var scale = w.clientWidth / 1280;
-      iframe.style.transform = 'scale(' + scale + ')';
-      iframe.style.width = '1280px';
-      iframe.style.height = '720px';
-    });
-  }
+    <!-- 나 노드 -->
+    <div class="dg-el" style="left:50%;top:75%">
+      <div class="dg-node-me"><span class="me">나</span></div>
+      <div class="ntag">2강 · 수직 관계</div>
+    </div>
 
-  function openAll() {
-    for (var i = 0; i < slides.length; i++) {
-      window.open('slide-' + pad(slides[i].n) + '.html', '_blank');
-    }
-  }
+    <!-- 다리 라벨 (5·6강) -->
+    <div class="dg-chip" style="left:35.3%;top:51.8%">5</div>
+    <div class="dg-chip" style="left:64.7%;top:51.8%">6</div>
+    <div class="dg-bridgelab" style="left:50%;top:51.8%">십계명 = 언약</div>
+    <div style="position:absolute;z-index:3;left:50%;top:60%;transform:translateX(-50%);font-family:var(--or-font-tag);text-transform:uppercase;letter-spacing:.05em;font-weight:700;font-size:1.35cqw;color:var(--or-warm);white-space:nowrap">5·6강 · 신 4:9 / 신 5:7</div>
 
-  window.addEventListener('resize', scaleFrames);
-  document.addEventListener('DOMContentLoaded', buildGrid);
-</script>
+    <!-- 목적(3강) → 분열(4강) -->
+    <div class="dg-card up" style="left:23.4%;top:66%"><div class="t">인생의 목적</div><div class="s">3강 · 빌 1:21</div></div>
+    <div class="dg-chip" style="left:16.5%;top:66%">3</div>
+    <div class="dg-card down" style="left:23.4%;top:84%"><div class="t">분열·상실</div><div class="s">4강 · 왕상 11:3</div></div>
+    <div class="dg-chip" style="left:16.5%;top:84%">4</div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">05 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 06 · 1강 ① ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row row--art-sm" style="grid-template-columns:.7fr 2fr">
+      <div class="artbox" style="flex-direction:column;gap:1cqw"><span class="mnum">1</span></div>
+      <div class="col">
+        <div class="k">1강 · LECTURE 1</div>
+        <h2 class="h h--sm">성경 말씀은<br>우리를 <span class="g">온전하게</span> 합니다</h2>
+        <ul class="bd">
+          <li>왜 교리를 배우나 — 변하는 풍조·유혹 속에서 <span class="g">내 마음을 지키려고</span></li>
+          <li>“온전하게 하다” = <span class="g">어긋난 뼈를 맞추다</span>, 제 기능을 하게 하다</li>
+          <li>복잡한 세상·연약한 나 — 그래서 성경을 기준으로</li>
+        </ul>
+        <div class="tagrow"><span class="tag tag--deep">엡 4:13-14 · 개역개정</span><svg class="art" viewBox="0 0 140 72" style="height:7cqw"><use href="#ic-align"/></svg></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d on"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">06 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 07 · 1강 ② 본문 ===================== -->
+<section class="slide tight">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">1강 · 본문</div>
+        <h2 class="h h--sm"><span class="g">흔들리지 않게</span><br>하시는 말씀</h2>
+        <div class="qt">“어린아이가 되지 아니하여 사람의 속임수와 간사한 유혹에 빠져<br>온갖 교훈의 <span class="em">풍조에 밀려 요동하지 않게</span> 하려 함이라”<span class="ref">엡 4:14 · 개역개정</span></div>
+        <div class="card"><div class="ct">시 119:105</div><div class="cb">“주의 말씀은 내 발에 <span class="g">등</span>이요 내 길에 <span class="g">빛</span>이니이다” — 변하는 풍조 속 마음을 지키는 등불</div></div>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 0 100 120" style="height:33cqw"><use href="#ic-lamp"/></svg></div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d on"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">07 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 08 · 2강 ① ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row row--art-sm" style="grid-template-columns:.7fr 2fr">
+      <div class="artbox"><span class="mnum">2</span></div>
+      <div class="col">
+        <div class="k">2강 · LECTURE 2</div>
+        <h2 class="h">하나님은<br><span class="g">누구신가</span></h2>
+        <div style="display:flex;gap:1.2cqw">
+          <div class="card" style="flex:1"><div class="ct">질문 ①</div><div class="cb">하나님의 성품은?</div></div>
+          <div class="card" style="flex:1"><div class="ct">질문 ②</div><div class="cb">나와 어떤 관계?</div></div>
+          <div class="card" style="flex:1"><div class="ct">질문 ③</div><div class="cb">내 인생과 무슨 상관?</div></div>
+        </div>
+        <div class="qt" style="font-size:2.5cqw">“나는 <span class="em">스스로 있는 자</span>이니라” — 창조주 되심의 선언<span class="ref">출 3:14 · 엡 1:11 · 개역개정</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d on"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">08 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 09 · 2강 ② 예화 ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">2강 · 예화</div>
+        <h2 class="h h--sm">내 인생이라는<br>영화의 <span class="g">연출자</span></h2>
+        <ul class="bd">
+          <li>인생 엔딩 크레딧에 올라갈 단 한 이름 — <span class="g">하나님</span></li>
+          <li>트루먼쇼의 허술한 연출(옥의 티 가득) vs <span class="g" style="white-space:nowrap">한&nbsp;치 오차 없으신</span> 하나님의 연출</li>
+          <li>사람의 기획으로는 못 하는 일 — 하나님만이 내 인생을 경영하신다</li>
+        </ul>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 0 130 100" style="height:27cqw"><use href="#ic-clapper"/></svg></div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d on"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">09 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 10 · 2강 ③ ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">2강 · 결론</div>
+        <h2 class="h"><span class="g">창세 전</span>부터,<br><span class="g">조건 없이</span></h2>
+        <ul class="bd">
+          <li>하나님의 뜻 = 우리를 그리스도 안에서 <span class="g">상속자(기업) 삼으심</span></li>
+          <li>“예정을 입어” — 세상 창조 전에 택하심 (엡 1:4-5), <span class="g">선택의 이유는 내게 없다</span></li>
+          <li>그 뜻은 변치 않는 하나님의 성품(섭리)에서 — 우주를 한 치 오차 없이 운행하시듯</li>
+        </ul>
+        <div class="tagrow"><span class="tag tag--deep">엡 1:11 · 엡 1:4-5 · 개역개정</span></div>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 0 100 102" style="height:27cqw"><use href="#ic-gift"/></svg></div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d on"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">10 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 11 · 3강 ① ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row row--art-sm" style="grid-template-columns:.7fr 2fr">
+      <div class="artbox"><span class="mnum">3</span></div>
+      <div class="col">
+        <div class="k">3강 · LECTURE 3</div>
+        <h2 class="h h--sm"><span class="g">목적</span>이 변하면<br>삶이 변합니다</h2>
+        <div class="qt qt--lg" style="font-size:2.7cqw">사람의 첫째 되는 목적 —<br>하나님을 <span class="em">영화롭게</span>, 영원히 <span class="em">즐거워하는</span> 것<span class="ref">소요리문답 1문</span></div>
+        <ul class="bd"><li>그 목적은 곧 ‘<span class="g">예배자</span>’ — 삶의 모든 영역으로 (고전 10:31)</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d on"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">11 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 12 · 3강 ② 예화 ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">3강 · 예화</div>
+        <h2 class="h h--sm">바울의 <span class="g">각성</span>,<br>새로운 눈</h2>
+        <div class="qt qt--lg">“내게 사는 것이 <span class="em">그리스도</span>니<br>죽는 것도 유익함이라”<span class="ref">빌 1:21 · 개역개정</span></div>
+        <ul class="bd">
+          <li>핍박자 → 예배자: <span class="g">목적이 바뀌자 인생이 송두리째</span> 변함</li>
+          <li><span class="dim">목적을 아는 것은 삶을 단순하게 한다 — 릭 워렌, 『목적이 이끄는 삶』</span></li>
+        </ul>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 0 120 120" style="height:26cqw"><use href="#ic-signpost"/></svg></div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d on"></i><i class="d"></i><i class="d"></i><i class="d"></i></span><span class="r">12 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 13 · 4강 ① ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row row--art-sm" style="grid-template-columns:.7fr 2fr">
+      <div class="artbox"><span class="mnum" style="color:var(--or-warm-deep)">4</span></div>
+      <div class="col">
+        <div class="k">4강 · LECTURE 4</div>
+        <h2 class="h h--sm">목적의 상실은<br><span class="go">분열</span>을 낳습니다</h2>
+        <ul class="bd">
+          <li>죄 = 하나님과의 <span class="go">비정렬(misalignment)</span> → 분열과 죽음으로</li>
+          <li>예배자라는 목적을 잃으면 — <span class="go">마음이 나뉘고, 노예가 된다</span></li>
+        </ul>
+        <div class="tagrow"><span class="tag tag--orange">왕상 11장</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d on"></i><i class="d"></i><i class="d"></i></span><span class="r">13 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 14 · 4강 ② 예화 ===================== -->
+<section class="slide tight">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">4강 · 예화</div>
+        <h2 class="h h--sm">솔로몬,<br><span class="go">마음을 빼앗기다</span></h2>
+        <div class="qt" style="font-size:2.4cqw">“솔로몬 왕이 … 이방의 많은 여인을 사랑하였으니” … “그의 여인들이 <span class="em" style="color:var(--or-accent)">왕의 마음을 돌아서게</span> 하였더라”<span class="ref">왕상 11:1, 3 · 개역개정</span></div>
+        <div class="card"><div class="ct">염려 = 메림나오(<span style="text-transform:none;letter-spacing:0">μεριμνάω</span>) = 마음이 나뉘다</div><div class="cb">“무엇을 먹을까 … 염려하지 말라 / 이것은 다 이방인들이 구하는 것이라” (마 6:31-32) <span class="go">→ 나뉜 마음이 ‘이방인이 구하는 것’으로 채워짐</span></div></div>
+      </div>
+      <div class="artbox" style="flex-direction:column;gap:1cqw">
+        <svg class="art" viewBox="0 0 130 92" style="height:13cqw"><use href="#ic-crown"/></svg>
+        <svg class="art" viewBox="0 0 130 104" style="height:17cqw"><use href="#ic-split"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d on"></i><i class="d"></i><i class="d"></i></span><span class="r">14 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 15 · 4강 ③ ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">4강 · 소망</div>
+        <h2 class="h h--sm">목적을 잃으면<br><span class="go">노예</span>가 됩니다</h2>
+        <ul class="bd">
+          <li>노예의 본질 = <span class="go">끝없이 자신을 증명</span>해야 하는 존재</li>
+          <li>성적의 노예 · 성취의 노예 — 분열된 마음이 향하는 자리</li>
+          <li>밑 빠진 독을, ‘<span class="g">예수</span>’라는 깊고 넓은 웅덩이에 담그기</li>
+        </ul>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 0 110 124" style="height:32cqw"><use href="#ic-vessel"/></svg></div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d on"></i><i class="d"></i><i class="d"></i></span><span class="r">15 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 16 · 5강 ① ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row row--art-sm" style="grid-template-columns:.7fr 2fr">
+      <div class="artbox"><span class="mnum">5</span></div>
+      <div class="col">
+        <div class="k">5강 · LECTURE 5</div>
+        <h2 class="h h--sm">다시 선포된<br>십계명, 그 <span class="g">울타리</span></h2>
+        <ul class="bd">
+          <li>신명기 = 두 번째 율법(<span class="g">듀테로노미</span>) · 거듭 명하신 말씀(<span class="g">申命記</span>) — 모압 평지에서 출애굽 2세대(다음세대)에게</li>
+          <li>십계명 = 속박이 아니라, 마음을 지키는 <span class="g">울타리</span> (10개 기둥 + 하나님 사랑의 장막)</li>
+        </ul>
+        <div class="tagrow"><span class="tag tag--deep">신 4:1-9</span></div>
+      </div>
+    </div>
+    <svg class="art" viewBox="0 0 230 120" style="position:absolute;right:5.5%;bottom:9%;height:15cqw;z-index:2"><use href="#ic-fence"/></svg>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d on"></i><i class="d"></i></span><span class="r">16 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 17 · 5강 ② 본문 ===================== -->
+<section class="slide tight">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">5강 · 본문</div>
+        <h2 class="h h--sm">네 마음을<br><span class="g">힘써 지키라</span></h2>
+        <div class="qt">“오직 너는 스스로 삼가며 <span class="em">네 마음을 힘써 지키라</span><br>… 네 아들들과 네 손자들에게 알게 하라”<span class="ref">신 4:9 · 개역개정</span></div>
+        <div class="card"><div class="ct">십계명의 머리말</div><div class="cb">“나는 너를 … 인도해 낸 너의 하나님 여호와로라” → <span class="g">완전한 굴복·순종</span>의 관계</div></div>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 0 130 104" style="height:31cqw"><use href="#ic-tablets"/></svg></div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d on"></i><i class="d"></i></span><span class="r">17 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 18 · 6강 ① ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row row--art-sm" style="grid-template-columns:.7fr 2fr">
+      <div class="artbox"><span class="mnum">6</span></div>
+      <div class="col">
+        <div class="k">6강 · LECTURE 6</div>
+        <h2 class="h">율법은<br><span class="g">사랑</span>이다</h2>
+        <ul class="bd">
+          <li>울타리를 감싼 장막 ‘<span class="g">사랑</span>’을 더 깊이 — 율법 = 사랑이라는 등식</li>
+          <li>“율법은 거룩하고 계명도 거룩하고 의로우며 선하도다” (롬 7:12) — <span class="g">율법은 하나님의 성품을 드러냄</span></li>
+        </ul>
+        <div class="tagrow"><span class="tag tag--deep">신 5:1-7 · 롬 7:12</span></div>
+      </div>
+    </div>
+    <svg class="art" viewBox="0 0 110 100" style="position:absolute;right:6%;bottom:11%;height:17cqw;z-index:2"><use href="#ic-heart"/></svg>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d on"></i></span><span class="r">18 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 19 · 6강 ② 사랑① ===================== -->
+<section class="slide tight">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">6강 · 사랑 ①</div>
+        <h2 class="h h--sm">영원한 언약,<br><span class="g">Love never fails</span></h2>
+        <div class="qt">“이 언약은 여호와께서 <span class="dim">우리 조상들과 세우신 것이 아니요</span><br><span class="em">오늘 여기 살아 있는 우리</span> 곧 우리와 세우신 것이라”<span class="ref">신 5:3 · 개역개정</span></div>
+        <ul class="bd">
+          <li>금송아지로 깨뜨린 1세대의 실패에도, <span class="g">사랑은 실패하지 않는다</span></li>
+          <li><span class="dim">“사랑은 언제까지나 떨어지지 아니하되” (고전 13:8) — Love never fails</span></li>
+        </ul>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 0 110 100" style="height:27cqw"><use href="#ic-heart"/></svg></div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d on"></i></span><span class="r">19 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 20 · 6강 ③ 사랑② ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad">
+    <div class="row">
+      <div class="col">
+        <div class="k">6강 · 사랑 ②</div>
+        <h2 class="h h--sm"><span class="g">독점적 관계</span>,<br>그리고 다윗</h2>
+        <div class="qt" style="font-size:2.5cqw">“나 외에는 다른 신들을 네게 두지 말지니라” — <span class="em">상대(우리)의 유익</span>을 위한 독점<span class="ref">신 5:7 · 개역개정</span></div>
+        <ul class="bd">
+          <li>사랑의 독점은 ‘<span class="g">예배의 독점</span>’ — 나뉘지 않은 마음으로</li>
+          <li>다윗: 한 사건에 <span class="go">6·7·10계명</span> 세 계명을 범한 중죄에도, <span class="g">즉시 회개</span>해 돌아온 ‘나누어지지 않은 마음’의 회복 탄력성</li>
+        </ul>
+      </div>
+      <div class="artbox"><svg class="art" viewBox="0 0 130 92" style="height:22cqw"><use href="#ic-crown"/></svg></div>
+    </div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d on"></i></span><span class="r">20 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 21 · CLOSING (structure reprise) ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad" style="justify-content:flex-start;gap:.6cqw;padding-top:5%">
+    <div class="k">결론 · ONE STRUCTURE</div>
+    <h2 class="h h--sm" style="font-size:3.7cqw">따로가 아니라 <span class="g">하나의 구조</span></h2>
+    <div style="position:relative;flex:1;width:100%">
+      <div class="diagram">
+        <svg class="lines" viewBox="0 0 1280 560" preserveAspectRatio="none" aria-hidden="true">
+          <rect x="60" y="20" width="1160" height="520" rx="22" fill="none" stroke="#b1ba7d" stroke-width="2.5" stroke-dasharray="3 12"/>
+          <path d="M640 150 L640 392" fill="none" stroke="#0d0e0b" stroke-width="7" stroke-linecap="round" stroke-dasharray="2 16" opacity=".75"/>
+          <!-- 다리 강조: 가장 강한 골드 (결국 사랑이 둘을 이었다) -->
+          <rect x="430" y="248" width="420" height="58" rx="29" fill="#ffdd6f" stroke="#0d0e0b" stroke-width="6"/>
+          <rect x="408" y="240" width="464" height="74" rx="37" fill="none" stroke="#ffdd6f" stroke-width="3" opacity=".45"/>
+          <path d="M560 470 C470 470 370 452 318 420" fill="none" stroke="#b1ba7d" stroke-width="2.4" stroke-dasharray="3 9" opacity=".7"/>
+          <path d="M318 414 L318 462" fill="none" stroke="#dd8a3a" stroke-width="4" stroke-linecap="round"/>
+          <path d="M318 468 l-7 -12 h14 z" fill="#dd8a3a"/>
+        </svg>
+
+        <div class="dg-frametag" style="left:5%;top:3.6%"><span class="dg-chip" style="position:static;transform:none">1</span><span class="tag tag--deep">교리 (1강)</span></div>
+
+        <div class="dg-el" style="left:50%;top:18%">
+          <svg class="art" viewBox="0 0 120 120" style="height:11cqw"><use href="#ic-sun"/></svg>
+          <div class="ntag" style="font-size:1.6cqw">위 · 하나님 (2강)</div>
+        </div>
+
+        <div class="dg-el" style="left:50%;top:82%">
+          <div class="dg-node-me" style="width:8.5cqw;height:8.5cqw"><span class="me">나</span></div>
+          <div class="ntag" style="font-size:1.6cqw">아래 · 나 (2강)</div>
+        </div>
+
+        <!-- 다리 = 십계명 언약 = 사랑 (heart 강조) -->
+        <div class="dg-el" style="left:50%;top:49.5%;gap:.2cqw">
+          <svg class="art" viewBox="0 0 110 100" style="height:6.4cqw"><use href="#ic-heart"/></svg>
+        </div>
+        <div class="dg-chip" style="left:33.6%;top:49.5%">5</div>
+        <div class="dg-chip" style="left:66.4%;top:49.5%">6</div>
+        <div style="position:absolute;z-index:3;left:50%;top:64%;transform:translateX(-50%);text-align:center;font-family:var(--or-font-tag);text-transform:uppercase;letter-spacing:.05em;font-weight:700;font-size:1.5cqw;color:var(--or-warm);white-space:nowrap">십계명 = 언약 = 사랑 · 5·6강</div>
+
+        <div class="dg-card up" style="left:24.8%;top:64%;min-width:11cqw"><div class="t" style="font-size:1.8cqw">목적</div><div class="s">3강</div></div>
+        <div class="dg-chip" style="left:18.5%;top:64%">3</div>
+        <div class="dg-card down" style="left:24.8%;top:88%;min-width:11cqw"><div class="t" style="font-size:1.8cqw">분열·상실</div><div class="s">4강</div></div>
+        <div class="dg-chip" style="left:18.5%;top:88%">4</div>
+      </div>
+    </div>
+    <div class="lead" style="font-size:1.95cqw;max-width:none;text-align:center;color:var(--or-text)">하나님을 알수록, 우리를 예배자로 부르신 그 <span class="g">사랑이 십계명에 담겨</span> 우리 마음을 지킨다 — <span class="g">결국 사랑이 둘을 이었다.</span></div>
+  </div>
+  <div class="foot"><span class="spine"><i class="d on"></i><i class="d on"></i><i class="d on"></i><i class="d on"></i><i class="d on"></i><i class="d on"></i></span><span class="r">21 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+<!-- ===================== 22 · CLOSING / 결단 ===================== -->
+<section class="slide">
+  <div class="slide__vig"></div>
+  <div class="pad" style="justify-content:flex-start;padding-top:9%">
+    <div class="k">결단 · BLESSING</div>
+    <h2 class="h h--lg" style="font-size:5.2cqw">울타리 안에서<br><span class="g">마음을 지키는</span></h2>
+    <ul class="bd" style="margin-top:.5cqw">
+      <li>십계명이라는 <span class="g">울타리</span> 안에서, 나뉘지 않은 마음으로</li>
+      <li>하나님의 말씀으로 마음을 무장하는 <span class="g">청소년 1부</span> — 예비 스무살에게</li>
+    </ul>
+    <svg class="art" viewBox="0 0 220 88" style="position:absolute;right:7%;bottom:7%;height:11cqw;z-index:2;opacity:.96"><use href="#ic-audience"/></svg>
+    <svg class="art" viewBox="0 0 230 120" style="position:absolute;left:7%;bottom:6.5%;height:9.5cqw;z-index:1;opacity:.5"><use href="#ic-fence"/></svg>
+  </div>
+  <div class="foot"><span class="spine"><i class="d on"></i><i class="d on"></i><i class="d on"></i><i class="d on"></i><i class="d on"></i><i class="d on"></i></span><span class="r">22 / 22</span></div>
+  <svg class="slide__grain"><rect width="100%" height="100%" filter="url(#or-grain)"/></svg>
+</section>
+
+</div>
 </body>
 </html>

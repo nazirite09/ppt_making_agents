@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!-- slide #02 · type: opening (망각 → 구조화) -->
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 02 · 우리는 망각하는 존재, 그래서</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { interpolate-size: allow-keywords; }
+  html.theme-light {
+    --bg: #FFFFFF; --surface: #FFFFFF; --surface-hover: #FAFAFA;
+    --border: #EAEAEA;
+    --text: #000000; --text-secondary: #666666;
+    --accent: #000000; --accent-secondary: #8F8F8F;
+    --accent-strong: #000000; --accent-soft: #F4F4F4;
+    --positive: #45A557; --negative: #E5484D; --warning: #F5A623;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  html.theme-dark {
+    --bg: #000000; --surface: #0A0A0A; --surface-hover: #1A1A1A;
+    --border: #1F1F1F;
+    --text: #EDEDED; --text-secondary: #8F8F8F;
+    --accent: #FFFFFF; --accent-secondary: #8F8F8F;
+    --accent-strong: #FFFFFF; --accent-soft: #1A1A1A;
+    --positive: #45A557; --negative: #E5484D; --warning: #F5A623;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
+  }
+  html, body { width: 1280px; height: 720px; }
+  body {
+    font-family: 'Geist', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.6; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em;
+    overflow: hidden; word-break: keep-all;
+  }
+  h1, h2, h3, h4 { color: var(--text); line-height: 1.2; letter-spacing: -0.03em; }
+  .artboard { position: relative; width: 1280px; height: 720px; overflow: hidden; background: var(--bg); }
+  .stage { position: relative; z-index: 1; height: 100%; display: grid; grid-template-columns: 1fr 376px; gap: 56px; padding: 76px 96px 72px; align-items: center; }
+
+  .label { display: inline-flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 700; letter-spacing: 0.02em; color: var(--accent); background: var(--accent-soft); padding: 8px 16px; border-radius: 8px; margin-bottom: 26px; }
+  .label.slate { color: var(--accent-secondary); background: var(--surface-hover); }
+  .h-title { font-size: 56px; font-weight: 600; line-height: 1.16; letter-spacing: -0.04em; }
+  .h-title .hl { color: var(--accent); }
+  .blist { margin-top: 34px; display: flex; flex-direction: column; gap: 18px; max-width: 640px; }
+  .bitem { display: flex; gap: 16px; align-items: flex-start; }
+  .bdot { flex: 0 0 auto; margin-top: 11px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .btext { font-size: 22px; line-height: 1.55; color: var(--text); }
+  .btext .q { color: var(--text-secondary); }
+  .btext strong { font-weight: 700; color: var(--accent-strong); }
+  .btext .sub { display: block; font-size: 18px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* right column: blur→sharp + scattered→aligned */
+  .visual { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow-sm); padding: 30px 28px; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+  .vstep .vk { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent-secondary); margin-bottom: 12px; text-transform: uppercase; }
+  .vstep.b .vk { color: var(--accent); }
+  .blur-word { font-size: 30px; font-weight: 600; color: var(--text-secondary); filter: blur(2.4px); opacity: 0.6; letter-spacing: -0.03em; }
+  .sharp-word { font-size: 30px; font-weight: 600; color: var(--accent); letter-spacing: -0.03em; }
+  .varrow { display: grid; place-items: center; color: var(--accent); }
+  .dotgrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 11px; }
+  .dotgrid i { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+  .scatter { position: relative; height: 56px; }
+  .scatter i { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--text-secondary); opacity: 0.5; }
+  .vdiv { height: 1px; background: var(--border); }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate { animation: fadeInUp 0.7s ease-out both; }
+  .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+  .viz-menu { position: fixed; top: 16px; right: 16px; z-index: 9999; }
+  .viz-menu-toggle { width: 42px; height: 42px; border-radius: 11px; background: var(--surface); border: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
+  .viz-menu-toggle:hover { background: var(--surface-hover); }
+  .viz-menu-dropdown { position: absolute; top: 50px; right: 0; min-width: 188px; background: var(--surface); border: 1px solid var(--border); border-radius: 13px; padding: 8px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.18s; box-shadow: var(--shadow-lg); }
+  .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .viz-menu-dropdown button { width: 100%; padding: 10px 13px; border: none; border-radius: 9px; background: transparent; color: var(--text); font-size: 14px; font-family: inherit; font-weight: 500; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; }
+  .viz-menu-dropdown button:hover { background: var(--surface-hover); }
+  .skip-to-content { position: absolute; top: -50px; left: 6px; background: var(--accent); color: #fff; padding: 8px 12px; text-decoration: none; border-radius: 8px; z-index: 10000; }
+  .skip-to-content:focus { top: 6px; }
+  @media print { @page { size: 1280px 720px; margin: 0; } .viz-menu { display: none; } }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<nav class="viz-menu" aria-label="유틸리티 메뉴">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기" aria-haspopup="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown" role="menu">
+    <button onclick="cycleTheme()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/></svg> 테마 전환</button>
+    <button onclick="downloadImage()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG 저장</button>
+    <button onclick="window.print()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> 인쇄 / PDF</button>
+  </div>
+</nav>
+
+<main id="main-content">
+<section class="artboard" aria-label="오프닝 — 왜 복습하는가">
+  <div class="stage">
+    <div class="col-text">
+      <span class="label animate">오프닝 · 왜 다시 복습하나</span>
+      <h1 class="h-title animate delay-1">우리는 <span class="hl">망각하는 존재</span>,<br>그래서</h1>
+      <div class="blist">
+        <div class="bitem animate delay-1"><span class="bdot"></span><p class="btext"><span class="q">“시간이 많이 흘렀잖아요”</span> — 잘 기억 안 나는 게 당연합니다</p></div>
+        <div class="bitem animate delay-2"><span class="bdot"></span><p class="btext">그래서 <strong>반복 학습 + 기억의 구조화</strong><span class="sub">찰나의 기억을 장기 기억으로</span></p></div>
+        <div class="bitem animate delay-3"><span class="bdot"></span><p class="btext">장기 기억의 열쇠는 뇌의 <strong>해마</strong><span class="sub">“사물함에 체육복 쑤셔 넣듯” 말고 차곡차곡</span></p></div>
+      </div>
+    </div>
+
+    <aside class="visual animate delay-2" aria-label="흐릿함에서 또렷함으로, 흩어진 조각에서 정렬된 그리드로">
+      <div class="vstep">
+        <div class="vk">찰나의 기억</div>
+        <div class="blur-word">교리 · 하나님 · 목적…</div>
+        <div class="scatter" aria-hidden="true">
+          <i style="left:4%; top:8px;"></i><i style="left:26%; top:30px;"></i><i style="left:44%; top:4px;"></i>
+          <i style="left:62%; top:34px;"></i><i style="left:80%; top:14px;"></i><i style="left:92%; top:38px;"></i>
+          <i style="left:16%; top:40px;"></i><i style="left:54%; top:24px;"></i>
+        </div>
+      </div>
+      <div class="varrow" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg>
+      </div>
+      <div class="vstep b">
+        <div class="vk">구조화된 장기 기억</div>
+        <div class="sharp-word">하나의 구조로</div>
+        <div class="dotgrid" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+</main>
+
+<script>
+  var THEME_KEY = 'viz-theme';
+  function applyTheme(t) { document.documentElement.className = 'theme-' + t; try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
+  function cycleTheme() { var cur = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light'; applyTheme(cur === 'dark' ? 'light' : 'dark'); }
+  function toggleMenu() { document.getElementById('vizMenuDropdown').classList.toggle('open'); }
+  function downloadImage() { var node = document.querySelector('.artboard'); if (typeof htmlToImage === 'undefined') return; htmlToImage.toPng(node, { pixelRatio: 2, width: 1280, height: 720 }).then(function (url) { var a = document.createElement('a'); a.download = 'slide-02.png'; a.href = url; a.click(); }); }
+  (function () { try { var s = localStorage.getItem(THEME_KEY); if (s) applyTheme(s); } catch (e) {} })();
+  document.addEventListener('click', function (e) { if (!e.target.closest('.viz-menu')) { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+</script>
+</body>
+</html>

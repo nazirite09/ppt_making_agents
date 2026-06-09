@@ -1,0 +1,233 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<title>스타일 비교 — Geist · IBM Carbon · Material 3</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:system-ui,'Pretendard Variable',Pretendard,sans-serif;background:#0f1115;color:#e8eaed;padding:28px 32px 64px}
+  .title{font-size:22px;font-weight:800;letter-spacing:-0.01em}
+  .subtitle{font-size:13.5px;color:#9aa0a6;margin-top:6px}
+  .legend{font-size:12.5px;color:#bdc1c6;margin:14px 0 26px;line-height:1.6}
+  .legend b{color:#e8eaed}
+  .cols{display:grid;grid-template-columns:repeat(3,max-content);gap:24px}
+  .col h2{font-size:16px;font-weight:800;margin-bottom:4px}
+  .col .desc{font-size:12.5px;color:#9aa0a6;line-height:1.55;margin-bottom:14px;width:512px}
+  .col.geist h2{color:#ffffff}
+  .col.carbon h2{color:#78a9ff}
+  .col.m3 h2{color:#b9c3ff}
+  .shot{margin-bottom:16px}
+  .shot .cap{font-size:11.5px;letter-spacing:0.04em;color:#80868b;margin-bottom:6px;text-transform:uppercase}
+  .frame-wrap{--s:0.40;width:calc(1280px*var(--s));height:calc(720px*var(--s));overflow:hidden;border-radius:10px;border:1px solid #2a2d33;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+  .frame{width:1280px;height:720px;border:0;transform:scale(var(--s));transform-origin:top left;display:block}
+</style></head>
+<body>
+<div class="title">스타일 비교 — ① Geist · ② IBM Carbon · ③ Material 3</div>
+<div class="subtitle">교리설교 6강 복습 덱 · 같은 콘텐츠(표지 + 2강 본문)에 디자인만 다르게 입힘 · 1280×720 축소 미리보기</div>
+<div class="legend">
+  <b>① Geist</b> (Vercel · OFL) Geist + Pretendard &nbsp;·&nbsp;
+  <b>② IBM Carbon</b> (Apache-2.0) IBM Plex Sans KR <i>공식 한글</i> &nbsp;·&nbsp;
+  <b>③ Material 3</b> (Apache-2.0) Roboto + Noto Sans KR &nbsp;— 모두 오픈소스, 바로 적용 가능
+</div>
+<div class="cols">
+  <div class="col geist">
+    <h2>① Geist (Vercel)</h2>
+    <div class="desc">무채색 미니멀 — 색을 거의 빼고 타이포·여백으로 위계를 만든다. 셋 중 가장 차분·모던. (한글은 Pretendard 페어)</div>
+    <div class="shot"><div class="cap">표지</div><div class="frame-wrap"><iframe class="frame" id="g1"></iframe></div></div>
+    <div class="shot"><div class="cap">2강 본문</div><div class="frame-wrap"><iframe class="frame" id="g2"></iframe></div></div>
+  </div>
+  <div class="col carbon">
+    <h2>② IBM Carbon</h2>
+    <div class="desc">직각·질서·블루 한 포인트. IBM Plex Sans KR로 한글 완성도가 가장 높다. 진중·신뢰의 기업 톤.</div>
+    <div class="shot"><div class="cap">표지</div><div class="frame-wrap"><iframe class="frame" id="c1"></iframe></div></div>
+    <div class="shot"><div class="cap">2강 본문</div><div class="frame-wrap"><iframe class="frame" id="c2"></iframe></div></div>
+  </div>
+  <div class="col m3">
+    <h2>③ Material 3</h2>
+    <div class="desc">둥근 tonal 면·부드러운 색. Roboto + Noto Sans KR. 친근하고 대중적 — 청소년부에 온기를 더하기 좋다.</div>
+    <div class="shot"><div class="cap">표지</div><div class="frame-wrap"><iframe class="frame" id="m1"></iframe></div></div>
+    <div class="shot"><div class="cap">2강 본문</div><div class="frame-wrap"><iframe class="frame" id="m2"></iframe></div></div>
+  </div>
+</div>
+
+<script>
+/* ============ ① GEIST — 표지 ============ */
+const G1 = `<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:1280px;height:720px}
+body{font-family:'Geist','Pretendard Variable',Pretendard,system-ui,sans-serif;background:#fff;color:#000;-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-0.01em}
+.art{position:relative;width:1280px;height:720px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 100px}
+.art>*{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:17px;color:#666;font-weight:500;margin-bottom:30px;align-self:flex-start}
+.eyebrow .d{width:7px;height:7px;border-radius:50%;background:#000}
+h1{font-size:84px;font-weight:600;line-height:1.05;letter-spacing:-0.045em;color:#000}
+.bar{width:44px;height:3px;background:#000;border-radius:2px;margin:30px 0 0}
+.sub{font-size:23px;color:#666;font-weight:400;margin-top:22px}
+.tags{display:flex;gap:9px;margin-top:34px}
+.tags span{font-size:15px;color:#444;font-weight:500;border:1px solid #eaeaea;border-radius:6px;padding:8px 16px}
+.big{position:absolute;right:0px;bottom:-110px;font-size:400px;font-weight:600;color:#fafafa;letter-spacing:-0.06em;z-index:0;user-select:none}
+</style></head><body><div class="art">
+<span class="eyebrow"><span class="d"></span>교리설교 6강 · 복습 세션</span>
+<h1>교리, 한 흐름으로<br>다시 보기</h1>
+<div class="bar"></div>
+<p class="sub">6번의 교리설교 — 한 페이지씩 다시</p>
+<div class="tags"><span>교리</span><span>하나님</span><span>목적</span><span>사랑</span></div>
+<div class="big">6</div>
+</div></body></html>`;
+
+/* ============ ① GEIST — 본문 ============ */
+const G2 = `<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:1280px;height:720px}
+body{font-family:'Geist','Pretendard Variable',Pretendard,system-ui,sans-serif;background:#fff;color:#000;-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-0.01em}
+.art{width:1280px;height:720px;overflow:hidden;display:grid;grid-template-columns:1.05fr 0.95fr;align-items:center;gap:30px;padding:0 96px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:16px;color:#666;font-weight:500;margin-bottom:22px}
+.eyebrow .d{width:7px;height:7px;border-radius:50%;background:#000}
+h1{font-size:62px;font-weight:600;line-height:1.08;letter-spacing:-0.04em}
+.note{font-size:19px;color:#666;margin-top:20px;line-height:1.6}
+.R{display:flex;flex-direction:column;align-items:center;gap:12px}
+.card{width:330px;border:1px solid #eaeaea;border-radius:8px;padding:22px 24px;text-align:center}
+.card .k{font-size:14px;color:#999;font-weight:500;margin-bottom:7px}
+.card .v{font-size:30px;font-weight:600;color:#000;letter-spacing:-0.02em}
+.card .r{font-size:13px;color:#666;margin-top:10px;border:1px solid #eee;border-radius:5px;padding:3px 11px;display:inline-block}
+.arrow{font-size:26px;color:#c4c4c4;line-height:1}
+</style></head><body><div class="art">
+<div class="L">
+  <span class="eyebrow"><span class="d"></span>2강 · 하나님은 누구신가</span>
+  <h1>위에서<br>다스리시는 분</h1>
+  <p class="note">따로가 아니라 하나의 수직 관계입니다.<br>위에 하나님, 아래에 나.</p>
+</div>
+<div class="R">
+  <div class="card"><div class="k">위 · 하나님</div><div class="v">다스리시는 분</div><div class="r">엡 1:11</div></div>
+  <div class="arrow">&#8597;</div>
+  <div class="card"><div class="k">아래 · 나</div><div class="v">부르심 받은 자</div></div>
+</div>
+</div></body></html>`;
+
+/* ============ ② CARBON — 표지 ============ */
+const C1 = `<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:1280px;height:720px}
+body{font-family:'IBM Plex Sans','IBM Plex Sans KR',system-ui,sans-serif;background:#fff;color:#161616;-webkit-font-smoothing:antialiased;word-break:keep-all}
+.art{position:relative;width:1280px;height:720px;overflow:hidden}
+.layer{position:absolute;right:0;top:0;width:42%;height:100%;background:#f4f4f4}
+.bluebar{position:absolute;left:0;top:0;width:6px;height:100%;background:#0f62fe}
+.wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 96px}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:0.05em;color:#525252;margin-bottom:24px}
+h1{font-size:78px;font-weight:600;line-height:1.07;letter-spacing:-0.02em;color:#161616}
+h1 .hl{color:#0f62fe}
+.rule{width:0;height:0}
+.sub{font-size:22px;color:#525252;margin-top:24px;font-weight:400}
+.tags{display:flex;margin-top:34px}
+.tags span{font-size:15px;color:#161616;background:#e8e8e8;padding:9px 17px;font-weight:500;margin-right:2px}
+.acc{width:52px;height:3px;background:#0f62fe;margin-top:30px}
+</style></head><body><div class="art">
+<div class="layer"></div><div class="bluebar"></div>
+<div class="wrap">
+  <div class="eyebrow">교리설교 6강 · 복습 세션</div>
+  <h1>교리, 한 흐름으로<br><span class="hl">다시 보기</span></h1>
+  <div class="acc"></div>
+  <p class="sub">6번의 교리설교 — 한 페이지씩 다시</p>
+  <div class="tags"><span>교리</span><span>하나님</span><span>목적</span><span>사랑</span></div>
+</div></div></body></html>`;
+
+/* ============ ② CARBON — 본문 ============ */
+const C2 = `<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:1280px;height:720px}
+body{font-family:'IBM Plex Sans','IBM Plex Sans KR',system-ui,sans-serif;background:#fff;color:#161616;-webkit-font-smoothing:antialiased;word-break:keep-all}
+.art{position:relative;width:1280px;height:720px;overflow:hidden;display:grid;grid-template-columns:1.05fr 0.95fr;align-items:center;gap:30px;padding:0 96px}
+.bluebar{position:absolute;left:0;top:0;width:6px;height:100%;background:#0f62fe}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:0.05em;color:#525252;margin-bottom:20px}
+h1{font-size:60px;font-weight:600;line-height:1.08;letter-spacing:-0.02em}
+h1 .hl{color:#0f62fe}
+.note{font-size:19px;color:#525252;margin-top:20px;line-height:1.6}
+.R{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.card{width:340px;background:#f4f4f4;border-left:4px solid #0f62fe;padding:20px 22px}
+.card.alt{border-left-color:#8d8d8d;background:#f7f7f7}
+.card .k{font-size:14px;color:#525252;font-weight:500;margin-bottom:6px}
+.card .v{font-size:28px;font-weight:600;color:#161616}
+.card .r{font-size:13px;color:#0f62fe;font-weight:600;margin-top:8px;display:inline-block}
+.arrow{font-size:24px;color:#a8a8a8;align-self:center;line-height:1}
+</style></head><body><div class="art">
+<div class="bluebar"></div>
+<div class="L">
+  <div class="eyebrow">2강 · 하나님은 누구신가</div>
+  <h1>위에서<br><span class="hl">다스리시는 분</span></h1>
+  <p class="note">따로가 아니라 하나의 수직 관계입니다.<br>위에 하나님, 아래에 나.</p>
+</div>
+<div class="R">
+  <div class="card"><div class="k">위 · 하나님</div><div class="v">다스리시는 분</div><div class="r">엡 1:11</div></div>
+  <div class="arrow">&#8597;</div>
+  <div class="card alt"><div class="k">아래 · 나</div><div class="v">부르심 받은 자</div></div>
+</div>
+</div></body></html>`;
+
+/* ============ ③ MATERIAL 3 — 표지 ============ */
+const M1 = `<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:1280px;height:720px}
+:root{--p:#415f91;--onsurf:#1a1c1e;--surf:#fbf8fd;--pc:#d7e3ff;--onpc:#001b3e;--sc:#dce2f9}
+body{font-family:'Roboto','Noto Sans KR',system-ui,sans-serif;background:var(--surf);color:var(--onsurf);-webkit-font-smoothing:antialiased;word-break:keep-all}
+.art{position:relative;width:1280px;height:720px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:0 100px}
+.art::before{content:"";position:absolute;right:-140px;top:-140px;width:540px;height:540px;border-radius:50%;background:var(--pc);opacity:0.55}
+.art::after{content:"";position:absolute;right:130px;bottom:-180px;width:360px;height:360px;border-radius:50%;background:var(--sc);opacity:0.7}
+.inner{position:relative;z-index:1}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:500;color:var(--onpc);background:var(--sc);padding:10px 20px;border-radius:999px;margin-bottom:28px}
+h1{font-size:80px;font-weight:500;line-height:1.06;letter-spacing:-0.015em;color:var(--onsurf)}
+h1 .hl{color:var(--p)}
+.sub{font-size:23px;color:#44474e;margin-top:24px;font-weight:400}
+.tags{display:flex;gap:11px;margin-top:36px}
+.tags span{font-size:15px;font-weight:500;color:var(--onpc);background:var(--pc);padding:10px 20px;border-radius:14px}
+</style></head><body><div class="art"><div class="inner">
+<span class="chip">교리설교 6강 · 복습 세션</span>
+<h1>교리, 한 흐름으로<br><span class="hl">다시 보기</span></h1>
+<p class="sub">6번의 교리설교 — 한 페이지씩 다시</p>
+<div class="tags"><span>교리</span><span>하나님</span><span>목적</span><span>사랑</span></div>
+</div></div></body></html>`;
+
+/* ============ ③ MATERIAL 3 — 본문 ============ */
+const M2 = `<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html,body{width:1280px;height:720px}
+:root{--p:#415f91;--onsurf:#1a1c1e;--surf:#fbf8fd;--pc:#d7e3ff;--onpc:#001b3e;--sc:#dce2f9;--scc:#eee8f4}
+body{font-family:'Roboto','Noto Sans KR',system-ui,sans-serif;background:var(--surf);color:var(--onsurf);-webkit-font-smoothing:antialiased;word-break:keep-all}
+.art{width:1280px;height:720px;overflow:hidden;display:grid;grid-template-columns:1.05fr 0.95fr;align-items:center;gap:30px;padding:0 96px}
+.chip{display:inline-flex;align-items:center;font-size:15px;font-weight:500;color:var(--onpc);background:var(--sc);padding:9px 18px;border-radius:999px;margin-bottom:22px}
+h1{font-size:60px;font-weight:500;line-height:1.08;letter-spacing:-0.015em}
+h1 .hl{color:var(--p)}
+.note{font-size:19px;color:#44474e;margin-top:20px;line-height:1.6}
+.R{display:flex;flex-direction:column;align-items:center;gap:12px}
+.card{width:330px;border-radius:24px;padding:22px 26px;text-align:center;background:var(--scc)}
+.card.up{background:var(--pc)}
+.card .k{font-size:14px;color:#44474e;font-weight:500;margin-bottom:7px}
+.card.up .k{color:var(--onpc)}
+.card .v{font-size:29px;font-weight:500;color:var(--onsurf);letter-spacing:-0.01em}
+.card .r{font-size:13px;color:var(--p);font-weight:500;margin-top:9px;background:#fff;border-radius:999px;padding:3px 12px;display:inline-block}
+.arrow{font-size:26px;color:var(--p);line-height:1}
+</style></head><body><div class="art">
+<div class="L">
+  <span class="chip">2강 · 하나님은 누구신가</span>
+  <h1>위에서<br><span class="hl">다스리시는 분</span></h1>
+  <p class="note">따로가 아니라 하나의 수직 관계입니다.<br>위에 하나님, 아래에 나.</p>
+</div>
+<div class="R">
+  <div class="card up"><div class="k">위 · 하나님</div><div class="v">다스리시는 분</div><div class="r">엡 1:11</div></div>
+  <div class="arrow">&#8597;</div>
+  <div class="card"><div class="k">아래 · 나</div><div class="v">부르심 받은 자</div></div>
+</div>
+</div></body></html>`;
+
+document.getElementById('g1').srcdoc = G1;
+document.getElementById('g2').srcdoc = G2;
+document.getElementById('c1').srcdoc = C1;
+document.getElementById('c2').srcdoc = C2;
+document.getElementById('m1').srcdoc = M1;
+document.getElementById('m2').srcdoc = M2;
+</script>
+</body></html>

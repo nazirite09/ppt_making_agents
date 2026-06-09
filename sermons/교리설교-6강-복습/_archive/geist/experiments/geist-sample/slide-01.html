@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- slide #01 · type: title (cover) · GEIST 시험본 -->
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<title>Slide 01 · 교리, 한 흐름으로 다시 보기 (Geist)</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html.theme-light{--bg:#fff;--surface:#fff;--border:#eaeaea;--text:#000;--text-secondary:#666;--accent:#000;--accent-secondary:#8f8f8f;--accent-soft:#f4f4f4}
+  html.theme-dark{--bg:#000;--surface:#0a0a0a;--border:#1f1f1f;--text:#ededed;--text-secondary:#8f8f8f;--accent:#fff;--accent-secondary:#8f8f8f;--accent-soft:#1a1a1a}
+  html,body{width:1280px;height:720px}
+  body{font-family:'Geist','Pretendard Variable',Pretendard,system-ui,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;word-break:keep-all;overflow:hidden}
+  .artboard{position:relative;width:1280px;height:720px;overflow:hidden;background:var(--bg)}
+  .cover-bg{position:absolute;inset:0;background:linear-gradient(180deg,#fff 0%,#fafafa 100%)}
+  html.theme-dark .cover-bg{background:linear-gradient(180deg,#0a0a0a,#000)}
+  .cover{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 104px}
+  .cover>*{position:relative;z-index:1}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;align-self:flex-start;font-size:17px;font-weight:500;color:var(--text-secondary);margin-bottom:30px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .cover h1{font-size:84px;font-weight:600;line-height:1.05;letter-spacing:-0.045em;color:var(--text)}
+  .cover-rule{width:44px;height:3px;background:var(--accent);border-radius:2px;margin:30px 0 22px}
+  .cover-sub{font-size:23px;color:var(--text-secondary);font-weight:400}
+  .theme-tags{display:flex;gap:9px;margin-top:34px}
+  .theme-tags span{font-size:15px;font-weight:500;color:var(--text-secondary);border:1px solid var(--border);border-radius:6px;padding:8px 16px}
+  /* 무채 6점 수렴 — 원본 '흩어진 6강 → 하나로' 모티프 보존 */
+  .six{position:absolute;right:104px;top:50%;transform:translateY(-50%);width:340px;height:300px;z-index:1}
+  .six .conv{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:12px;height:12px;border-radius:50%;background:var(--accent)}
+  .six .ln{position:absolute;left:50%;top:50%;height:1px;background:var(--border);transform-origin:left center}
+  .six .num{position:absolute;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:17px;border:1px solid var(--border);background:var(--surface);color:var(--text-secondary)}
+  .six .num.b{border-color:var(--accent);color:var(--text)}
+</style></head>
+<body>
+<section class="artboard" aria-label="제목 슬라이드">
+  <div class="cover-bg"></div>
+  <div class="cover">
+    <span class="eyebrow"><span class="dot"></span>교리설교 6강 · 복습 세션</span>
+    <h1>교리, 한 흐름으로<br>다시 보기</h1>
+    <div class="cover-rule"></div>
+    <p class="cover-sub">6번의 교리설교 — 한 페이지씩 다시</p>
+    <div class="theme-tags"><span>교리</span><span>하나님</span><span>목적</span><span>사랑</span></div>
+  </div>
+  <div class="six" aria-hidden="true">
+    <div class="conv"></div>
+    <span class="ln" style="width:150px;transform:rotate(-150deg)"></span>
+    <span class="ln" style="width:135px;transform:rotate(-95deg)"></span>
+    <span class="ln" style="width:160px;transform:rotate(-40deg)"></span>
+    <span class="ln" style="width:150px;transform:rotate(30deg)"></span>
+    <span class="ln" style="width:140px;transform:rotate(95deg)"></span>
+    <span class="ln" style="width:155px;transform:rotate(160deg)"></span>
+    <span class="num b" style="left:24px;top:6px">1</span>
+    <span class="num" style="left:0;top:128px">2</span>
+    <span class="num b" style="left:62px;top:236px">3</span>
+    <span class="num" style="right:38px;top:222px">4</span>
+    <span class="num b" style="right:0;top:96px">5</span>
+    <span class="num" style="right:46px;top:0">6</span>
+  </div>
+</section>
+</body></html>

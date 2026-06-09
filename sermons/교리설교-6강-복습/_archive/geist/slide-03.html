@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!-- slide #03 · type: 대지 (교리란 무엇인가) -->
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 03 · 교리란 무엇인가</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { interpolate-size: allow-keywords; }
+  html.theme-light {
+    --bg: #FFFFFF; --surface: #FFFFFF; --surface-hover: #FAFAFA;
+    --border: #EAEAEA;
+    --text: #000000; --text-secondary: #666666;
+    --accent: #000000; --accent-secondary: #8F8F8F;
+    --accent-strong: #000000; --accent-soft: #F4F4F4;
+    --positive: #45A557; --negative: #E5484D; --warning: #F5A623;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  html.theme-dark {
+    --bg: #000000; --surface: #0A0A0A; --surface-hover: #1A1A1A;
+    --border: #1F1F1F;
+    --text: #EDEDED; --text-secondary: #8F8F8F;
+    --accent: #FFFFFF; --accent-secondary: #8F8F8F;
+    --accent-strong: #FFFFFF; --accent-soft: #1A1A1A;
+    --positive: #45A557; --negative: #E5484D; --warning: #F5A623;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
+  }
+  html, body { width: 1280px; height: 720px; }
+  body { font-family: 'Geist', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; overflow: hidden; word-break: keep-all; }
+  h1, h2, h3, h4 { color: var(--text); line-height: 1.2; letter-spacing: -0.03em; }
+  .artboard { position: relative; width: 1280px; height: 720px; overflow: hidden; background: var(--bg); }
+  .stage { position: relative; z-index: 1; height: 100%; padding: 70px 96px 64px; display: flex; flex-direction: column; }
+
+  .label { display: inline-flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 700; letter-spacing: 0.02em; color: var(--accent); background: var(--accent-soft); padding: 8px 16px; border-radius: 8px; margin-bottom: 22px; align-self: flex-start; }
+  .h-title { font-size: 54px; font-weight: 600; line-height: 1.14; letter-spacing: -0.04em; }
+  .h-title .hl { color: var(--accent); }
+
+  .def-block { margin-top: 24px; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent); border-radius: 16px; padding: 22px 28px; max-width: 1000px; }
+  .def-block .dk { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 7px; }
+  .def-block p { font-size: 24px; line-height: 1.5; color: var(--text); font-weight: 600; }
+  .def-block p b { color: var(--accent-strong); font-weight: 600; }
+
+  .contrast { display: grid; grid-template-columns: 1fr auto 1fr; gap: 26px; align-items: center; margin-top: 30px; }
+  .ccard { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 28px 28px; box-shadow: var(--shadow-sm); height: 100%; }
+  .ccard.hard { background: linear-gradient(165deg, #EEF0F2, #E4E6E9); border-color: rgba(112,115,124,0.34); }
+  html.theme-dark .ccard.hard { background: linear-gradient(165deg, #303236, #26282B); }
+  .ccard.soft { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+  .ccard .cico { width: 50px; height: 50px; border-radius: 13px; display: grid; place-items: center; margin-bottom: 16px; }
+  .ccard.hard .cico { background: #D7DADE; color: #5A5C63; }
+  html.theme-dark .ccard.hard .cico { background: #3A3D42; color: #AEB0B6; }
+  .ccard.soft .cico { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
+  .ccard .ctag { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--text-secondary); margin-bottom: 8px; }
+  .ccard.soft .ctag { color: var(--accent); }
+  .ccard h3 { font-size: 27px; font-weight: 600; letter-spacing: -0.035em; margin-bottom: 8px; }
+  .ccard.hard h3 { color: #46474C; }
+  html.theme-dark .ccard.hard h3 { color: #C2C4C8; }
+  .ccard.soft h3 { color: var(--accent-strong); }
+  html.theme-dark .ccard.soft h3 { color: #E0E0E0; }
+  .ccard p { font-size: 17px; line-height: 1.55; color: var(--text-secondary); }
+  .ccard.soft p { color: color-mix(in srgb, var(--accent-strong) 78%, var(--text)); }
+  html.theme-dark .ccard.soft p { color: #CFE0FF; }
+  .cmid { display: grid; place-items: center; }
+  .cmid .ring { width: 64px; height: 64px; border-radius: 50%; background: var(--surface); border: 1.5px solid var(--border); display: grid; place-items: center; box-shadow: var(--shadow-sm); color: var(--accent); }
+  .cmid .clabel { margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--text-secondary); white-space: nowrap; }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate { animation: fadeInUp 0.7s ease-out both; }
+  .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+  .viz-menu { position: fixed; top: 16px; right: 16px; z-index: 9999; }
+  .viz-menu-toggle { width: 42px; height: 42px; border-radius: 11px; background: var(--surface); border: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
+  .viz-menu-toggle:hover { background: var(--surface-hover); }
+  .viz-menu-dropdown { position: absolute; top: 50px; right: 0; min-width: 188px; background: var(--surface); border: 1px solid var(--border); border-radius: 13px; padding: 8px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.18s; box-shadow: var(--shadow-lg); }
+  .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .viz-menu-dropdown button { width: 100%; padding: 10px 13px; border: none; border-radius: 9px; background: transparent; color: var(--text); font-size: 14px; font-family: inherit; font-weight: 500; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; }
+  .viz-menu-dropdown button:hover { background: var(--surface-hover); }
+  .skip-to-content { position: absolute; top: -50px; left: 6px; background: var(--accent); color: #fff; padding: 8px 12px; text-decoration: none; border-radius: 8px; z-index: 10000; }
+  .skip-to-content:focus { top: 6px; }
+  @media print { @page { size: 1280px 720px; margin: 0; } .viz-menu { display: none; } }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<nav class="viz-menu" aria-label="유틸리티 메뉴">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기" aria-haspopup="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown" role="menu">
+    <button onclick="cycleTheme()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/></svg> 테마 전환</button>
+    <button onclick="downloadImage()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG 저장</button>
+    <button onclick="window.print()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> 인쇄 / PDF</button>
+  </div>
+</nav>
+
+<main id="main-content">
+<section class="artboard" aria-label="교리란 무엇인가">
+  <div class="stage">
+    <span class="label animate">먼저 · 교리란?</span>
+    <h1 class="h-title animate">교리란 <span class="hl">무엇인가</span></h1>
+
+    <div class="def-block animate delay-1">
+      <div class="dk">교리의 정의</div>
+      <p>성경 안에 담긴 진리를 <b>체계적·조직적으로 정리</b>한 것</p>
+    </div>
+
+    <div class="contrast">
+      <article class="ccard hard animate delay-1">
+        <div class="cico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M3 11h18"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg></div>
+        <div class="ctag">겉은 — 딱딱한 보물상자</div>
+        <h3>변치 않고 타협하지 않는</h3>
+        <p>절대 변하지 않고, 그 어떤 것과도 타협하지 않는 단단한 그릇</p>
+      </article>
+
+      <div class="cmid animate delay-2">
+        <div class="ring" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></div>
+        <div class="clabel">그 안에 담긴 것은</div>
+      </div>
+
+      <article class="ccard soft animate delay-3">
+        <div class="cico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+        <div class="ctag">속은 — 부드러운 인격</div>
+        <h3>하나님의 따뜻한 성품</h3>
+        <p>차갑고 어려운 게 아니라, 변치 않는 하나님의 성품을 담은 그릇</p>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+  var THEME_KEY = 'viz-theme';
+  function applyTheme(t) { document.documentElement.className = 'theme-' + t; try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
+  function cycleTheme() { var cur = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light'; applyTheme(cur === 'dark' ? 'light' : 'dark'); }
+  function toggleMenu() { document.getElementById('vizMenuDropdown').classList.toggle('open'); }
+  function downloadImage() { var node = document.querySelector('.artboard'); if (typeof htmlToImage === 'undefined') return; htmlToImage.toPng(node, { pixelRatio: 2, width: 1280, height: 720 }).then(function (url) { var a = document.createElement('a'); a.download = 'slide-03.png'; a.href = url; a.click(); }); }
+  (function () { try { var s = localStorage.getItem(THEME_KEY); if (s) applyTheme(s); } catch (e) {} })();
+  document.addEventListener('click', function (e) { if (!e.target.closest('.viz-menu')) { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+</script>
+</body>
+</html>

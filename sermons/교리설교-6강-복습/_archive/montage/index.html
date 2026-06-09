@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- index · 교리설교 6강 복습 — 22 슬라이드 미리보기 그리드 -->
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>교리설교 6강 복습 · 슬라이드 미리보기 (22)</title>
+<link href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html.theme-light {
+    --bg: #F4F4F5; --surface: #FFFFFF; --surface-hover: #F4F4F5;
+    --border: rgba(112,115,124,0.22);
+    --text: #171719; --text-secondary: #5A5C63;
+    --accent: #0066FF; --accent-secondary: #70737C;
+    --accent-strong: #005EEB; --accent-soft: #EAF2FE;
+    --positive: #00BF40; --negative: #FF4242; --warning: #FF9200;
+    --shadow-sm: 0 2px 4px -2px rgba(23,23,23,0.06), 0 4px 6px -1px rgba(23,23,23,0.05);
+    --shadow-md: 0 4px 6px -2px rgba(23,23,23,0.07), 0 10px 15px -3px rgba(23,23,23,0.07);
+    --shadow-lg: 0 6px 10px -4px rgba(23,23,23,0.08), 0 16px 24px -6px rgba(23,23,23,0.08);
+  }
+  html.theme-dark {
+    --bg: #141415; --surface: #1B1C1E; --surface-hover: #2E2F33;
+    --border: rgba(112,115,124,0.30);
+    --text: #F7F7F8; --text-secondary: #AEB0B6;
+    --accent: #3385FF; --accent-secondary: #989BA2;
+    --accent-strong: #1A75FF; --accent-soft: rgba(51,133,255,0.16);
+    --positive: #1ED45A; --negative: #FF6363; --warning: #FFA938;
+    --shadow-sm: 0 2px 4px -2px rgba(0,0,0,0.40), 0 4px 6px -1px rgba(0,0,0,0.30);
+    --shadow-md: 0 4px 6px -2px rgba(0,0,0,0.45), 0 10px 15px -3px rgba(0,0,0,0.40);
+    --shadow-lg: 0 8px 14px -4px rgba(0,0,0,0.55), 0 18px 28px -8px rgba(0,0,0,0.45);
+  }
+  body { font-family: 'Wanted Sans Variable', 'Wanted Sans', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; min-height: 100vh; }
+  h1, h2, h3 { letter-spacing: -0.03em; line-height: 1.2; }
+
+  header { padding: 40px 56px 26px; border-bottom: 1px solid var(--border); background: var(--surface); position: sticky; top: 0; z-index: 50; box-shadow: var(--shadow-sm); }
+  .hd-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  header .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--accent); background: var(--accent-soft); padding: 7px 15px; border-radius: 999px; margin-bottom: 14px; }
+  header h1 { font-size: 30px; font-weight: 800; }
+  header h1 .hl { color: var(--accent); }
+  header .sub { margin-top: 7px; font-size: 15px; color: var(--text-secondary); font-weight: 500; }
+  header .meta-tags { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+  header .meta-tags span { font-size: 13px; font-weight: 600; color: var(--text-secondary); background: var(--surface-hover); border: 1px solid var(--border); padding: 6px 13px; border-radius: 999px; }
+
+  .toolbar { display: flex; gap: 10px; align-items: center; }
+  .toolbar button { font-family: inherit; font-size: 14px; font-weight: 600; color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 11px; padding: 10px 16px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: var(--shadow-sm); transition: all 0.18s; }
+  .toolbar button:hover { background: var(--surface-hover); border-color: color-mix(in srgb, var(--accent) 45%, transparent); color: var(--accent); }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; padding: 36px 56px 72px; }
+  @media (max-width: 1500px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 1080px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .thumb { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+  .thumb:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+  .thumb:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .frame-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-hover); }
+  .frame-wrap iframe { position: absolute; top: 0; left: 0; width: 1280px; height: 720px; border: 0; transform-origin: top left; pointer-events: none; }
+  .frame-cover { position: absolute; inset: 0; z-index: 2; }
+  .tinfo { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-top: 1px solid var(--border); }
+  .tinfo .tn { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .tinfo .tt { min-width: 0; }
+  .tinfo .tt .ti-title { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tinfo .tt .ti-type { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+  .badge-star { margin-left: auto; flex: 0 0 auto; font-size: 11px; font-weight: 800; color: #fff; background: var(--accent); padding: 3px 9px; border-radius: 999px; }
+
+  .skip-to-content { position: absolute; top: -50px; left: 6px; background: var(--accent); color: #fff; padding: 8px 12px; text-decoration: none; border-radius: 8px; z-index: 10000; }
+  .skip-to-content:focus { top: 6px; }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .thumb { animation: fadeInUp 0.5s ease-out both; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  @media print { .toolbar { display: none; } .thumb { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<header>
+  <div class="hd-top">
+    <div>
+      <span class="eyebrow">Montage · 16:9 아트보드</span>
+      <h1>교리설교 6강 복습 — <span class="hl">한 흐름으로 다시 보기</span></h1>
+      <p class="sub">슬라이드 22장 · 청소년 1부 · 클릭하면 해당 슬라이드를 새 탭으로 엽니다</p>
+      <div class="meta-tags">
+        <span>표지 1</span><span>오프닝 1</span><span>교리 2</span><span>오버뷰 1 ★</span><span>강별 복습 15</span><span>결론 2 (★ 21)</span>
+      </div>
+    </div>
+    <div class="toolbar">
+      <button onclick="openAll()" aria-label="모두 새 탭으로 열기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> 전체 열기</button>
+      <button onclick="cycleTheme()" aria-label="테마 전환"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/></svg> 테마</button>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="grid" id="grid"></div>
+</main>
+
+<script>
+  var THEME_KEY = 'viz-theme';
+  function applyTheme(t) { document.documentElement.className = 'theme-' + t; try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
+  function cycleTheme() { var cur = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light'; applyTheme(cur === 'dark' ? 'light' : 'dark'); }
+  (function () { try { var s = localStorage.getItem(THEME_KEY); if (s) applyTheme(s); } catch (e) {} })();
+
+  var slides = [
+    { n: 1,  title: '교리, 한 흐름으로 다시 보기', type: '제목 (Title)' },
+    { n: 2,  title: '우리는 망각하는 존재, 그래서', type: '오프닝 (Opening)' },
+    { n: 3,  title: '교리란 무엇인가', type: '대지 · 교리란?' },
+    { n: 4,  title: '웨스트민스터 문답이라는 그릇', type: '인용 · 웨스트민스터' },
+    { n: 5,  title: '여섯 걸음이 이루는 하나의 그림', type: '오버뷰 · 구조 다이어그램', star: true },
+    { n: 6,  title: '1강 · 성경 말씀은 우리를 온전하게', type: '대지 · 1강 ①' },
+    { n: 7,  title: '흔들리지 않게 하시는 말씀', type: '본문 봉독 · 1강 ②' },
+    { n: 8,  title: '2강 · 하나님은 누구신가', type: '대지 · 2강 ①' },
+    { n: 9,  title: '내 인생이라는 영화의 연출자', type: '예화 · 2강 ②' },
+    { n: 10, title: '창세 전부터, 조건 없이', type: '대지 · 2강 ③' },
+    { n: 11, title: '3강 · 목적이 변하면 삶이 변합니다', type: '대지 · 3강 ①' },
+    { n: 12, title: '바울의 각성, 새로운 눈', type: '예화·본문 · 3강 ②' },
+    { n: 13, title: '4강 · 목적의 상실은 분열을 낳습니다', type: '대지 · 4강 ①' },
+    { n: 14, title: '솔로몬, 마음을 빼앗기다', type: '예화·본문 · 4강 ②' },
+    { n: 15, title: '목적을 잃으면 노예가 됩니다', type: '대지 · 4강 ③' },
+    { n: 16, title: '5강 · 다시 선포된 십계명, 그 울타리', type: '대지 · 5강 ①' },
+    { n: 17, title: '네 마음을 힘써 지키라', type: '본문 봉독 · 5강 ②' },
+    { n: 18, title: '6강 · 율법은 사랑이다', type: '대지 · 6강 ①' },
+    { n: 19, title: '영원한 언약, Love never fails', type: '인용·본문 · 6강 ②' },
+    { n: 20, title: '독점적 관계, 그리고 다윗', type: '대지 · 6강 ③' },
+    { n: 21, title: '따로가 아니라 하나의 구조', type: '결론 · 구조 다이어그램', star: true },
+    { n: 22, title: '울타리 안에서 마음을 지키는', type: '마무리 · 결단·축복' }
+  ];
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function buildGrid() {
+    var grid = document.getElementById('grid');
+    var html = '';
+    for (var i = 0; i < slides.length; i++) {
+      var s = slides[i];
+      var file = 'slide-' + pad(s.n) + '.html';
+      var delay = (i * 0.03).toFixed(2);
+      html += '<a class="thumb" href="' + file + '" target="_blank" rel="noopener" style="animation-delay:' + delay + 's" aria-label="슬라이드 ' + s.n + ' ' + s.title + ' 열기">'
+        + '<div class="frame-wrap"><iframe src="' + file + '" loading="lazy" tabindex="-1" title="슬라이드 ' + s.n + ' 미리보기" scrolling="no"></iframe><span class="frame-cover"></span></div>'
+        + '<div class="tinfo"><span class="tn">' + pad(s.n) + '</span><span class="tt"><span class="ti-title">' + s.title + '</span><span class="ti-type">' + s.type + '</span></span>'
+        + (s.star ? '<span class="badge-star">★ 핵심</span>' : '') + '</div>'
+        + '</a>';
+    }
+    grid.innerHTML = html;
+    scaleFrames();
+  }
+
+  function scaleFrames() {
+    var wraps = document.querySelectorAll('.frame-wrap');
+    wraps.forEach(function (w) {
+      var iframe = w.querySelector('iframe');
+      var scale = w.clientWidth / 1280;
+      iframe.style.transform = 'scale(' + scale + ')';
+      iframe.style.width = '1280px';
+      iframe.style.height = '720px';
+    });
+  }
+
+  function openAll() {
+    for (var i = 0; i < slides.length; i++) {
+      window.open('slide-' + pad(slides[i].n) + '.html', '_blank');
+    }
+  }
+
+  window.addEventListener('resize', scaleFrames);
+  document.addEventListener('DOMContentLoaded', buildGrid);
+</script>
+</body>
+</html>

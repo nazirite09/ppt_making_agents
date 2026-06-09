@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!-- slide #04 · type: 인용/표기 (웨스트민스터 문답) -->
+<html lang="ko" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 04 · 웨스트민스터 문답이라는 그릇</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { interpolate-size: allow-keywords; }
+  html.theme-light {
+    --bg: #FFFFFF; --surface: #FFFFFF; --surface-hover: #FAFAFA;
+    --border: #EAEAEA;
+    --text: #000000; --text-secondary: #666666;
+    --accent: #000000; --accent-secondary: #8F8F8F;
+    --accent-strong: #000000; --accent-soft: #F4F4F4;
+    --positive: #45A557; --negative: #E5484D; --warning: #F5A623;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  html.theme-dark {
+    --bg: #000000; --surface: #0A0A0A; --surface-hover: #1A1A1A;
+    --border: #1F1F1F;
+    --text: #EDEDED; --text-secondary: #8F8F8F;
+    --accent: #FFFFFF; --accent-secondary: #8F8F8F;
+    --accent-strong: #FFFFFF; --accent-soft: #1A1A1A;
+    --positive: #45A557; --negative: #E5484D; --warning: #F5A623;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
+  }
+  html, body { width: 1280px; height: 720px; }
+  body { font-family: 'Geist', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; overflow: hidden; word-break: keep-all; }
+  h1, h2, h3, h4 { color: var(--text); line-height: 1.2; letter-spacing: -0.03em; }
+  .artboard { position: relative; width: 1280px; height: 720px; overflow: hidden; background: var(--bg); }
+  .stage { position: relative; z-index: 1; height: 100%; padding: 64px 96px 60px; display: flex; flex-direction: column; }
+
+  .label { display: inline-flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 700; letter-spacing: 0.02em; color: var(--accent); background: var(--accent-soft); padding: 8px 16px; border-radius: 8px; margin-bottom: 20px; align-self: flex-start; }
+  .h-title { font-size: 50px; font-weight: 600; line-height: 1.14; letter-spacing: -0.04em; }
+  .h-title .hl { color: var(--accent); }
+
+  .meta-row { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+  .meta { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--text-secondary); background: var(--surface); border: 1px solid var(--border); padding: 8px 15px; border-radius: 8px; box-shadow: var(--shadow-sm); }
+  .meta b { color: var(--text); font-weight: 600; }
+  .meta svg { color: var(--accent-secondary); }
+
+  .branch { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 28px; align-items: stretch; }
+  .bcard { position: relative; border-radius: 18px; padding: 26px 28px; box-shadow: var(--shadow-sm); }
+  .bcard.minor { background: var(--surface); border: 1px solid var(--border); }
+  .bcard.major { background: var(--accent-soft); border: 1.5px solid color-mix(in srgb, var(--accent) 55%, transparent); }
+  .bcard .btag { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; letter-spacing: 0.03em; padding: 6px 13px; border-radius: 8px; margin-bottom: 14px; }
+  .bcard.minor .btag { color: var(--accent-secondary); background: var(--surface-hover); }
+  .bcard.major .btag { color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent); }
+  .bcard h3 { font-size: 28px; font-weight: 600; letter-spacing: -0.035em; }
+  .bcard.minor h3 { color: var(--text-secondary); }
+  .bcard.major h3 { color: var(--accent-strong); }
+  html.theme-dark .bcard.major h3 { color: #E0E0E0; }
+  .bcard .ben { font-size: 15px; font-weight: 600; margin-top: 3px; }
+  .bcard.minor .ben { color: var(--accent-secondary); }
+  .bcard.major .ben { color: var(--accent); }
+  .bcard p { font-size: 17px; line-height: 1.55; margin-top: 12px; color: var(--text-secondary); }
+  .bcard.major p { color: color-mix(in srgb, var(--accent-strong) 75%, var(--text)); }
+  html.theme-dark .bcard.major p { color: #CFE0FF; }
+  .bcard .note-supp { margin-top: 12px; font-size: 13px; color: var(--accent-secondary); font-style: italic; }
+  .statpills { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .statpills span { font-size: 14px; font-weight: 700; color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); padding: 6px 13px; border-radius: 8px; }
+  .statpills span b { color: var(--accent-strong); }
+  .bcard.major .crown { position: absolute; top: -11px; right: 22px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: #fff; background: var(--accent); padding: 5px 13px; border-radius: 8px; box-shadow: var(--shadow-md); }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .animate { animation: fadeInUp 0.7s ease-out both; }
+  .delay-1 { animation-delay: 0.12s; } .delay-2 { animation-delay: 0.24s; } .delay-3 { animation-delay: 0.36s; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+  .viz-menu { position: fixed; top: 16px; right: 16px; z-index: 9999; }
+  .viz-menu-toggle { width: 42px; height: 42px; border-radius: 11px; background: var(--surface); border: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
+  .viz-menu-toggle:hover { background: var(--surface-hover); }
+  .viz-menu-dropdown { position: absolute; top: 50px; right: 0; min-width: 188px; background: var(--surface); border: 1px solid var(--border); border-radius: 13px; padding: 8px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.18s; box-shadow: var(--shadow-lg); }
+  .viz-menu-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .viz-menu-dropdown button { width: 100%; padding: 10px 13px; border: none; border-radius: 9px; background: transparent; color: var(--text); font-size: 14px; font-family: inherit; font-weight: 500; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; }
+  .viz-menu-dropdown button:hover { background: var(--surface-hover); }
+  .skip-to-content { position: absolute; top: -50px; left: 6px; background: var(--accent); color: #fff; padding: 8px 12px; text-decoration: none; border-radius: 8px; z-index: 10000; }
+  .skip-to-content:focus { top: 6px; }
+  @media print { @page { size: 1280px 720px; margin: 0; } .viz-menu { display: none; } }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">본문으로 건너뛰기</a>
+<nav class="viz-menu" aria-label="유틸리티 메뉴">
+  <button class="viz-menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기" aria-haspopup="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="viz-menu-dropdown" id="vizMenuDropdown" role="menu">
+    <button onclick="cycleTheme()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/></svg> 테마 전환</button>
+    <button onclick="downloadImage()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PNG 저장</button>
+    <button onclick="window.print()" role="menuitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> 인쇄 / PDF</button>
+  </div>
+</nav>
+
+<main id="main-content">
+<section class="artboard" aria-label="웨스트민스터 문답이라는 그릇">
+  <div class="stage">
+    <span class="label animate">교리가 담긴 그릇 · 웨스트민스터</span>
+    <h1 class="h-title animate">웨스트민스터<br><span class="hl">문답이라는 그릇</span></h1>
+
+    <div class="meta-row animate delay-1">
+      <span class="meta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg> 17세기 영국</span>
+      <span class="meta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg> 목회자·신학자 <b>100명 넘게</b></span>
+      <span class="meta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> <b>5년</b> · <b>1,000번</b> 회의</span>
+      <span class="meta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 교단 헌법 <b>공식 채택</b></span>
+    </div>
+
+    <div class="branch">
+      <article class="bcard minor animate delay-2">
+        <span class="btag">보조 · 표준문서 한 갈래</span>
+        <h3>대요리문답</h3>
+        <span class="ben">Larger Catechism</span>
+        <p>웨스트민스터 표준문서에 함께 있는 더 큰 문답 묶음</p>
+        <p class="note-supp">※ 이번 6강에서 직접 인용하지는 않음</p>
+      </article>
+
+      <article class="bcard major animate delay-3">
+        <span class="crown">6강 내내 인용한 그것</span>
+        <span class="btag"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg> 핵심 · 우리가 본 문답</span>
+        <h3>소요리문답</h3>
+        <span class="ben">Shorter Catechism</span>
+        <div class="statpills">
+          <span><b>107</b> 문답</span>
+          <span>그중 <b>40</b> 문답 = 십계명</span>
+        </div>
+        <p>6강 내내 인용해 온 바로 그 문답 — 성경 교리를 묻고 답으로 집대성</p>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+  var THEME_KEY = 'viz-theme';
+  function applyTheme(t) { document.documentElement.className = 'theme-' + t; try { localStorage.setItem(THEME_KEY, t); } catch (e) {} }
+  function cycleTheme() { var cur = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light'; applyTheme(cur === 'dark' ? 'light' : 'dark'); }
+  function toggleMenu() { document.getElementById('vizMenuDropdown').classList.toggle('open'); }
+  function downloadImage() { var node = document.querySelector('.artboard'); if (typeof htmlToImage === 'undefined') return; htmlToImage.toPng(node, { pixelRatio: 2, width: 1280, height: 720 }).then(function (url) { var a = document.createElement('a'); a.download = 'slide-04.png'; a.href = url; a.click(); }); }
+  (function () { try { var s = localStorage.getItem(THEME_KEY); if (s) applyTheme(s); } catch (e) {} })();
+  document.addEventListener('click', function (e) { if (!e.target.closest('.viz-menu')) { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var d = document.getElementById('vizMenuDropdown'); if (d) d.classList.remove('open'); } });
+</script>
+</body>
+</html>

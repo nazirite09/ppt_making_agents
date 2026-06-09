@@ -10,3 +10,6 @@ desktop.ini
 
 # Node / build artifacts
 node_modules/
+
+# Tool caches (Playwright MCP console logs / page snapshots — regenerated)
+.playwright-mcp/
