@@ -4,13 +4,39 @@
     "title": "Playwright MCP는 file://를 차단 — 로컬 HTTP로 서빙해 렌더/검증",
     "tags": ["playwright", "mcp", "localhost", "rendering"],
     "category": "tool-usage",
-    "confidence": 0.65,
+    "confidence": 0.80,
     "created": "2026-06-10",
-    "last_reinforced": "2026-06-10",
-    "reinforcement_count": 1,
+    "last_reinforced": "2026-06-11",
+    "reinforcement_count": 2,
     "supersedes": null,
     "superseded_by": null,
     "related": ["sol-20260610-004"]
+  },
+  {
+    "id": "sol-20260610-004",
+    "title": "정적 슬라이드의 fade-in 애니메이션 = 스크린샷 검증 빈 프레임 함정 (bounding box는 opacity를 못 본다)",
+    "tags": ["playwright", "screenshot", "css-animation", "static-export", "verification"],
+    "category": "tool-usage",
+    "confidence": 0.65,
+    "created": "2026-06-10",
+    "last_reinforced": "2026-06-11",
+    "reinforcement_count": 1,
+    "supersedes": null,
+    "superseded_by": null,
+    "related": ["sol-20260610-001"]
+  },
+  {
+    "id": "sol-20260611-001",
+    "title": "오케스트레이터-as-메인세션 시스템의 정합성 부채 — 암묵 관행은 규약에 없으면 소멸한다",
+    "tags": ["agent-system", "orchestrator", "convention-drift", "governance", "audit"],
+    "category": "architecture",
+    "confidence": 0.50,
+    "created": "2026-06-11",
+    "last_reinforced": "2026-06-11",
+    "reinforcement_count": 0,
+    "supersedes": null,
+    "superseded_by": null,
+    "related": ["sol-20260610-003", "sol-20260604-003"]
   },
   {
     "id": "sol-20260610-002",
@@ -37,19 +63,6 @@
     "supersedes": null,
     "superseded_by": null,
     "related": ["sol-20260604-002"]
-  },
-  {
-    "id": "sol-20260610-004",
-    "title": "정적 슬라이드의 fade-in 애니메이션 = 스크린샷 검증 빈 프레임 함정 (bounding box는 opacity를 못 본다)",
-    "tags": ["playwright", "screenshot", "css-animation", "static-export", "verification"],
-    "category": "tool-usage",
-    "confidence": 0.5,
-    "created": "2026-06-10",
-    "last_reinforced": "2026-06-10",
-    "reinforcement_count": 0,
-    "supersedes": null,
-    "superseded_by": null,
-    "related": ["sol-20260610-001"]
   },
   {
     "id": "sol-20260606-001",
