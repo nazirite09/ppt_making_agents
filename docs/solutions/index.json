@@ -1,5 +1,31 @@
 [
   {
+    "id": "sol-20260610-001",
+    "title": "Playwright MCP는 file://를 차단 — 로컬 HTTP로 서빙해 렌더/검증",
+    "tags": ["playwright", "mcp", "localhost", "rendering"],
+    "category": "tool-usage",
+    "confidence": 0.5,
+    "created": "2026-06-10",
+    "last_reinforced": "2026-06-10",
+    "reinforcement_count": 0,
+    "supersedes": null,
+    "superseded_by": null,
+    "related": []
+  },
+  {
+    "id": "sol-20260610-002",
+    "title": "Figma 레퍼런스에서 레이아웃 추출 — .fig는 ZIP, 라이브 URL+MCP get_metadata가 정석",
+    "tags": ["figma", "mcp", "fig-file", "extraction", "layout"],
+    "category": "tool-usage",
+    "confidence": 0.5,
+    "created": "2026-06-10",
+    "last_reinforced": "2026-06-10",
+    "reinforcement_count": 0,
+    "supersedes": null,
+    "superseded_by": null,
+    "related": ["sol-20260606-002"]
+  },
+  {
     "id": "sol-20260606-001",
     "title": "외부 디자인 시스템을 재현하기 전에 라이선스를 먼저 확인하라",
     "tags": ["design-system", "license", "tokens", "due-diligence"],
