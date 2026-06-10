@@ -13,3 +13,9 @@ node_modules/
 
 # Tool caches (Playwright MCP console logs / page snapshots — regenerated)
 .playwright-mcp/
+
+# API keys
+.env
+
+# Large design reference binaries (kept locally, not in git)
+format/assets/*.fig

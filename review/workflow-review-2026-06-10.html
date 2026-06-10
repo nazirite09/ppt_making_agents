@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>워크플로우·파이프라인 점검 보고서 — PPT 제작 에이전트 (2026-06-10, 2차 보강판)</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root{
+  --blue:#0066FF; --ink:#16181D; --ink-2:#3A3E47; --ink-3:#6B7280;
+  --bg:#F7F8FA; --card:#FFFFFF; --line:#E5E8EE;
+  --red:#D6453D; --red-bg:#FDF0EF; --amber:#C77D0A; --amber-bg:#FDF6E8; --green:#2E8B57; --green-bg:#EEF7F1;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Pretendard',-apple-system,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; word-break:keep-all;}
+.wrap{max-width:1080px; margin:0 auto; padding:56px 32px 96px;}
+header.doc{border-bottom:3px solid var(--ink); padding-bottom:28px; margin-bottom:40px;}
+.kicker{font-size:14px; font-weight:700; color:var(--blue); letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px;}
+h1{font-size:34px; font-weight:800; line-height:1.3; letter-spacing:-0.01em;}
+.meta{margin-top:14px; font-size:14px; color:var(--ink-3); display:flex; gap:18px; flex-wrap:wrap;}
+.meta b{color:var(--ink-2); font-weight:600;}
+h2{font-size:22px; font-weight:800; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--blue); letter-spacing:-0.01em;}
+h3{font-size:16.5px; font-weight:800; margin:28px 0 10px;}
+p{font-size:15px; color:var(--ink-2); margin-bottom:12px;}
+.summary{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:32px 0 8px;}
+.sum-card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px 18px;}
+.sum-card .label{font-size:12.5px; font-weight:600; color:var(--ink-3); margin-bottom:6px;}
+.sum-card .value{font-size:26px; font-weight:800; letter-spacing:-0.02em;}
+.sum-card .sub{font-size:12.5px; color:var(--ink-3); margin-top:4px;}
+.badge{display:inline-block; padding:4px 12px; border-radius:999px; font-size:13px; font-weight:700;}
+.badge.cond{background:var(--amber-bg); color:var(--amber); border:1px solid #EAD9B0;}
+table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; font-size:14px; margin:14px 0;}
+th{background:#F0F2F6; text-align:left; padding:10px 14px; font-weight:700; font-size:13px; color:var(--ink-2); border-bottom:1px solid var(--line);}
+td{padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-2);}
+tr:last-child td{border-bottom:none;}
+table.dense td, table.dense th{padding:8px 10px; font-size:13px;}
+code{font-family:Consolas,'D2Coding',monospace; font-size:13px; background:#EEF1F6; padding:1px 6px; border-radius:5px; color:#1F2937;}
+.flow{display:flex; align-items:stretch; gap:0; margin:20px 0; flex-wrap:wrap;}
+.stage{flex:1; min-width:150px; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 12px; position:relative; margin-right:26px;}
+.stage:last-child{margin-right:0;}
+.stage::after{content:'→'; position:absolute; right:-21px; top:50%; transform:translateY(-50%); color:var(--ink-3); font-weight:700;}
+.stage:last-child::after{content:'';}
+.stage .no{font-size:11px; font-weight:700; color:var(--blue); letter-spacing:.06em;}
+.stage .nm{font-size:14px; font-weight:700; margin:2px 0;}
+.stage .who{font-size:12px; color:var(--ink-3);}
+.stage .gate{margin-top:8px; font-size:11.5px; font-weight:700; color:var(--amber); background:var(--amber-bg); border-radius:6px; padding:2px 8px; display:inline-block;}
+.agent-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0;}
+.agent{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:20px;}
+.agent h4{font-size:15.5px; font-weight:800; margin-bottom:2px;}
+.agent .role{font-size:12.5px; color:var(--ink-3); margin-bottom:10px;}
+.agent ul{margin:6px 0 0 18px; font-size:13.5px; color:var(--ink-2);}
+.agent ul li{margin-bottom:5px;}
+.tag{display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:5px; background:#EEF1F6; color:var(--ink-2); margin:0 4px 4px 0;}
+.finding{background:var(--card); border:1px solid var(--line); border-left-width:5px; border-radius:10px; padding:18px 20px; margin-bottom:14px;}
+.finding.red{border-left-color:var(--red);}
+.finding.amber{border-left-color:var(--amber);}
+.finding.green{border-left-color:var(--green);}
+.finding .fid{font-size:12px; font-weight:800; letter-spacing:.05em;}
+.finding.red .fid{color:var(--red);} .finding.amber .fid{color:var(--amber);} .finding.green .fid{color:var(--green);}
+.finding h4{font-size:15.5px; font-weight:800; margin:4px 0 8px;}
+.finding p{font-size:14px; margin-bottom:8px;}
+.finding .fix{font-size:13.5px; background:#F4F6FA; border-radius:8px; padding:10px 14px; color:var(--ink-2);}
+.finding .fix b{color:var(--ink);}
+.score-row{display:flex; align-items:center; gap:14px; margin-bottom:12px;}
+.score-row .nm{width:200px; font-size:14px; font-weight:600; color:var(--ink-2); flex-shrink:0;}
+.score-row .bar{flex:1; height:12px; background:#E8EBF1; border-radius:999px; overflow:hidden;}
+.score-row .bar i{display:block; height:100%; background:var(--blue); border-radius:999px;}
+.score-row .val{width:44px; text-align:right; font-size:14px; font-weight:800;}
+.strength{background:var(--green-bg); border:1px solid #CFE6D8; border-radius:10px; padding:14px 18px; margin-bottom:10px; font-size:14px; color:#1F4D33;}
+.strength b{color:#14532D;}
+.note{font-size:13px; color:var(--ink-3); background:#F0F2F6; border-radius:8px; padding:10px 14px; margin:10px 0;}
+.ok{color:var(--green); font-weight:700;}
+.warn{color:var(--amber); font-weight:700;}
+.miss{color:var(--red); font-weight:700;}
+footer{margin-top:64px; padding-top:20px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-3);}
+@media(max-width:880px){.summary{grid-template-columns:1fr 1fr;} .agent-grid{grid-template-columns:1fr;} .flow{flex-direction:column;} .stage{margin-right:0; margin-bottom:24px;} .stage::after{content:'↓'; right:50%; top:auto; bottom:-22px; transform:translateX(50%);}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <div class="kicker">Workflow &amp; Pipeline Review · 2차 보강판</div>
+  <h1>설교 PPT 제작 에이전트 — 워크플로우·파이프라인 점검 보고서</h1>
+  <div class="meta">
+    <span><b>점검일</b> 2026-06-10 (2차: 서브에이전트 역할·관리·규약 심화)</span>
+    <span><b>점검 범위</b> 5단계 파이프라인 · 서브에이전트 4종 · 오케스트레이터 책무 · 스킬/MCP · 형식층 · 세컨드 브레인 · 솔루션 KB · 실산출물 2건</span>
+    <span><b>방법</b> 정의 파일 정독 + 실산출물·git 이력 교차검증 (정적 분석)</span>
+  </div>
+</header>
+
+<!-- ============ 종합 요약 ============ -->
+<div class="summary">
+  <div class="sum-card">
+    <div class="label">종합 판정</div>
+    <div class="value"><span class="badge cond">⚠️ 조건부 양호</span></div>
+    <div class="sub">🔴 2건 해소 시 ✅</div>
+  </div>
+  <div class="sum-card">
+    <div class="label">종합 점수</div>
+    <div class="value">7.4 <span style="font-size:15px; color:var(--ink-3); font-weight:600;">/ 10</span></div>
+    <div class="sub">설계 9점대 · 정합성 6점대</div>
+  </div>
+  <div class="sum-card">
+    <div class="label">발견 사항</div>
+    <div class="value" style="font-size:20px;">🔴 2 · 🟡 10 · 🟢 8</div>
+    <div class="sub">2차 보강에서 🟡 3 · 🟢 2 추가</div>
+  </div>
+  <div class="sum-card">
+    <div class="label">핵심 강점</div>
+    <div class="value" style="font-size:20px;">생성자/비평가 분리</div>
+    <div class="sub">파일 기반 핸드오프 + 인간 게이트 2개</div>
+  </div>
+</div>
+
+<p style="margin-top:20px;"><b>한 줄 평:</b> 아키텍처 설계(역할 분리 · 불변식 전파 · 컨펌-온리 학습 · DOM 계약 기반 객관 감수)는 동급 시스템 대비 매우 우수하다. 리스크는 설계 부채가 아니라 <b>정합성 부채</b>다 — 문서가 약속한 것과 저장소 실체의 어긋남(존재하지 않는 이미지 스크립트, 갈라진 산출물 컨벤션, 하드코딩된 형식 슬롯), 그리고 <b>좋은 관행이 규약 밖에 머무는 문제</b>(오케스트레이터 브리프, 게이트 기록, git 커밋 주체)가 누적되기 시작했다.</p>
+
+<!-- ============ 1. 파이프라인 ============ -->
+<h2>1. 파이프라인 아키텍처</h2>
+<div class="flow">
+  <div class="stage"><div class="no">STAGE 1</div><div class="nm">인제스트</div><div class="who">오케스트레이터 직접</div></div>
+  <div class="stage"><div class="no">STAGE 2</div><div class="nm">스토리라인</div><div class="who">sermon-storyline-architect</div></div>
+  <div class="stage"><div class="no">STAGE 3</div><div class="nm">콘텐츠 감수</div><div class="who">storyline-reviewer</div><span class="gate">사용자 컨펌 #1</span></div>
+  <div class="stage"><div class="no">STAGE 4</div><div class="nm">비주얼</div><div class="who">slide-visual-designer</div></div>
+  <div class="stage"><div class="no">STAGE 5</div><div class="nm">디자인 감수</div><div class="who">design-reviewer</div><span class="gate">사용자 컨펌 #2</span></div>
+</div>
+
+<h3>실증된 강점 (실산출물 근거)</h3>
+<div class="strength"><b>비평가 게이트가 실제로 결함을 잡는다.</b> 올리브 덱에서 🔴 푸터 겹침을 컨펌 전에 적발(03-slides.review.md), 「하나님은 누구신가」에서 역본 메타·본문 모순을 🔴로 적발해 rev 2에서 해소. 감수가 형식적 절차가 아니라 작동하는 품질 게이트임이 입증됨. 특히 역본 사례는 <b>킥오프 브리프가 역본을 지정했는데도 아키텍트가 메타를 잘못 선언한 것을 리뷰어가 잡은 것</b> — 다층 방어가 설계 의도대로 동작했다.</div>
+<div class="strength"><b>불변식이 전 에이전트에 일관 전파.</b> 원고 충실성 절대 우선 · 예배 순서 제외 · 브레인/형식이 충실성을 못 넘는 가드가 4개 에이전트 정의 모두에 같은 우선순위로 명시. 「하나님은 누구신가」에서 주기도문 슬라이드 제외가 실제 적용됨.</div>
+<div class="strength"><b>감수가 증거 기반.</b> design-reviewer는 Playwright 실측(스크린샷·바운딩박스·콘솔), storyline-reviewer는 원고 문장 단위 대조 + 슬라이드 번호·원고 근거 인용 강제("추측 금지"). 실리포트가 원고 line 번호까지 인용함을 확인.</div>
+<div class="strength"><b>형식층의 DOM 계약(<code>data-fmt</code>)이 주관 감수를 객관 검증으로 전환.</b> 라이브 덱 21장 전부 슬롯 태그 부착 확인. 렌더(4)·검증(5)이 내용 무관이라 재사용 가능하다는 주장도 구조상 타당.</div>
+<div class="strength"><b>지식 이원화가 명확.</b> 취향(user-brain: scope·중요도/성숙도 분리·컨펌-온리) vs 해결책(docs/solutions: 카테고리·confidence·재강화)이 섞이지 않게 분리. 두 KB 모두 실제 적재·운용 중.</div>
+
+<!-- ============ 2. 서브에이전트 ============ -->
+<h2>2. 서브에이전트 역할·관리 점검 (중점)</h2>
+
+<h3>2.1 관리 매트릭스 — 역할·도구·입출력 계약 한눈에</h3>
+<table class="dense">
+  <tr><th>단계</th><th>에이전트</th><th>모델/effort</th><th>도구 부여</th><th>입력 계약 (오케스트레이터가 전달)</th><th>산출(핸드오프)</th><th>쓰기 범위</th><th>재호출 모드</th></tr>
+  <tr>
+    <td><b>2</b> 생성</td><td>sermon-storyline-architect</td><td>opus / max</td>
+    <td>Read · Write · Edit · Glob · Grep</td>
+    <td>작업 폴더 · <code>01-script.md</code> 경로 · <b>형식값</b>(사용자 지정&gt;추천&gt;없음)</td>
+    <td><code>02-storyline.md</code> + 한 줄 요약 + <code>🧠 규칙 후보</code></td>
+    <td><code>02-storyline.md</code> · <code>user-brain.md</code>(승인 후, storyline·global)</td>
+    <td>재작업 / <b>커밋 모드</b></td>
+  </tr>
+  <tr>
+    <td><b>3</b> 비평</td><td>storyline-reviewer</td><td>opus / max</td>
+    <td>Read · Write · Glob · Grep</td>
+    <td>규약 경로 관례 (01·02 + 형식 지정 시 <code>format/&lt;type&gt;.md</code>)</td>
+    <td><code>02-storyline.review.md</code> + 판정(✅/⚠️/❌)</td>
+    <td>리포트만 (규범)</td>
+    <td>재감수</td>
+  </tr>
+  <tr>
+    <td><b>4</b> 생성</td><td>slide-visual-designer</td><td>opus / max</td>
+    <td>Read · Write · Edit · Bash · Glob · Grep · <b>Skill</b></td>
+    <td>작업 폴더 (컨펌#1 통과한 02 + 디자인 자산·형식 사양·브레인은 관례로 직접 읽음)</td>
+    <td><code>03-slides/</code> + 슬라이드 수 + 미리보기 방법</td>
+    <td><code>03-slides/</code> (브레인은 읽기 전용)</td>
+    <td>재작업</td>
+  </tr>
+  <tr>
+    <td><b>5</b> 비평</td><td>design-reviewer</td><td>opus / max</td>
+    <td>Read · Write · Glob · Grep · Bash · Playwright MCP ×6</td>
+    <td>규약 경로 관례 (03-slides · 02 + 형식 사양)</td>
+    <td><code>03-slides.review.md</code> + 판정(✅/⚠️/❌)</td>
+    <td>리포트만 (규범)</td>
+    <td>재감수</td>
+  </tr>
+</table>
+<p class="note"><b>도구 최소권한 평가:</b> 전반적으로 적정 — 디자이너의 Bash(서버·브라우저 열기)와 Skill(visualize), 디자인 리뷰어의 Playwright 6종은 모두 실사용 근거가 있고, 어떤 에이전트도 Agent(재귀 스폰)·외부 네트워크 도구를 갖지 않는다. 한 가지 잔여 리스크: 비평가 2종이 Write를 보유해 <b>도구상으로는</b> 파이프라인 산출물을 덮어쓸 수 있고, "직접 수정하지 않는다"는 규범으로만 제어된다 (→ 🟢 G8).</p>
+
+<h3>2.2 역할 경계·핸드오프 계약 분석</h3>
+<table>
+  <tr><th style="width:230px;">점검 항목</th><th style="width:90px;">평가</th><th>근거</th></tr>
+  <tr><td>역할 상호 배제 (생성자 간)</td><td class="ok">✅ 양호</td><td>아키텍트 정의에 "디자인·HTML 작업 금지", 디자이너 정의에 "스토리라인 작성은 아키텍트 사용" — 양방향 교차 금지문 존재. description의 트리거도 겹치지 않음.</td></tr>
+  <tr><td>생성자/비평가 분리</td><td class="ok">✅ 양호</td><td>두 비평가 모두 "리포트만, 수정은 생성자" 명시 + 핸드오프에 재작업 라우팅(❌/⚠️→생성자) 정의. 실리포트도 수정 제안만 담음.</td></tr>
+  <tr><td>핸드오프 계약(반환물) 정의</td><td class="ok">✅ 양호</td><td>4종 모두 정의 말미에 "핸드오프" 단락 — 반환 경로·요약·판정·다음 단계가 명시돼 오케스트레이터가 기계적으로 라우팅 가능.</td></tr>
+  <tr><td>컨텍스트 격리 (상태 비의존)</td><td class="ok">✅ 강점</td><td><b>파일 기반 핸드오프</b> — 모든 단계 입출력이 폴더 규약 파일로만 흐르고 대화 상태에 의존하지 않아, 어느 단계든 새 세션에서 재개 가능. (단, 게이트 통과 "기록"만은 파일에 없음 → Y3)</td></tr>
+  <tr><td>충실성 검증 체인</td><td class="ok">✅ 양호</td><td>원고↔스토리라인 대조는 3단계가 전담하고, 4·5단계는 컨펌#1 통과본(02)을 단일 진실로 신뢰(5단계 성경 대조도 02 기준). 단계마다 기준 문서가 하나뿐이라 책임 소재가 명확.</td></tr>
+  <tr><td>브레인 권한 경계</td><td class="warn">⚠️ 갭</td><td>scope 분리(아키텍트=storyline·global 쓰기, 디자이너=design·global 읽기)는 명확하나, <b>design scope의 쓰기 주체가 없음</b> — 정의에도 "후속 작업"으로 명시된 알려진 갭 (→ Y2).</td></tr>
+  <tr><td>재작업 루프 종료 조건</td><td class="miss">❌ 부재</td><td>생성자↔비평가 루프(🔴 존재 → 재작업)에 <b>반복 상한이 없다.</b> 비평가가 계속 🔴를 내면 게이트에 도달하지 못한 채 무한 순환 가능 (→ Y9).</td></tr>
+  <tr><td>형식 결합도</td><td class="warn">⚠️ 갭</td><td>슬롯 enum·lecture-deck 좌표가 에이전트 3종 프롬프트에 하드코딩 — 형식 추가 시 "에이전트 무수정" 약속과 모순 (→ Y1).</td></tr>
+</table>
+
+<h3>2.3 오케스트레이터(메인 세션) 책무 감사</h3>
+<p>이 파이프라인은 별도 오케스트레이터 파일 없이 <b>메인 세션이 오케스트레이터</b>다. 책무가 CLAUDE.md에 산재해 있어, 어디까지가 규약이고 어디부터가 관행인지 감사했다:</p>
+<table>
+  <tr><th style="width:280px;">책무</th><th style="width:110px;">규약화 상태</th><th>비고</th></tr>
+  <tr><td>① 작업 폴더 생성 (<code>sermons/&lt;날짜-제목&gt;/</code>)</td><td class="warn">⚠️ 규약 위반</td><td>규약은 날짜-제목인데 <b>실폴더 2건 모두 날짜 없음</b>(교리설교-6강-복습 · 하나님은-누구신가) (→ Y8).</td></tr>
+  <tr><td>② 인제스트 + <b>오케스트레이터 브리프</b> 작성</td><td class="miss">❌ 미성문화</td><td>두 사례 모두 01-script.md 머리에 <b>우수한 브리프</b>(임무 정의·형식 매핑·톤·역본·불변식 리마인더·브레인 부합 메모)가 실재하나, <b>어떤 문서에도 이 관행이 규약으로 없다</b>. 세션이 바뀌면 품질이 복불복 (→ Y10).</td></tr>
+  <tr><td>③ 형식 결정 (지정&gt;추천&gt;없음) + 디자인 요청 수집</td><td class="ok">✅ 규약화</td><td>CLAUDE.md + format/README 선택 규칙 명확. 실브리프에서 매핑 지시까지 수행됨.</td></tr>
+  <tr><td>④ 단계 순차 호출 + 게이트 정지</td><td class="ok">✅ 규약화</td><td>"사용자 컨펌 없이 다음 단계 진행 금지" 명시.</td></tr>
+  <tr><td>⑤ 재작업 라우팅 (❌/⚠️ → 생성자)</td><td class="ok">✅ 규약화</td><td>단, 반복 상한 부재 (Y9).</td></tr>
+  <tr><td>⑥ 브레인 커밋 모드 재호출</td><td class="ok">✅ 규약화</td><td>아키텍트 정의·CLAUDE.md 양쪽에 흐름 명시.</td></tr>
+  <tr><td>⑦ git 커밋 (산출물·브레인)</td><td class="miss">❌ 암묵</td><td>아키텍트는 Bash가 없어 git 커밋 불가 — 실제 커밋은 오케스트레이터가 수행(git 이력 확인). 그러나 CLAUDE.md의 "architect가 쓰기·커밋"은 <b>파일 갱신</b> 의미라 용어가 중의적이고, 커밋 시점 규약도 없음 (→ G7, Y7).</td></tr>
+  <tr><td>⑧ 파이프라인 상태 기록</td><td class="miss">❌ 부재</td><td>게이트 통과·rev·킥오프 결정이 세션 대화에만 존재 (→ Y3).</td></tr>
+</table>
+<p class="note"><b>요약:</b> 호출·게이트·브레인 루프(③~⑥)는 규약이 탄탄한 반면, <b>경계 바깥 책무(폴더·브리프·커밋·상태 기록 = ①②⑦⑧)가 전부 암묵</b>이다. 오케스트레이터는 세션마다 새로 태어나므로, 암묵 책무는 곧 세션 간 비일관성이 된다 — 이번 점검에서 발견된 규약 위반(Y8)·stale 판정(Y3)이 그 증상.</p>
+
+<h3>2.4 에이전트별 세부 발견</h3>
+<div class="agent-grid">
+  <div class="agent">
+    <h4>sermon-storyline-architect <span class="tag">opus·max</span><span class="tag">magenta</span></h4>
+    <div class="role">2단계 생성자 + 세컨드 브레인 소유자 (storyline·global 쓰기)</div>
+    <ul>
+      <li><b>우수:</b> 브레인 4단 루프(로드→감지→제안→승인 후 커밋)가 정밀. 일회성/상시 분류로 오염 방지. 형식 적용(step 3.5)에 충실성 가드 재명시. 형식 사양 부재 시 "자유 구조 + 플래그" 폴백까지 정의.</li>
+      <li><b>우수:</b> 출력 스키마(02-storyline.md)가 다음 단계 입력 계약을 겸함 — 비주얼 의도·형식 슬롯·줄바꿈 위치까지 디자이너 입력으로 설계.</li>
+      <li><b>발견:</b> <code>형식 슬롯</code> enum이 lecture-deck 전용 값으로 고정 (→ Y1).</li>
+      <li><b>발견:</b> design scope 쓰기 금지 + designer 읽기 전용 → 디자인 취향 규칙화 경로 부재 (→ Y2).</li>
+      <li><b>발견:</b> Bash 없음 → 브레인 "커밋"은 파일 갱신만, git 커밋은 오케스트레이터 몫인데 용어 미구분 (→ G7).</li>
+    </ul>
+  </div>
+  <div class="agent">
+    <h4>storyline-reviewer <span class="tag">opus·max</span><span class="tag">cyan</span></h4>
+    <div class="role">3단계 비평가 (리포트만, 수정 안 함)</div>
+    <ul>
+      <li><b>우수:</b> 체크리스트 7항목(충실성 최우선·형식 적합성 포함) + 원고 근거 인용 강제 + "칭찬만 금지·🔴 남발 금지" 균형 지침. 실리포트가 원고 line 번호까지 인용 — 정의 이상으로 수행 중.</li>
+      <li><b>우수:</b> 모호한 신학적 차이는 "🟡 + 설교자 확인 권장"으로 인간에게 위임 — 권한 한계 인식이 정확.</li>
+      <li><b>발견:</b> 실리포트가 스펙 판정 어휘(✅⚠️❌) 대신 "⛔ 재작업 (조건부)" 같은 혼합 표기 사용 (→ Y5).</li>
+      <li><b>발견:</b> 재감수 시 리포트 갱신 규칙 부재 — rev 2 진행 후에도 리포트는 rev 1 판정에 머묾(두 설교 모두 확인) (→ Y3).</li>
+    </ul>
+  </div>
+  <div class="agent">
+    <h4>slide-visual-designer <span class="tag">opus·max</span><span class="tag">blue</span></h4>
+    <div class="role">4단계 생성자 — 최종 산출물(16:9 HTML) 제작</div>
+    <ul>
+      <li><b>우수:</b> 톤 결정 4단 우선순위, 한글 줄바꿈·좌측정렬·고대비 규칙, 형식=구조/디자인=룩 분리가 명확. 실산출물(21장 + 공유 deck.css + data-fmt 전 장 부착)이 정의에 충실.</li>
+      <li><b>우수:</b> 충돌 해결 규칙(사용자 지정 톤 vs 기본 권장 → 사용자 따르고 한 줄 보고)이 정의돼 판단 동요 없음.</li>
+      <li><b>발견:</b> CLAUDE.md의 AI 이미지 플로우(<code>generate_image.py</code>)가 디자이너 정의에 전혀 없음 — 플로우 주인 불명 (→ R1).</li>
+      <li><b>발견:</b> 단일 파일 덱(올리브)을 만들 권한·규약이 정의에 없는데 최종본이 그 형태로 확정됨 (→ R2).</li>
+      <li><b>발견:</b> 미리보기 index.html과 slide-NN.html의 동기화 의무 미명시 (→ G5).</li>
+    </ul>
+  </div>
+  <div class="agent">
+    <h4>design-reviewer <span class="tag">opus·max</span><span class="tag">yellow</span></h4>
+    <div class="role">5단계 비평가 — 실렌더(Playwright) 기반 시각 QA</div>
+    <ul>
+      <li><b>우수:</b> file:// 차단 우회(HTTP 서빙)·베이스 해상도 확인 절차 내장, 형식 충실도는 DOM 계약 질의로 객관 검증, 미부착 시 시각 판정 폴백, Playwright 불가 시 정적 분석 + "실측 미수행" 명시 — 폴백 사다리가 3단계로 완비.</li>
+      <li><b>발견:</b> 체크리스트 #9의 좌표(키커=좌상, 헤더 y≈80~178)가 lecture-deck 구체값 (→ Y1).</li>
+      <li><b>발견:</b> 단일 파일 덱 감수는 정의에 없는 ad hoc(<code>section:nth-of-type</code>)으로 수행 — 잘 했지만 성문화 필요 (→ R2).</li>
+      <li><b>발견:</b> 판정 어휘·재감수 누적 기록 규칙은 storyline-reviewer와 동일 이슈 (→ Y5 · Y3).</li>
+    </ul>
+  </div>
+</div>
+<p class="note">4종 모두 <b>opus / effort max</b> (커밋 e8a4c1a에서 의도적으로 고정). 품질 우선 정책으로 타당하나, 재감수·재작업 루프가 길어질 때 비용이 선형 증가한다. 반복 호출(2회차 이후 재감수)만 effort 하향을 실험할 여지가 있다 (→ G1).</p>
+
+<!-- ============ 3. 규약 정합성 ============ -->
+<h2>3. 규약(컨벤션) 정합성 감사</h2>
+<p>문서화된 규약 vs 저장소 실체를 항목별로 대조했다:</p>
+<table>
+  <tr><th style="width:240px;">규약</th><th style="width:100px;">준수 상태</th><th>실체 대조</th></tr>
+  <tr><td>폴더 <code>sermons/&lt;날짜-제목&gt;/</code></td><td class="miss">❌ 0/2</td><td>두 폴더 모두 날짜 없음. 규약을 제목-only로 고치거나 날짜를 붙여야 함 (→ Y8).</td></tr>
+  <tr><td>파일 명명 <code>01/02/03-*</code></td><td class="ok">✅ 2/2</td><td>완전 준수. 번호 접두가 단계와 1:1 — 좋은 규약.</td></tr>
+  <tr><td>산출물 <code>slide-NN.html</code> ×N</td><td class="warn">⚠️ 1/2</td><td>「하나님은 누구신가」 준수 / 올리브 최종본은 단일 index.html (→ R2).</td></tr>
+  <tr><td><code>_archive/</code> 변형 보관</td><td class="warn">⚠️ 미규약</td><td>관행은 합리적(변형 3종 보존)이나 규약 문서에 없음 — 정리 커밋이 리뷰 리포트 경로를 끊은 원인 (→ Y8·Y3).</td></tr>
+  <tr><td>감수 판정 어휘 3종</td><td class="warn">⚠️ 드리프트</td><td>"⛔ 재작업 (조건부)" 혼합형 등장 (→ Y5).</td></tr>
+  <tr><td>rev 표기</td><td class="warn">⚠️ 비공식</td><td>리뷰 리포트는 "(rev N)", 스토리라인은 <code>## 변경 이력</code> — 관행은 있으나 메타에 rev 필드가 없어 현재 rev를 파일만으로 단정 못 함.</td></tr>
+  <tr><td><code>data-fmt</code> DOM 계약</td><td class="ok">✅ 21/21</td><td>형식 적용 덱 전 슬라이드 부착 확인.</td></tr>
+  <tr><td>예배 순서 제외</td><td class="ok">✅</td><td>주기도문(설교자 PPT 23장) 제외가 브리프→스토리라인→감수까지 일관 적용.</td></tr>
+  <tr><td>CLAUDE.md 명령 실행 가능성</td><td class="miss">❌</td><td><code>scripts/generate_image.py</code> 부존재 (→ R1).</td></tr>
+</table>
+
+<!-- ============ 4. 스킬·MCP ============ -->
+<h2>4. 스킬 · MCP 인벤토리 점검</h2>
+<table>
+  <tr><th style="width:180px;">스킬/도구</th><th style="width:220px;">파이프라인 내 역할</th><th>상태 · 비고</th></tr>
+  <tr><td><code>visualize</code></td><td>4단계 핵심 — 아트보드 생성</td><td>✅ 디자이너 정의에 명시·실사용 확인. 적합.</td></tr>
+  <tr><td><code>frontend-design</code></td><td>4단계 보조 — 고품질 디자인</td><td>✅ 보조로 명시. 적합.</td></tr>
+  <tr><td>Playwright MCP</td><td>5단계 핵심 — 실렌더 감수</td><td>✅ file:// 차단·fade-in 함정 등이 솔루션 KB에 적재됨(sol-20260610-001/004). 운영 성숙.</td></tr>
+  <tr><td><code>pptx</code> 스킬</td><td><b>미연결</b> — 1단계 인제스트에 유용</td><td>🟡 .pptx 입력(예: 설교준비(7.20).pptx)을 읽을 공식 경로인데 어느 문서도 안내하지 않음. 출력용 PPTX 변환은 폐기됐으나 <b>입력 파싱용</b>으로는 가치 있음 (→ Y4).</td></tr>
+  <tr><td>Figma MCP</td><td>형식 채굴(format 추출)</td><td>✅ sol-20260610-002에 "라이브 URL + get_metadata가 정석" 교훈 적재. 차기 형식 추가 시 .fig ZIP 해킹 대신 이 경로 사용.</td></tr>
+  <tr><td><code>reflect</code></td><td>세션 교훈 → 솔루션 KB</td><td>✅ 9건 적재·인덱스 관리 양호. confidence 재강화 루프는 시작 단계 (→ G3).</td></tr>
+  <tr><td><code>autoresearch</code> / <code>skill-creator</code></td><td><b>미활용 기회</b></td><td>🟢 감수 루브릭(🔴🟡🟢 판정·형식 충실도 점수)이 이미 점수화 가능한 형태 — 아키텍트/디자이너 출력의 eval 하니스로 발전 가능 (→ G6).</td></tr>
+  <tr><td><code>scripts/generate_image.py</code></td><td>4단계 AI 이미지 + 신학 가드</td><td>🔴 <b>저장소에 존재하지 않음</b>(git 이력에도 없음). CLAUDE.md 명령·POLICY 가드가 허상 (→ R1).</td></tr>
+</table>
+
+<!-- ============ 5. 지식층 ============ -->
+<h2>5. 지식층 평가 (브레인 · 솔루션 KB · 형식 레지스트리)</h2>
+<table>
+  <tr><th style="width:200px;">자산</th><th>평가</th></tr>
+  <tr><td><code>knowledge/user-brain.md</code></td><td><b>8/10.</b> 규칙 5건(전부 provisional·관찰 1회) + 자화상 프로파일 + 변경 로그. 중요도/성숙도 분리, 신호강도 초기점수, 감쇠 규칙까지 설계 완성도 높음. 실전 검증: 「하나님은 누구신가」 브리프·스토리라인이 ST-001~004를 명시 참조(추적성 확보). 갭: ① design scope 쓰기 주체 부재(Y2), ② 감쇠 기준 "5설교" 카운터 없음(G2).</td></tr>
+  <tr><td><code>docs/solutions/</code></td><td><b>8.5/10.</b> 9건, 카테고리·태그·related 연결 일관. supersedes 체계 준비됨. 실패 경험(fade-in 함정, file:// 차단)이 즉시 다음 세션 절차에 반영된 선순환 확인.</td></tr>
+  <tr><td><code>format/</code> 레지스트리</td><td><b>7.5/10.</b> 3층 모델·필수/선택 슬롯·네이티브 베이스·DOM 계약·소비자 매핑까지 사양서 품질 우수. 단 "에이전트 수정 불필요" 성장 약속이 현 구현(슬롯·좌표 하드코딩)과 모순(Y1). 2번째 형식 추가 전 반드시 해소 필요.</td></tr>
+</table>
+
+<!-- ============ 6. 발견 사항 ============ -->
+<h2>6. 발견 사항 상세</h2>
+
+<div class="finding red">
+  <span class="fid">🔴 R1 — 필수</span>
+  <h4>AI 이미지 생성 플로우가 실체 없음 — 신학 가드도 미강제</h4>
+  <p><b>증거:</b> <code>scripts/</code> 폴더가 저장소에 없고 <code>git log --all -- scripts/</code>도 빈 결과. 그런데 CLAUDE.md는 ① 명령 섹션에 <code>py scripts/generate_image.py …</code> 실행법, ② "POLICY 블록이 강제한다"는 신학 이미지 가드를 명시. 4단계 디자이너 정의에는 이미지 생성 언급이 아예 없어 실행 주체도 정의돼 있지 않다.</p>
+  <p><b>영향:</b> 이미지가 필요한 설교에서 명령이 즉시 실패하고, "하나님·예수 얼굴 묘사 금지" 가드는 문서 속 선언으로만 존재한다 (현재는 브리프의 리마인더 한 줄이 유일한 방어선).</p>
+  <div class="fix"><b>권고:</b> 양자택일 — (a) 스크립트를 실제 구현(POLICY 블록 포함)하고 디자이너 정의 작업 절차에 "이미지 필요 시 호출 → 실패 시 SVG 폴백" 1줄 추가, 또는 (b) 당분간 SVG/일러스트-온리 정책으로 확정하고 CLAUDE.md 명령·가드 단락을 제거(가드 원칙은 디자이너 정의 가드레일로 이동).</div>
+</div>
+
+<div class="finding red">
+  <span class="fid">🔴 R2 — 필수</span>
+  <h4>최종 산출물 컨벤션 분기 — 규약(slide-NN.html) vs 실제 확정본(단일 index.html)</h4>
+  <p><b>증거:</b> CLAUDE.md 작업 폴더 규약과 디자이너 정의는 "슬라이드당 1개 독립 HTML"을 핵심 설계 결정으로 명시. 그러나 확정된 교리설교-6강-복습 최종본 <code>03-slides/</code>는 단일 <code>index.html</code>(22개 section, 62KB)뿐이다. design-reviewer는 이를 정의에 없는 ad hoc 방식(<code>section:nth-of-type(N)</code> 요소 스크린샷)으로 감수했고, 해당 리포트가 가리키는 경로(<code>03-slides-olive-roadmap/</code>)는 정리 커밋으로 사라져 추적성이 끊겼다. 반면 「하나님은 누구신가」는 규약대로 slide-NN.html 21장 + 공유 deck.css.</p>
+  <p><b>영향:</b> 같은 "최종 산출물"이 두 가지 상이한 형태로 존재 — 후속 세션·에이전트가 어느 쪽이 규약인지 판단할 수 없고, 감수 절차도 형태별로 달라진다.</p>
+  <div class="fix"><b>권고:</b> 정책 결정 후 문서화 — (권장) <b>두 형태 모두 공식화</b>: 기본=slide-NN.html(파이프라인 표준), 예외=단일 파일 덱(연속 스크롤 발표용, 사용자 명시 요청 시)으로 CLAUDE.md에 명시하고, 디자이너·design-reviewer 정의에 단일 파일 제작·감수 절차를 정식 추가. 또는 올리브 덱을 규약대로 재분할. 어느 쪽이든 리포트의 stale 경로는 한 줄 수정.</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y1 — 권장 (2번째 형식 추가 전엔 필수)</span>
+  <h4>형식층 성장 약속과 구현의 모순 — 슬롯·좌표가 에이전트 프롬프트에 하드코딩</h4>
+  <p><b>증거:</b> <code>format/README.md</code>는 "형식 추가 시 에이전트 수정 불필요"를 약속. 그러나 슬롯 enum(<code>표지|목표|아젠다|단원구분|번호본문|마무리</code>)이 아키텍트 출력 스키마·디자이너 DOM 계약 지시·design-reviewer 체크리스트에, lecture-deck 전용 좌표(키커=좌상, 헤더 y≈80~178)가 design-reviewer #9에 박혀 있다.</p>
+  <div class="fix"><b>권고:</b> 3개 에이전트 정의에서 구체 슬롯명·좌표를 "해당 <code>format/&lt;type&gt;.md</code>의 §DOM 계약을 따른다"로 일반화(lecture-deck 값은 "예:" 접두로만 유지). 사양서를 단일 진실 소스로. 2번째 형식 작성 시 공통 chrome·계약을 <code>format/_base.md</code>로 추출(README 계획 이행).</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y2 — 권장</span>
+  <h4>design scope 브레인 규칙의 쓰기 경로 부재</h4>
+  <p><b>증거:</b> 아키텍트는 "design scope를 적용·수정하지 않는다", 디자이너는 "읽기·적용만"(루프는 '후속 작업'으로 명시) — 즉 디자인 피드백은 현재 누구도 규칙화할 수 없다. 이미 Montage 잠정 채택 등 디자인 취향 데이터가 쌓이는 중이고, user-brain.md 머리말("디자인 취향은 design scope에 쌓인다")과 권한이 어긋난다.</p>
+  <div class="fix"><b>권고:</b> (권장) 디자이너에 선호 감지·<code>🧠 규칙 후보</code> 제안 단계를 부여하고, 커밋은 기존 소유자(아키텍트 커밋 모드)로 일원화 — 아키텍트의 "design 수정 금지"를 "디자이너 제안 + 사용자 승인 건만 대리 커밋 가능"으로 완화. 쓰기 주체는 계속 1명. "컨펌된 피드백만" 원칙 유지.</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y3 — 권장</span>
+  <h4>게이트·리비전 추적성 부재 — 판정이 stale로 남는다</h4>
+  <p><b>증거:</b> 「하나님은 누구신가」 storyline은 rev 2로 개정·컨펌#1 통과했으나 <code>02-storyline.review.md</code> 판정은 여전히 "⛔ 재작업". 올리브 덱도 동일(⚠️ 조건부인 채 최종 확정, 재감수 기록 없음). 게이트 통과 사실은 세션 대화에만 존재하고, 리포트 대상 경로도 폴더 개명 후 미갱신.</p>
+  <div class="fix"><b>권고:</b> 설교 폴더에 <code>00-status.md</code>(현재 단계 · rev · 게이트 결정 일시·내용 · 킥오프 결정) 1파일 도입 — 오케스트레이터가 단계 전환마다 갱신. 두 리뷰어 정의에 "재감수 시 기존 리포트에 <code>## rev N 재감수</code> 섹션 누적" 규칙 1줄 추가. 부수 효과: 브레인 감쇠 기준(5설교) 카운트 가능(G2 동시 해결).</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y4 — 권장</span>
+  <h4>1단계 인제스트의 표준 경로 부재</h4>
+  <p><b>증거:</b> <code>workspace/extract.py</code> 등은 특정 세션 하드코딩 스크래치(CLAUDE.md도 인정). .pptx 입력은 공식 <code>pptx</code> 스킬로 파싱하는 게 정석인데 어느 문서도 안내하지 않음. (출처 기록 자체는 브리프 관행으로 잘 되고 있음 — Y10 참조.)</p>
+  <div class="fix"><b>권고:</b> CLAUDE.md 1단계 항목에 입력 유형별 표준 경로 한 단락: .pptx → pptx 스킬(입력 파싱만 — 출력 변환 금지 유지) / .pdf → pypdf 패턴 / .docx → python-docx 패턴.</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y5 — 권장</span>
+  <h4>감수 판정 어휘 드리프트</h4>
+  <p><b>증거:</b> 스펙 어휘는 <code>✅통과 | ⚠️조건부 | ❌재작업</code> 3종인데 실리포트에 "⛔ 재작업 (조건부)" 같은 혼합 표기 등장. 오케스트레이터의 게이트 진행 판단(🔴 존재 → 통과 불가)이 판정 어휘에 의존하므로 모호성은 게이트 오작동 위험.</p>
+  <div class="fix"><b>권고:</b> 두 리뷰어 정의 품질 기준에 1줄: "최종 판정은 3종 어휘만 사용, 변형·혼합 표기 금지."</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y6 — 권장</span>
+  <h4>문서-현실 불일치 잔재 (CLAUDE.md)</h4>
+  <p><b>증거:</b> ① "scripts/·workspace/는 현재 untracked(개발 중)" — scripts/는 untracked가 아니라 <b>부존재</b>. ② <code>design/geist.md</code>가 존재·사용됐으나(아카이브 변형) CLAUDE.md 디자인 레퍼런스 목록에서 누락.</p>
+  <div class="fix"><b>권고:</b> R1 결정과 함께 CLAUDE.md 해당 두 줄 정정.</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y7 — 권장</span>
+  <h4>진행 중 파이프라인 미완 + 미커밋 — 유실 위험</h4>
+  <p><b>증거:</b> 「하나님은 누구신가」는 4단계 완료(21장) 상태에서 5단계(design-reviewer) 미실행·컨펌#2 미통과. 폴더 전체가 git untracked(OneDrive 동기화에만 의존). 솔루션 KB 변경분도 미커밋.</p>
+  <div class="fix"><b>권고:</b> 다음 세션 첫 작업으로 5단계 실행 → 컨펌#2 → 커밋. 규약화: <b>게이트 통과 = 커밋 시점</b>(컨펌#1 통과 시 01·02 커밋, 컨펌#2 통과 시 03 커밋).</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y8 — 권장 <span style="font-weight:600">(2차 보강 신규)</span></span>
+  <h4>폴더 명명 규약 위반 + 변형 보관(_archive) 규약 부재</h4>
+  <p><b>증거:</b> 규약은 <code>sermons/&lt;날짜-제목&gt;/</code>인데 실폴더 2건 모두 날짜 없음(<code>교리설교-6강-복습</code> · <code>하나님은-누구신가</code>) — 준수율 0%. 또한 올리브 덱의 <code>_archive/</code> 변형 보관(geist·montage 등 3종)은 합리적 관행이지만 규약 문서에 없고, 변형 정리(폴더 개명) 시 리뷰 리포트 경로가 끊기는 부작용이 이미 발생했다.</p>
+  <div class="fix"><b>권고:</b> 규약을 현실에 맞춰 결정 — (a) 날짜 포함으로 통일(기존 2개 폴더 개명 + 내부 경로 참조 확인) 또는 (b) 규약을 <code>sermons/&lt;제목&gt;/</code>로 수정(날짜는 00-status.md 킥오프 기록으로). <b>(b)가 저비용·권장.</b> 동시에 <code>_archive/&lt;변형명&gt;/</code> 보관 규약과 "변형 정리 시 리뷰 리포트 경로 갱신" 1줄을 작업 폴더 규약에 추가.</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y9 — 권장 <span style="font-weight:600">(2차 보강 신규)</span></span>
+  <h4>생성자↔비평가 재작업 루프의 종료 조건 부재</h4>
+  <p><b>증거:</b> "🔴가 하나라도 있으면 통과 불가 → 생성자 재작업"은 명확하나, <b>반복 상한과 에스컬레이션 규칙이 없다.</b> 비평가가 매 라운드 새 🔴를 내면(또는 생성자와 견해가 갈리면) 게이트에 도달하지 못한 채 opus/max 호출이 무한 누적될 수 있다. 현재까지는 1~2회 수렴(실사례)했지만 이는 운이지 설계가 아니다.</p>
+  <div class="fix"><b>권고:</b> CLAUDE.md 파이프라인 규약에 1줄: "같은 게이트에서 재작업 2회 후에도 ❌면 오케스트레이터가 <b>쟁점 요약과 함께 사용자에게 에스컬레이션</b>(잔여 🔴 목록 + 생성자/비평가 견해 차이)." 인간 게이트가 이미 있으므로 조기 에스컬레이션이 자연스러운 해소책.</div>
+</div>
+
+<div class="finding amber">
+  <span class="fid">🟡 Y10 — 권장 <span style="font-weight:600">(2차 보강 신규)</span></span>
+  <h4>최우수 관행 "오케스트레이터 브리프"가 미성문화 — 세션 간 품질 복불복</h4>
+  <p><b>증거:</b> 두 설교 모두 <code>01-script.md</code> 머리에 탁월한 브리프가 실재한다: 작업 성격 정의 · 형식 매핑 지시(슬롯←콘텐츠) · 대상·톤 · 역본 정책 · <b>불변식 리마인더 4종</b> · 세컨드 브레인 부합 메모까지. 이 브리프가 2단계 아키텍트의 품질을 사실상 견인하고 있다(스토리라인이 브리프 구조를 그대로 따름). 그러나 <b>이 관행은 어떤 규약 문서에도 없다</b> — CLAUDE.md 1단계는 "원고 → 01-script.md"라고만 말한다. 오케스트레이터는 세션마다 새로 시작하므로, 규약에 없는 관행은 다음 세션에서 사라질 수 있다.</p>
+  <div class="fix"><b>권고:</b> CLAUDE.md 1단계 항목에 브리프 템플릿을 성문화: <code>01-script.md</code> 상단에 ① 작업 성격(단일 설교/복습/행사) ② 형식 결정 + 슬롯 매핑 힌트 ③ 대상·톤 ④ 역본 정책 ⑤ 불변식 리마인더 ⑥ 브레인 부합 메모 ⑦ 원본 출처·추출 방법. 기존 2건의 브리프가 그대로 모범 예시가 된다.</div>
+</div>
+
+<div class="finding green">
+  <span class="fid">🟢 G1~G8 — 선택</span>
+  <h4>경미 항목 (요약)</h4>
+  <p><b>G1</b> 4개 에이전트 전부 opus/max — 재감수(2회차 이후) 호출만 effort 하향 실험 여지. <b>G2</b> 브레인 감쇠 기준 "5설교" 카운터 부재 — Y3의 status 파일로 해결. <b>G3</b> 솔루션 KB confidence 재강화 루프 운영 시작 단계 — 재적용 시 reinforcement_count 갱신 꾸준히. <b>G4</b> 루트 정리: <code>slide format/</code>(공백 폴더명) → <code>format/assets/</code> 이동, 빈 <code>assets/</code> 폴더, test/ 원본 입력 정돈. <b>G5</b> index.html 미리보기 ↔ slide-NN.html 동기화 의무를 디자이너 품질 기준에 1줄. <b>G6</b> 감수 루브릭이 이미 점수화 가능한 형태 — 설교 5건·형식 2종 쌓인 뒤 autoresearch로 아키텍트 출력 eval 하니스 구축 검토. <b>G7</b> <span style="font-weight:700;">(신규)</span> "커밋" 용어 중의성 해소 — 브레인 <i>파일 갱신</i>(아키텍트 커밋 모드) vs <i>git 커밋</i>(오케스트레이터, 아키텍트는 Bash 없음)을 CLAUDE.md에서 구분 표기. <b>G8</b> <span style="font-weight:700;">(신규)</span> 비평가 2종의 Write 권한이 규범으로만 제어 — 두 리뷰어 정의에 "리포트 파일 외 쓰기 금지" 1줄로 명시화.</p>
+</div>
+
+<!-- ============ 7. 점수 ============ -->
+<h2>7. 영역별 점수</h2>
+<div style="background:var(--card); border:1px solid var(--line); border-radius:12px; padding:24px;">
+  <div class="score-row"><span class="nm">아키텍처·역할 분리</span><div class="bar"><i style="width:90%"></i></div><span class="val">9.0</span></div>
+  <div class="score-row"><span class="nm">에이전트 정의 품질</span><div class="bar"><i style="width:85%"></i></div><span class="val">8.5</span></div>
+  <div class="score-row"><span class="nm">지식 관리 (KB 2종)</span><div class="bar"><i style="width:85%"></i></div><span class="val">8.5</span></div>
+  <div class="score-row"><span class="nm">형식(Format)층</span><div class="bar"><i style="width:75%"></i></div><span class="val">7.5</span></div>
+  <div class="score-row"><span class="nm">세컨드 브레인</span><div class="bar"><i style="width:75%"></i></div><span class="val">7.5</span></div>
+  <div class="score-row"><span class="nm">추적성·거버넌스</span><div class="bar"><i style="width:65%"></i></div><span class="val">6.5</span></div>
+  <div class="score-row"><span class="nm">문서-현실 정합성</span><div class="bar"><i style="width:60%"></i></div><span class="val">6.0</span></div>
+  <div class="score-row"><span class="nm">재현성·도구화</span><div class="bar"><i style="width:60%"></i></div><span class="val">6.0</span></div>
+  <div class="score-row" style="margin-top:18px; padding-top:16px; border-top:2px solid var(--line);"><span class="nm" style="font-weight:800; color:var(--ink);">종합</span><div class="bar"><i style="width:74%; background:linear-gradient(90deg,#0066FF,#4D94FF);"></i></div><span class="val" style="color:var(--blue);">7.4</span></div>
+</div>
+<p class="note">2차 보강에서 신규 발견(Y8·Y9·Y10·G7·G8)은 기존 약점 축(추적성·거버넌스, 문서-현실 정합성)에 속해 점수 변동 없음. 단, Y10(브리프)은 <b>가려져 있던 강점의 발견</b>이기도 하다 — 성문화만 하면 거버넌스 점수가 가장 빠르게 오를 항목.</p>
+
+<!-- ============ 8. 로드맵 ============ -->
+<h2>8. 개선 로드맵</h2>
+<table>
+  <tr><th style="width:120px;">시점</th><th>액션</th><th style="width:160px;">해소 항목</th></tr>
+  <tr><td><b>즉시</b><br><span style="font-size:12px;color:var(--ink-3);">다음 세션</span></td><td>① 이미지 플로우 결정(구현 or 제거) + CLAUDE.md 정정 ② 산출물 컨벤션 정책 결정·문서화 ③ 「하나님은 누구신가」 5단계 실행 → 컨펌#2 → 커밋</td><td>R1 · R2 · Y6 · Y7</td></tr>
+  <tr><td><b>단기</b><br><span style="font-size:12px;color:var(--ink-3);">1~2주</span></td><td>④ <code>00-status.md</code> 게이트 기록 + 재감수 누적 규칙 ⑤ 오케스트레이터 브리프 템플릿 성문화 ⑥ 재작업 루프 상한(2회 → 에스컬레이션) ⑦ 판정 어휘 고정 ⑧ 폴더 명명 규약 현실화 + _archive 규약 ⑨ 인제스트 표준 경로 문서화 ⑩ design scope 브레인 쓰기 경로 신설</td><td>Y3 · Y10 · Y9 · Y5 · Y8 · Y4 · Y2 · G2 · G7 · G8</td></tr>
+  <tr><td><b>중기</b><br><span style="font-size:12px;color:var(--ink-3);">2번째 형식 추가 전</span></td><td>⑪ 에이전트 정의에서 형식 구체값 제거(사양서로 위임) + <code>format/_base.md</code> 추출 ⑫ 루트 정리 ⑬ eval 하니스(autoresearch) 검토</td><td>Y1 · G4 · G6</td></tr>
+</table>
+
+<p style="margin-top:16px;">구체적 적용 절차(파일별 수정 위치 포함)는 동봉된 <code>review/improvements-2026-06-10.md</code>에 정리했다.</p>
+
+<footer>
+  PPT 제작 에이전트 · 워크플로우 점검 보고서 (2차 보강판 — 서브에이전트 역할·관리·규약 심화) · 2026-06-10 · 점검 도구: Claude Code (정적 분석 + 산출물 교차검증) · 심각도 어휘는 프로젝트 자체 규약(🔴 필수 / 🟡 권장 / 🟢 선택)을 따름
+</footer>
+
+</div>
+</body>
+</html>

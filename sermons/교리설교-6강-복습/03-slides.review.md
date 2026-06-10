@@ -1,6 +1,6 @@
 # 디자인 감수 리포트 — 교리설교 6강 복습 (Olive Roadmap 스킨)
 
-- 대상: `sermons/교리설교-6강-복습/03-slides-olive-roadmap/index.html` (단일 파일 · slide 01~22), rev 1
+- 대상: `sermons/교리설교-6강-복습/03-slides/index.html` (단일파일형 · slide 01~22), rev 1 — ※감수 당시 경로 `03-slides-olive-roadmap/`, 최종 채택되어 `03-slides/`로 승격(2026-06-09 정리 커밋)
 - 렌더 실측: Playwright(HTTP, 1360×820 뷰포트, 슬라이드 폭 ~1267px), `section:nth-of-type(N)` 요소 스크린샷 22장 + 바운딩박스 측정. 콘솔 에러 없음(favicon 404만).
 - 교차검증: `02-storyline.md` v3 / olive-roadmap `STYLE-SPEC.md` · `fidelity-rubric.md`
 - **최종 판정: ⚠️ 조건부** (🔴 1건 — 하단 푸터 겹침. 그 외는 매우 양호)

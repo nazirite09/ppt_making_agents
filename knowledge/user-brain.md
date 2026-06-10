@@ -7,7 +7,7 @@
 >
 > **scope:** `storyline`(sermon-storyline-architect) · `design`(slide-visual-designer) · `global`(전 에이전트).
 > 각 에이전트는 **자기 scope + global**만 적용·수정한다.
-> ※ 이 브레인은 `sermon-storyline-architect`(쓰기·커밋)와 `slide-visual-designer`(읽기·적용)에 연결되어 있다. 디자인 취향(폰트 시스템·색·테마·저작권 등)은 `design` scope에 쌓인다.
+> ※ 이 브레인의 **파일 쓰기 주체는 `sermon-storyline-architect` 1명**(storyline·global 직접, design은 디자이너 제안분 대리 커밋 — ID `DS-###`). `slide-visual-designer`는 읽기·적용(design·global) + 컨펌#2 피드백에서 design 규칙 후보 제안. 디자인 취향(폰트 시스템·색·테마·저작권 등)은 `design` scope에 쌓인다. git 커밋은 오케스트레이터가 한다.
 
 ## 선호 프로파일 (자화상)
 

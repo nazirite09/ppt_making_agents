@@ -15,7 +15,7 @@
 
 ## 세컨드 브레인 (`knowledge/user-brain.md`)
 
-파이프라인은 사용자 선호를 누적하는 **공유 세컨드 브레인** `knowledge/user-brain.md`를 둔다. 중요도(필수/중요/선호/실험 + 0–100 점수)와 성숙도(provisional/established)로 취향을 규칙화하며, **사용자가 컨펌한 피드백에서만** 제안형으로 학습한다(미검토 산출물은 시드에서 제외). 현재 `sermon-storyline-architect`(쓰기·커밋)와 `slide-visual-designer`(읽기·적용)에 연결되어 있다. scope는 `storyline`·`design`·`global`이다.
+파이프라인은 사용자 선호를 누적하는 **공유 세컨드 브레인** `knowledge/user-brain.md`를 둔다. 중요도(필수/중요/선호/실험 + 0–100 점수)와 성숙도(provisional/established)로 취향을 규칙화하며, **사용자가 컨펌한 피드백에서만** 제안형으로 학습한다(미검토 산출물은 시드에서 제외). 파일 쓰기 주체는 `sermon-storyline-architect` 1명(storyline·global 직접 + design은 디자이너 제안분 대리 커밋)이고, `slide-visual-designer`는 읽기·적용 + design 규칙 후보 제안을 맡는다. scope는 `storyline`·`design`·`global`이다.
 
 ## 산출물 예시 (`test/output/`)
 

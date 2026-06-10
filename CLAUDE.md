@@ -23,23 +23,35 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **생성자/비평가 분리:** 리뷰어(3·5단계)는 **리포트만** 내고 직접 수정하지 않는다. 수정은 생성자(2·4단계)가 한다.
 - 리뷰 판정 심각도: 🔴 필수 / 🟡 권장 / 🟢 선택. **🔴가 하나라도 있으면 ✅통과 불가** → 생성자가 재작업.
 - **두 게이트는 사용자가 통과시킨다.** 사용자 컨펌 없이 다음 단계로 진행하지 마라.
+- **재작업 루프 상한:** 같은 게이트에서 재작업 2회 후에도 ❌면 루프를 멈추고, **잔여 🔴 목록 + 생성자/비평가 견해 차이 요약**과 함께 사용자에게 에스컬레이션한다.
+- **게이트 통과 = 커밋 시점.** 컨펌#1 통과 시 `00-status.md`·`01`·`02`(+리뷰)를, 컨펌#2 통과 시 `03-slides/`(+리뷰)를 git 커밋한다.
 - **형식(Format) 적용:** 오케스트레이터가 킥오프 때 **형식**을 결정(사용자 지정 > 덱 성격 추천 > 지정 없음)해 아키텍트에 전달한다(디자인 요청과 같은 결). 2단계가 슬롯 구조화 → 4단계가 골격 렌더 → 3·5단계가 구조·골격 충실도 감수. 상세는 아래 `## 형식(Format)`.
 
 ## 작업 폴더 규약
 
-설교 하나당 `sermons/<날짜-제목>/` 폴더:
+설교 하나당 `sermons/<제목>/` 폴더 (날짜·킥오프 결정은 `00-status.md`에 기록):
 
 ```
 sermons/<id>/
-  01-script.md              # 입력 원고 (오케스트레이터가 인제스트)
+  00-status.md              # 파이프라인 상태 — 킥오프 결정·단계 체크·rev·게이트 기록 (오케스트레이터가 단계 전환마다 갱신)
+  01-script.md              # 입력 원고 + 상단 「오케스트레이터 브리프」 (아래 인제스트 규약)
   02-storyline.md           # 2단계 산출 / 4단계 입력
   02-storyline.review.md    # 3단계 리포트
   03-slides/
-    slide-NN.html           # 슬라이드당 1개 독립 HTML
+    slide-NN.html           # 슬라이드당 1개 독립 HTML (기본형)
     index.html              # 미리보기 그리드
     assets/slide-NN.png     # AI 이미지(선택)
   03-slides.review.md       # 5단계 리포트
+  _archive/<변형명>/         # 채택 안 된 디자인 변형 보관(선택)
 ```
+
+- **산출물 형태 2종(공식):** **기본형** = `slide-NN.html` × N + `index.html` 미리보기(파이프라인 표준). **단일파일형(예외)** = 연속 스크롤 발표용 단일 `index.html`(슬라이드당 `<section>`) — 사용자가 명시 요청할 때만. 감수는 두 형태 모두 design-reviewer가 커버한다.
+- 폴더·변형을 정리(개명/이동)하면 **해당 리뷰 리포트의 대상 경로를 함께 갱신**한다.
+
+## 인제스트(1단계) 규약
+
+- **오케스트레이터 브리프(필수):** `01-script.md` 상단에 브리프 블록을 작성한다 — ① 작업 성격(단일 설교/복습/행사 등) ② 형식 결정(+슬롯←콘텐츠 매핑 힌트) ③ 대상·톤 ④ 역본 정책(불명확하면 `[확인필요]`) ⑤ 불변식 리마인더(충실성·예배 순서 제외·형식은 골격·이미지 신학 가드) ⑥ 세컨드 브레인 부합 메모(해당 규칙 ID) ⑦ 원본 출처·추출 방법(파일명·도구·누락 가능성). 기존 두 설교의 브리프가 모범 예시다.
+- **입력 유형별 표준 경로:** `.pptx` → **pptx 스킬**로 텍스트·노트 추출(입력 파싱만 — 출력용 PPTX 변환 금지는 유지) / `.pdf` → `pypdf` 패턴 / `.docx` → `python-docx` 패턴. `workspace/`의 스크립트들은 세션 하드코딩 스크래치이므로 패턴 참고용으로만.
 
 ## 절대 불변식 (어떤 단계에서도 위반 금지)
 
@@ -53,16 +65,16 @@ sermons/<id>/
 전 에이전트가 공유하는 **사용자 선호 지식베이스**(취향). 솔루션 KB(`docs/solutions/`)와는 별개다.
 
 - **scope:** `storyline` / `design` / `global`. 각 에이전트는 **자기 scope + global**만 적용·수정한다. (형식 구조 선호는 `storyline` scope — 아키텍트 소유.)
-- **쓰기/읽기:** `sermon-storyline-architect`가 쓰기·커밋(storyline·global), `slide-visual-designer`는 읽기·적용만(design·global).
+- **쓰기/읽기:** 브레인 파일의 **쓰기 주체는 `sermon-storyline-architect` 1명**(storyline·global 직접 + design은 디자이너 제안분 대리 커밋). `slide-visual-designer`는 읽기·적용(design·global) + 컨펌#2 피드백에서 **design scope 규칙 후보 제안**.
 - **컨펌된 피드백만 규칙화한다(제안형).** 미검토 산출물은 시드/가중치에서 제외. 일회성 지시는 규칙으로 만들지 않는다.
-- **커밋 흐름:** architect가 핸드오프에 `🧠 규칙 후보`를 제시 → 사용자가 승인/수정 → **오케스트레이터가 architect를 "커밋 모드"로 재호출**해 `user-brain.md`(규칙표 + 선호 프로파일 + 변경 로그)를 갱신한다.
+- **커밋 흐름:** 생성자(architect는 storyline·global, designer는 design)가 핸드오프에 `🧠 규칙 후보`를 제시 → 사용자가 승인/수정 → **오케스트레이터가 architect를 "커밋 모드"로 재호출**해 `user-brain.md`(규칙표 + 선호 프로파일 + 변경 로그)를 갱신한다. ※ 여기서 "커밋"은 **브레인 파일 갱신**을 뜻한다 — **git 커밋은 오케스트레이터** 몫(아키텍트는 Bash 없음).
 - **적용 우선순위:** 원고 충실성[절대] > 필수 > 중요 > 선호 > 실험. (중요도 점수와 성숙도 상태 provisional/established/retired는 분리.)
 
 ## 디자인
 
 - **톤 결정 우선순위:** 사용자 지정 > 대상·절기(대예배=절제 / 청소년·캠프=명랑) > 세컨드 브레인 > 절제된 기본.
 - **공통 규칙:** 좌측 정렬 기본(중앙은 의도적 예외), `word-break: keep-all`, 본문 ≥28px급 고대비, 줄바꿈은 의미 단위(어절·구)에만.
-- **재사용 토큰 레퍼런스:** `design/montage-web.md`(Montage — Wanted Sans·브랜드 블루 `#0066FF`·light-first), `design/newskit.md`(NewsKit — BSD-3, OFL 폰트). 5가지 스타일 비교 예시는 `test/output/styles/index.html`.
+- **재사용 토큰 레퍼런스:** `design/montage-web.md`(Montage — Wanted Sans·브랜드 블루 `#0066FF`·light-first), `design/newskit.md`(NewsKit — BSD-3, OFL 폰트), `design/geist.md`(Geist — 아카이브 변형에 사용). 5가지 스타일 비교 예시는 `test/output/styles/index.html`.
 
 ## 형식(Format)
 
@@ -71,7 +83,7 @@ sermons/<id>/
 - **레지스트리:** `format/README.md`(사용 가능 형식·트리거·선택 규칙) + `format/<type>.md`(형식별 골격 — 슬롯·순서·헤더 해부·chrome·필수/선택 슬롯·네이티브 베이스·DOM 계약). 현재 `lecture-deck` 1종.
 - **3층:** 내용 > **형식** > 디자인. 적용 우선순위 **콘텐츠 진실성[절대] > 형식 > 디자인**.
 - **선택:** 사용자 지정 > 덱 성격 추천 > `지정 없음(자유 구조=현행)`. 미지정이면 형식 골격 미적용(전 단계 현행 동작 — 하위호환).
-- **슬롯 직교:** 형식 슬롯(표지/목표/아젠다/단원구분/번호본문/마무리)은 내용유형(대지/예화/봉독…)과 **직교** — 내용유형은 유지하고 슬롯을 추가 태깅한다.
+- **슬롯 직교:** 형식 슬롯(`format/<type>.md`가 정의 — 예: lecture-deck의 표지/목표/아젠다/단원구분/번호본문/마무리)은 내용유형(대지/예화/봉독…)과 **직교** — 내용유형은 유지하고 슬롯을 추가 태깅한다.
 - **생명주기:** 오케스트레이터 선택 → 2단계 슬롯 구조화·태깅 → 4단계 골격 렌더(`data-fmt` 부착) → 3·5단계 구조·골격 감수. **렌더(4)·검증(5)은 내용 무관이라 다른 토픽도 재사용**(콘텐츠→슬롯 어댑터만 교체).
 
 ## 명령
@@ -87,8 +99,8 @@ py -m pip install openai python-dotenv      # 루트 .env에 OPENAI_API_KEY=sk-.
 Start-Process "sermons/<id>/03-slides/index.html"
 ```
 
-- **1단계 인제스트는 스크래치다.** `workspace/extract.py`·`assemble.py`는 docx/pdf → 텍스트 → `01-script.md` 변환 예시이며 특정 세션에 하드코딩됐다(`pypdf` 필요). 재사용 도구가 아니라 패턴 참고용 — 새 설교마다 맞게 쓴다.
-- `scripts/`·`workspace/`는 현재 **untracked**(개발 중).
+- 인제스트 절차는 위 `## 인제스트(1단계) 규약` 참조 (브리프 템플릿 + 입력 유형별 표준 경로).
+- `scripts/`는 git 추적(재사용 도구), `workspace/`는 **untracked**(세션 스크래치).
 
 ## 세션 학습 기록
 
