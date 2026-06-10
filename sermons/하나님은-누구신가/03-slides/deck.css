@@ -1,0 +1,419 @@
+/* =========================================================================
+   하나님은 누구신가 — 교리설교 2강 · 공유 슬라이드 스타일시트
+   디자인 = Montage (Wanted Sans · 브랜드 블루 #0066FF · light-first)
+   형식   = lecture-deck (네이티브 베이스 1920×1080 · 좌표 앵커 = 형식 §1~3)
+   모든 slide-NN.html 이 이 파일을 링크해 시각 일관성을 공유한다.
+   ========================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { interpolate-size: allow-keywords; }
+
+/* ===== MONTAGE THEME TOKENS (wds-theme) — light-first ===== */
+html.theme-light {
+  --bg: #F7F7F8; --surface: #FFFFFF; --surface-hover: #F4F4F5;
+  --border: rgba(112,115,124,0.22);
+  --text: #171719; --text-secondary: #5A5C63;
+  --accent: #0066FF; --accent-secondary: #70737C;
+  --accent-strong: #005EEB; --accent-soft: #EAF2FE;
+  --positive: #00BF40; --negative: #FF4242; --warning: #FF9200;
+  --shadow-sm: 0 2px 4px -2px rgba(23,23,23,0.06), 0 4px 6px -1px rgba(23,23,23,0.05);
+  --shadow-md: 0 4px 6px -2px rgba(23,23,23,0.07), 0 10px 15px -3px rgba(23,23,23,0.07);
+  --shadow-lg: 0 6px 10px -4px rgba(23,23,23,0.08), 0 16px 24px -6px rgba(23,23,23,0.08);
+}
+html.theme-dark {
+  --bg: #1B1C1E; --surface: #212225; --surface-hover: #2E2F33;
+  --border: rgba(112,115,124,0.30);
+  --text: #F7F7F8; --text-secondary: #AEB0B6;
+  --accent: #3385FF; --accent-secondary: #989BA2;
+  --accent-strong: #1A75FF; --accent-soft: rgba(51,133,255,0.16);
+  --positive: #1ED45A; --negative: #FF6363; --warning: #FFA938;
+  --shadow-sm: 0 2px 4px -2px rgba(0,0,0,0.40), 0 4px 6px -1px rgba(0,0,0,0.30);
+  --shadow-md: 0 4px 6px -2px rgba(0,0,0,0.45), 0 10px 15px -3px rgba(0,0,0,0.40);
+  --shadow-lg: 0 8px 14px -4px rgba(0,0,0,0.55), 0 18px 28px -8px rgba(0,0,0,0.45);
+}
+
+/* ===== ARTBOARD — 1920×1080 고정 (그대로 투사) ===== */
+html, body { width: 1920px; height: 1080px; }
+body {
+  font-family: 'Wanted Sans Variable', 'Wanted Sans', 'Pretendard Variable', Pretendard,
+               -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  background: var(--bg); color: var(--text);
+  line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  letter-spacing: -0.01em; overflow: hidden;
+  word-break: keep-all;            /* 한글 어절 보존 — 줄 끝 깨짐 방지 */
+}
+.slide {
+  position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  background: var(--bg);
+}
+h1, h2, h3, h4 { color: var(--text); line-height: 1.18; letter-spacing: -0.035em; }
+h1 { font-weight: 800; } h2 { font-weight: 800; } h3 { font-weight: 700; }
+p, li, span { color: var(--text); font-weight: 400; }
+em { font-style: normal; color: var(--accent); font-weight: 700; }
+b, strong { font-weight: 700; }
+.t-sec { color: var(--text-secondary); }
+.holy { color: var(--accent); font-weight: 700; }    /* 성구 강조어 */
+
+/* ===== ENTRANCE ANIMATION (정적 한 장 — 1회 진입) ===== */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate { animation: fadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+.d1 { animation-delay: .08s; } .d2 { animation-delay: .16s; } .d3 { animation-delay: .24s; }
+.d4 { animation-delay: .32s; } .d5 { animation-delay: .40s; } .d6 { animation-delay: .48s; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .animate { opacity: 1 !important; transform: none !important; }
+}
+
+/* =========================================================================
+   전역 chrome (형식 §1) — 매 슬라이드 반복
+   ========================================================================= */
+/* 식별마크 — 우상단 ≈(1740,80) */
+.fmt-idmark {
+  position: absolute; top: 78px; right: 80px; z-index: 5;
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 19px; font-weight: 700; letter-spacing: 0.01em;
+  color: var(--accent-secondary);
+}
+.fmt-idmark .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
+.fmt-idmark.on-dark { color: rgba(255,255,255,.82); }
+.fmt-idmark.on-dark .dot { background: #FFFFFF; }
+
+/* 페이지 번호 — 우하단 ≈(1820,1010), 저대비 (표지 제외) */
+.fmt-pagenum {
+  position: absolute; bottom: 44px; right: 80px; z-index: 5;
+  font-size: 18px; font-weight: 600; color: var(--text-secondary);
+  font-variant-numeric: tabular-nums; letter-spacing: 0.02em; opacity: .8;
+}
+.fmt-pagenum.on-dark { color: rgba(255,255,255,.6); }
+.fmt-pagenum b { color: var(--accent); font-weight: 700; }
+
+/* =========================================================================
+   번호본문 헤더 (형식 §5) — 키커(80,80)+번호(80,122)+단원제목(157,122)
+   한 단원 내 글자·위치 동일 반복.
+   ========================================================================= */
+.fmt-header { position: absolute; top: 80px; left: 80px; z-index: 4; }
+.fmt-kicker {
+  font-size: 26px; font-weight: 700; color: var(--accent);
+  letter-spacing: 0.01em; line-height: 1; height: 26px; display: flex; align-items: center;
+}
+.fmt-kicker::before {
+  content: ''; width: 18px; height: 3px; background: var(--accent);
+  border-radius: 2px; margin-right: 12px;
+}
+.fmt-unitline { display: flex; align-items: baseline; gap: 22px; margin-top: 18px; }
+.fmt-unitno {
+  font-size: 56px; font-weight: 800; color: var(--accent);
+  line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+}
+.fmt-unittitle {
+  font-size: 44px; font-weight: 800; color: var(--text);
+  line-height: 1; letter-spacing: -0.035em;
+}
+.fmt-header::after {
+  content: ''; position: absolute; left: 0; top: 178px; width: 1760px; height: 1px;
+  background: linear-gradient(90deg, var(--border), transparent 78%);
+}
+
+/* 본문 영역 — 헤더 아래(y≈230~1010) */
+.body-area {
+  position: absolute; top: 248px; left: 80px; right: 80px; bottom: 96px;
+  display: flex; flex-direction: column;
+}
+.body-area.center { align-items: center; text-align: center; }
+.body-area.center .headline { margin-left: auto; margin-right: auto; }
+
+/* 본문 헤드라인 (형식 §5.4 — 가로 중앙정렬) */
+.headline {
+  font-size: 60px; font-weight: 800; line-height: 1.14; letter-spacing: -0.04em;
+  color: var(--text); text-align: center; max-width: 1500px;
+}
+.headline em { color: var(--accent); }
+.subcap {
+  margin-top: 20px; font-size: 27px; font-weight: 500; color: var(--text-secondary);
+  line-height: 1.6; text-align: center; max-width: 1280px;
+}
+.body-stack { margin-top: 56px; width: 100%; }
+
+/* =========================================================================
+   재사용 콘텐츠 블록 (형식 §4 팔레트 · Montage 룩)
+   ========================================================================= */
+
+/* --- pill 라벨 --- */
+.pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 20px; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--accent); background: var(--accent-soft);
+  padding: 9px 20px; border-radius: 999px;
+}
+.pill.slate { color: var(--accent-secondary); background: var(--surface-hover); }
+
+/* --- 성경 인용 블록 (큰 봉독) --- */
+.scripture {
+  width: 100%; max-width: 1480px; margin: 0 auto;
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 6px solid var(--accent); border-radius: 20px;
+  padding: 52px 60px; box-shadow: var(--shadow-sm);
+}
+.scripture .verse {
+  font-size: 44px; font-weight: 600; line-height: 1.5; color: var(--text);
+  letter-spacing: -0.025em; text-align: left;
+}
+.scripture .src {
+  margin-top: 26px; font-size: 23px; font-weight: 700; color: var(--accent);
+  letter-spacing: 0.01em;
+}
+.scripture .src .ver { color: var(--text-secondary); font-weight: 600; }
+
+/* 중앙형 성구(단독 봉독) — 8장 등 */
+.verse-center { width: 100%; max-width: 1500px; margin: 0 auto; text-align: center; }
+.verse-center .big {
+  font-size: 52px; font-weight: 600; line-height: 1.5; color: var(--text);
+  letter-spacing: -0.025em;
+}
+.verse-center .src { margin-top: 34px; font-size: 24px; font-weight: 700; color: var(--accent); }
+.verse-center .src .ver { color: var(--text-secondary); font-weight: 600; }
+.verse-center .foot { margin-top: 16px; font-size: 22px; color: var(--text-secondary); }
+
+/* --- 교리문답 블록 (slate 좌측 바) --- */
+.catechism {
+  width: 100%; max-width: 1500px; margin: 0 auto;
+  border-left: 5px solid var(--accent-secondary);
+  padding-left: 52px; text-align: left;
+}
+.catechism .ckicker {
+  display: inline-block; font-size: 21px; font-weight: 700; letter-spacing: 0.02em;
+  color: var(--accent-secondary); background: var(--surface-hover);
+  padding: 8px 18px; border-radius: 999px; margin-bottom: 28px;
+}
+.catechism .ctext {
+  font-size: 42px; font-weight: 600; line-height: 1.52; color: var(--text);
+  letter-spacing: -0.025em;
+}
+.catechism .ctext b { color: var(--accent); font-weight: 700; }
+
+/* --- 속성 칩 (제4문 ↔ 제11문 ↔ 결론 매칭 앵커) --- */
+.attr-wrap { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 40px; justify-content: center; }
+.attr {
+  display: inline-flex; align-items: center; gap: 13px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 16px 26px; box-shadow: var(--shadow-sm);
+}
+.attr .ai {
+  width: 40px; height: 40px; border-radius: 11px; flex: 0 0 auto;
+  display: grid; place-items: center; background: var(--accent-soft); color: var(--accent);
+}
+.attr .at { font-size: 25px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+.attr.key { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+.attr.key .at { color: var(--accent-strong); }
+
+/* --- 정의형 2단 / 단계 전개 (화살표 위계) --- */
+.def-flow { display: flex; flex-direction: column; gap: 22px; width: 100%; max-width: 1440px; margin: 0 auto; }
+.def-row {
+  display: flex; align-items: center; gap: 26px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+  padding: 32px 40px; box-shadow: var(--shadow-sm); text-align: left;
+}
+.def-row.accent { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.def-row .dlead { font-size: 30px; font-weight: 700; color: var(--accent); flex: 0 0 auto; }
+.def-row .dbody { font-size: 30px; font-weight: 500; line-height: 1.5; color: var(--text); }
+.def-row.accent .dbody { color: var(--accent-strong); font-weight: 600; }
+.def-row .dbody b { color: var(--text); font-weight: 700; }
+.def-arrow { display: grid; place-items: center; color: var(--accent); margin: -6px 0; }
+
+/* --- 카드 그리드 (2 / 3열) --- */
+.cards { display: grid; gap: 26px; width: 100%; margin: 0 auto; }
+.cards.c2 { grid-template-columns: 1fr 1fr; max-width: 1400px; }
+.cards.c3 { grid-template-columns: repeat(3, 1fr); max-width: 1600px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+  padding: 40px 42px; box-shadow: var(--shadow-sm); text-align: left;
+}
+.card.key { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.card .cnum {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px; border-radius: 14px; background: var(--accent-soft);
+  color: var(--accent); font-size: 28px; font-weight: 800; margin-bottom: 22px;
+}
+.card.key .cnum { background: #FFFFFF; }
+.card h3 { font-size: 30px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.03em; }
+.card p { font-size: 24px; line-height: 1.55; color: var(--text-secondary); }
+.card p b { color: var(--text); font-weight: 700; }
+.card.key p { color: #2B4D80; }
+.card .cico { width: 56px; height: 56px; border-radius: 15px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; margin-bottom: 20px; }
+
+/* --- VS 2단 대비 --- */
+.vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch; width: 100%; max-width: 1500px; margin: 0 auto; }
+.pane {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 22px;
+  padding: 44px 46px; box-shadow: var(--shadow-sm); text-align: left;
+}
+.pane.good { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.pane .pk {
+  display: inline-flex; align-items: center; gap: 9px; font-size: 20px; font-weight: 700;
+  letter-spacing: 0.02em; color: var(--accent-secondary); background: var(--surface-hover);
+  padding: 8px 18px; border-radius: 999px; margin-bottom: 22px;
+}
+.pane.good .pk { color: var(--accent); background: rgba(0,102,255,.12); }
+.pane h3 { font-size: 32px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
+.pane.good h3 { color: var(--accent-strong); }
+.pane p { font-size: 25px; line-height: 1.55; color: var(--text-secondary); }
+.pane.good p { color: #2B4D80; }
+.vs-mid { display: grid; place-items: center; padding: 0 26px; }
+.vs-mid span {
+  width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--bg); border: 2px solid var(--border);
+  font-size: 22px; font-weight: 800; color: var(--accent-secondary); letter-spacing: 0.02em;
+}
+
+/* --- 인용 카드 (콜린스 · 김용규) --- */
+.quote-card {
+  position: relative; width: 100%; max-width: 1480px; margin: 0 auto;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 26px;
+  padding: 58px 64px 54px; box-shadow: var(--shadow-md); text-align: left;
+}
+.quote-card::before {
+  content: '\201C'; position: absolute; top: 14px; left: 40px;
+  font-size: 120px; line-height: 1; color: var(--accent); opacity: 0.16; font-family: Georgia, serif;
+}
+.quote-card .qt {
+  position: relative; font-size: 40px; font-weight: 600; line-height: 1.5;
+  color: var(--text); letter-spacing: -0.02em;
+}
+.quote-card .qt b { color: var(--accent); font-weight: 700; }
+.quote-card .qc { margin-top: 30px; font-size: 24px; font-weight: 700; color: var(--accent); }
+.quote-card .qc span { color: var(--text-secondary); font-weight: 500; }
+
+/* --- 성구 페어 (요1:12 / 롬8:15) --- */
+.verse-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; width: 100%; max-width: 1500px; margin: 0 auto; }
+.vcard {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+  border-left: 5px solid var(--accent); padding: 40px 42px; box-shadow: var(--shadow-sm); text-align: left;
+}
+.vcard p { font-size: 30px; font-weight: 600; line-height: 1.5; color: var(--text); letter-spacing: -0.02em; }
+.vcard .ref { margin-top: 22px; font-size: 22px; font-weight: 700; color: var(--accent); }
+.vcard .ref .ver { color: var(--text-secondary); font-weight: 600; }
+
+/* --- 체인/플로우 (기업→상속→자녀→양자 · 섭리) --- */
+.chain { display: flex; align-items: stretch; gap: 14px; width: 100%; max-width: 1560px; margin: 0 auto; flex-wrap: nowrap; }
+.clink {
+  flex: 1 1 0; background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+  padding: 30px 26px; box-shadow: var(--shadow-sm); text-align: center;
+}
+.clink .ck { font-size: 19px; font-weight: 700; letter-spacing: 0.03em; color: var(--accent-secondary); margin-bottom: 12px; }
+.clink h4 { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; }
+.clink.last { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+.clink.last .ck { color: var(--accent); }
+.clink.last h4 { color: var(--accent-strong); }
+.chain-arrow { display: grid; place-items: center; color: var(--accent); flex: 0 0 auto; }
+
+/* --- 스텝퍼 (아젠다 3질문 · ①→②→③ 심화) --- */
+.stepper { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 1320px; margin: 0 auto; }
+.step {
+  display: flex; align-items: center; gap: 30px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+  padding: 34px 44px; box-shadow: var(--shadow-sm); text-align: left;
+  position: relative;
+}
+.step .si {
+  flex: 0 0 auto; width: 64px; height: 64px; border-radius: 17px; display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 30px;
+}
+.step h3 { font-size: 38px; font-weight: 700; letter-spacing: -0.03em; }
+.step .sx { margin-left: auto; font-size: 24px; font-weight: 700; color: var(--accent-secondary); }
+.step.s2 { width: calc(100% - 70px); margin-left: 70px; }
+.step.s3 { width: calc(100% - 140px); margin-left: 140px; }
+.step-connect { width: 2px; background: var(--border); height: 14px; margin-left: 32px; }
+
+/* --- 누적 스택 (결론 3줄 — 아젠다 호응) --- */
+.accum { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 1500px; margin: 0 auto; }
+.acc-row {
+  display: flex; align-items: center; gap: 26px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+  padding: 28px 40px; box-shadow: var(--shadow-sm); text-align: left;
+}
+.acc-row .an {
+  flex: 0 0 auto; width: 56px; height: 56px; border-radius: 15px; display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: 27px;
+}
+.acc-row p { font-size: 32px; font-weight: 600; line-height: 1.4; color: var(--text); letter-spacing: -0.025em; }
+.acc-row p b { color: var(--accent); font-weight: 700; }
+
+/* =========================================================================
+   풀블리드 슬라이드 (표지 · 단원구분 · 목표 · 마무리)
+   ========================================================================= */
+.fullbleed { position: absolute; inset: 0; }
+.fullbleed.light {
+  background:
+    radial-gradient(1100px 640px at 50% -16%, rgba(0,102,255,0.13), transparent 60%),
+    linear-gradient(170deg, #FFFFFF 0%, #EFF5FF 56%, #F7F7F8 100%);
+}
+.fullbleed.dark {
+  background:
+    radial-gradient(980px 820px at 84% 46%, rgba(51,133,255,0.30), transparent 60%),
+    radial-gradient(620px 520px at 12% 110%, rgba(0,102,255,0.22), transparent 64%),
+    linear-gradient(140deg, #07142E 0%, #0B2A66 54%, #0A1A3C 100%);
+}
+
+/* 풀블리드 위 텍스트 */
+.fb-pad { position: absolute; inset: 0; padding: 96px 120px; }
+
+/* 표지 */
+.cover-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 24px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.02em;
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22);
+  padding: 11px 22px; border-radius: 999px; backdrop-filter: blur(4px);
+}
+.cover-title {
+  font-size: 132px; font-weight: 800; line-height: 1.04; letter-spacing: -0.05em; color: #FFFFFF;
+}
+.cover-rule { width: 92px; height: 5px; background: #8EC0FF; border-radius: 4px; margin: 40px 0 34px; }
+.cover-sub {
+  font-size: 42px; font-weight: 700; color: #DDEAFF; line-height: 1.35; letter-spacing: -0.02em;
+}
+.cover-sub .q { color: #FFFFFF; }
+.cover-meta { font-size: 25px; font-weight: 600; color: rgba(255,255,255,.74); }
+.cover-meta b { color: #9EC5FF; font-weight: 700; }
+
+/* 단원구분 */
+.unit-badge {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 28px; font-weight: 800; letter-spacing: 0.04em; color: #07142E;
+  background: #8EC0FF; padding: 13px 30px; border-radius: 999px;
+}
+.unit-badge .un { color: #003E9C; }
+.unit-title {
+  font-size: 100px; font-weight: 800; line-height: 1.08; letter-spacing: -0.045em; color: #FFFFFF;
+  max-width: 1320px;
+}
+.unit-q { margin-top: 26px; font-size: 30px; font-weight: 600; color: #BFD6FF; letter-spacing: -0.01em; }
+
+/* 목표 · 마무리 (중앙정렬, light) */
+.center-screen { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 120px; }
+.goal-label {
+  display: inline-block; font-size: 24px; font-weight: 700; color: var(--accent);
+  background: var(--accent-soft); padding: 10px 22px; border-radius: 999px; margin-bottom: 40px;
+}
+.goal-head {
+  font-size: 76px; font-weight: 800; line-height: 1.16; letter-spacing: -0.04em; color: var(--text);
+  max-width: 1440px;
+}
+.goal-head em { color: var(--accent); }
+.goal-body {
+  margin-top: 40px; font-size: 38px; font-weight: 500; line-height: 1.6; color: var(--text-secondary);
+  max-width: 1280px;
+}
+.goal-body b { color: var(--text); font-weight: 700; }
+
+/* 마무리 인용 (결론 존재의 바다) */
+.closing-quote {
+  margin-top: 52px; font-size: 36px; font-weight: 600; line-height: 1.5; color: var(--text);
+  letter-spacing: -0.02em; max-width: 1360px; position: relative;
+}
+.closing-quote b { color: var(--accent); font-weight: 700; }
+.closing-cite { margin-top: 26px; font-size: 24px; font-weight: 700; color: var(--accent); }
+.closing-cite span { color: var(--text-secondary); font-weight: 500; }
+
+/* SVG 모티프 래퍼 (우측 일러스트 영역) */
+.motif { position: absolute; pointer-events: none; }
+.motif.right { top: 0; right: 0; height: 100%; width: 46%; }
